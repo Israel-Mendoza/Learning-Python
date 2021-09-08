@@ -1,6 +1,6 @@
-from datetime import datetime, timezone, timedelta
 from time import sleep
 from random import randint
+from datetime import datetime, timezone, timedelta
 
 
 class Timer:
