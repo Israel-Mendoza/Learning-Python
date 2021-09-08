@@ -7,20 +7,22 @@ def name(self):
     print("Getter called...")
 
 
-func_name_id = id(name)
-print(f"function 'name': {hex(id(name)).upper()}")
+func_name_address = hex(id(name)).upper()
+print(f"{func_name_address = }")
 
 
 # Creating a property object out of 'name' and assigning it to 'name'
 name = property(name)
-print(f"property 'name': {hex(id(name)).upper()}")
+property_name = hex(id(name)).upper()
+print(f"{property_name = }")
 print(f"name.fget:\t\t {hex(id(name.fget)).upper()}")
 
 # 'name' is no longer poiting to the function, but the name.fget attribute is:
-print(f"\nRef count to the original 'name' function: {getrefcount(func_name_id) - 1}")
-print(
-    f"hex(id(name.fget)) == hex(func_name_id) = {hex(id(name.fget)) == hex(func_name_id)}\n"
-)
+print(f"\nRef count to the original 'name' function: {getrefcount(func_name_address) - 1}")
+# Ref count to the original 'name' function: 1
+print(f"{hex(id(name.fget)) == func_name_address = }\n")
+# hex(id(name.fget)) == func_name_address = False
+
 
 # Saving the name property in a temp variable
 temp_name_prop = name
@@ -50,7 +52,7 @@ name = temp_name_prop.deleter(name)
 
 
 class MyClass:
-    name = name
+    name = name # name (class attribute) = name (property)
 
 
 p1 = MyClass()
@@ -58,3 +60,6 @@ p1 = MyClass()
 p1.name
 p1.name = "Israel"
 del p1.name
+# Getter called...
+# Setter called...
+# Deleter called...

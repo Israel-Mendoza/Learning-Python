@@ -1,4 +1,4 @@
-# Defining a set-only property
+"""Defining a set-only property"""
 
 
 # Using the traditional approach
@@ -22,8 +22,10 @@ try:
     p.name
 except AttributeError as error:
     print(f"{error}\n")
+# unreadable attribute
 
 p.name = "Arturo"
+# Setter called!!!
 print()
 
 
@@ -34,7 +36,8 @@ class Person:
     def __init__(self, name):
         self._name = name
 
-    # Create an empty property object
+    # Create an empty property object (otherwise, 
+    # the first function risks of being the getter (fget):
     name = property(doc="Write-only property represents the name of the person")
 
     # Continue chaining the property as usual
@@ -49,10 +52,15 @@ try:
     p.name
 except AttributeError as error:
     print(f"{error}\n")
+# unreadable attribute
 
 p.name = "Arturo"
+# Setter called!!!
 print()
 
 
 # Accessing the property documentation
 help(Person.name)
+# Help on property:
+
+#     Write-only property represents the name of the person

@@ -1,4 +1,4 @@
-# Using getters and setters the Java way
+"""GETTERS AND SETTERS?"""
 
 
 class Person:
@@ -7,9 +7,15 @@ class Person:
         self.set_name(name)
 
     def get_name(self) -> str:  # Getter
+        """Returns the "_name" attribute of the instance"""
         return self._name
 
     def set_name(self, value: str):  # Setter
+        """
+        Sets the "_name" attribute of the instance 
+        only if the passed argument is a string longer than
+        one character.        
+        """
         if isinstance(value, str):
             value = value.strip()
             if len(value) > 1:
@@ -23,23 +29,29 @@ class Person:
 
 # Instantiating the class
 p = Person("Israel")
-# Seeing the namespace of "p"
-print(f"namespace of 'p': {p.__dict__}\n")
+# Initializating object...
+# <__main__.Person object at 0x7f3ae8e2afd0>.name = 'Israel'
+
+print(f"{p.__dict__ = }")
+# p.__dict__ = {'_name': 'Israel'}
 
 # Trying to set an int as the name
 try:
     p.set_name(155225)
 except ValueError as error:
     print(error)
+# '155225' is not a valid string for a name!
 
 # Trying to set an empty string as the name
 try:
     p.set_name("      ")
 except ValueError as error:
     print(error)
+# '' is too short for a name!
 
 # Trying to set a valid string as the name
 try:
     p.set_name("Coco")
 except ValueError as error:
     print(error)
+# <__main__.Person object at 0x7f3ae8e2afd0>.name = 'Coco'

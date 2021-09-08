@@ -1,4 +1,4 @@
-# Using read-only computed properties
+"""Using read-only computed properties"""
 
 from math import pi
 
@@ -26,8 +26,10 @@ class Circle:
 
 # Creating a circle instance
 c = Circle(2)
-print(f"Radius of 'c': {c.radius}")
-print(f"Area of 'c': {c.area}")
+print(f"{c.radius = }")
+# c.radius = 2
+print(f"{c.area = :.2f}")
+# c.area = 12.57
 print(f"\n")
 
 
@@ -62,12 +64,24 @@ class Circle:
 
 # Creating a circle instance
 c = Circle(2)
-print(f"Radius of 'c': {c.radius}")
-print(f"Area of 'c': {c.area}")  # Calculates area and caches it
-print(f"Area of 'c': {c.area}")
-print(f"Area of 'c': {c.area}")
+# Setting new radius value to 2
+print(f"{c.radius = :.2f}")
+# c.radius = 2.00
+print(f"{c.area = :.2f}")
+# Calculating new area value...
+# c.area = 12.57
+print(f"{c.area = :.2f}")
+# c.area = 12.57
+print(f"{c.area = :.2f}")
+# c.area = 12.57
+print(f"{c.area = :.2f}")
+# c.area = 12.57
+
+# Setting new radius value to 3
 c.radius = 3
-print(f"Area of 'c': {c.area}")  # Calculates are and caches it
-print(f"Area of 'c': {c.area}")
-print(f"Area of 'c': {c.area}")
+print(f"{c.area = :.2f}")  # Calculates are and caches it
+# Calculating new area value...
+# Area of 'c': c.area = 28.27
+print(f"{c.area = :.2f}")
+# Area of 'c': c.area = 28.27
 print(f"\n")
