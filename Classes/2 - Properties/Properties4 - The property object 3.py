@@ -1,6 +1,6 @@
 from sys import getrefcount
 
-# Working with the property object
+"""Working with the property object"""
 
 # Defining a "getter" function
 def name(self):
