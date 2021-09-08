@@ -17,8 +17,8 @@ class Program:
 """CLASS ATTRIBUTES LOCATION"""
 
 # Object dictionary (mappingproxy)
-print(type(Program.__dict__))
-# <class 'mappingproxy'>
+print(f"{type(Program.__dict__) = }")
+# type(Program.__dict__) = <class 'mappingproxy'>
 
 # Iterating through the mappingproxy:
 for k in Program.__dict__:
@@ -36,25 +36,29 @@ for k in Program.__dict__:
 
 """ACCESSING CLASS ATTRIBUTES"""
 
-print(Program.language)
-# Python
-print(Program.version)
-# 3.6
-print(getattr(Program, "language", None))
-# Python
-print(getattr(Program, "version", None))
-# 3.6
+print(f"{Program.language = }")
+# Program.language = 'Python'
+print(f"{Program.version = }")
+# Program.version = '3.6'
+print(f"{Program.__dict__['language'] = }")
+# Program.__dict__['language'] = 'Python'
+print(f"{Program.__dict__['version'] = }")
+# Program.__dict__['version'] = '3.6'
+print(f"{getattr(Program, 'language', None) = }")
+# getattr(Program, 'language', None) = 'Python'
+print(f"{getattr(Program, 'version', None) = }")
+# getattr(Program, 'version', None) = '3.6'
 
 # Accessing attributes that don't exist results in an AttributeError:
 try:
-    print(f"{Program.operating_system}")
-except AttributeError:
-    print("We're sorry, but the 'operating_system' attribute doesn't exist\n")
-# We're sorry, but the 'operating_system' attribute doesn't exist
+    print(f"{Program.operating_system = }")
+except AttributeError as error:
+    print(f"{error = }")
+# error = AttributeError("type object 'Program' has no attribute 'operating_system'")
 
 # Avoiding the try-except block by using the "getattr" function
 if getattr(Program, "operating_system", None):
-    print(print(f"{Program.operating_system}"))
+    print(print(f"{Program.operating_system = }"))
 else:
     print("We're sorry, but the 'operating_system' attribute doesn't exist\n")
 # We're sorry, but the 'operating_system' attribute doesn't exist
@@ -65,24 +69,36 @@ else:
 """SETTING ATTRIBUTES TO CLASSES"""
 
 Program.version = "3.7"
-print(Program.version)
-# 3.7
-print(getattr(Program, "version", None))
-# 3.7
+print(f"{Program.version = }")
+# Program.version = '3.7'
+print(f"{getattr(Program, 'version', None) = }")
+# getattr(Program, 'version', None) = '3.7'
+print(f"{Program.__dict__['version'] = }")
+# Program.__dict__['version'] = '3.7'
 
 Program.version = "3.8"
-print(Program.version)
-# 3.8
-print(getattr(Program, "version", None))
-# 3.8
+print(f"{Program.version = }")
+# Program.version = '3.8'
+print(f"{getattr(Program, 'version', None) = }")
+# getattr(Program, 'version', None) = '3.8'
+print(f"{Program.__dict__['version'] = }")
+# Program.__dict__['version'] = '3.8'
 
 # Setting inexistent attributes
 setattr(Program, "operating_system", "Windows 10")
-print(Program.operating_system)
-# Windows 10
-print(getattr(Program, 'operating_system', None))
-# Windows 10
+print(f"{Program.operating_system = }")
+# Program.operating_system = 'Windows 10'
+print(f"{getattr(Program, 'operating_system', None) = }")
+# getattr(Program, 'operating_system', None) = 'Windows 10'
+print(f"{Program.__dict__['operating_system'] = }")
+# Program.__dict__['operating_system'] = 'Windows 10'
 
+# We can't use the mappingproxy to assign attrinutes:
+try:
+    Program.__dict__["new_attribute"] = "New Attribute"
+except TypeError as error:
+    print(f"{error = }")
+# error = TypeError("'mappingproxy' object does not support item assignment")
 
 #######################################################################
 #######################################################################
