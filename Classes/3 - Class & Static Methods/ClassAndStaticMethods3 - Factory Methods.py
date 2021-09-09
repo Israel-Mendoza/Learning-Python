@@ -122,8 +122,11 @@ emp_strings = [e1, e2, e3]
 emp_objects = []
 
 for employee in emp_strings:
-    # Appending employee objects after creating them with the alternative constructor
-    emp_objects.append(Employee.from_string(employee, "--"))
+    temp_emp = Employee.from_string(employee, "--")
+    emp_objects.append(temp_emp)
 
 for employee in emp_objects:
     print(employee)
+# Ezra Kaltberg is 28 years old and has a monthly salary of $28000.00
+# Mike Schmidt is 26 years old and has a monthly salary of $26000.00
+# Edward Rodriguez is 27 years old and has a monthly salary of $17000.00
