@@ -6,7 +6,7 @@ class Language:
 
 
 print(f"By attribute: {Language.FULL}")
-
+# By attribute: 3.7.4
 
 class Language:
     MAJOR = 3
@@ -29,5 +29,8 @@ class Language:
 l = Language()
 
 print(f"By instance property: {l.version}")
+# By instance property: 3.7.4
 print(f"By class method: {Language.cls_version()}")
+# By class method: 3.7.4
 print(f"By static method: {Language.static_version()}")
+# By static method: 3.7.4
