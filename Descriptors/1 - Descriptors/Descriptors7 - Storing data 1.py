@@ -1,17 +1,18 @@
 """Using data descriptor's __set__ to store data"""
 
 
-# WHAT'S NOT SUPPOSED TO BE DONE
+# WHAT'S NOT SUPPOSED TO BE DONE:
 
-# Storing the setter's passed value to an instance attribute,
-# which name has been hardcoded in the __set__ method.
+# Storing the setter's passed 'value' argument to an INSTANCE ATTRIBUTE,
+# which symbol/name has been HARDCODED in the __set__ method.
 
 
 from typing import Any
 
 
 def print_obj_namespace(an_obj: Any) -> None:
-    print(f"{an_obj} NAMESPACE:")
+    """A simple function that prints the namespace of any passed object"""
+    print(f"{an_obj}'s NAMESPACE:")
     for k, v in an_obj.__dict__.items():
         print(f"{an_obj}.{k:12} -> {v}")
     print()
@@ -22,7 +23,7 @@ class IntegerValue:
 
     def __set__(self, instance, value):
         """
-        Storing the passed value the instance attribute 
+        Storing the passed value into the instance attribute 
         called "stored_value".
         The instance class must not implement __slots__
         or __slots__ must include "stored_value".
@@ -32,8 +33,8 @@ class IntegerValue:
 
     def __get__(self, instance, owner):
         """
-        Returns the value of instance.stored_value, in
-        case the attribute exists. Otherwise, returns None.
+        Returns the value stored in the instance's "stored_value" attribute,
+        in case the attribute exists. Otherwise, returns None.
         """
         if instance is None:
             return self
@@ -57,8 +58,8 @@ p2 = Point1D()
 
 # p1 and p2's namespaces are now empty
 print_obj_namespace(p1)
-print_obj_namespace(p2)
 # <__main__.Point1D object at 0x03050A78> NAMESPACE:
+print_obj_namespace(p2)
 # <__main__.Point1D object at 0x03050FD0> NAMESPACE:
 
 p1.x = 10
@@ -76,9 +77,10 @@ print_obj_namespace(p2)
 # <__main__.Point1D object at 0x014C0FD0>.stored_value -> 20
 
 
+#########################################################################
+#########################################################################
 
 # USING Point2D class
-print("*" * 50)
 
 # Creating Point2D instances
 p1 = Point2D()
@@ -103,8 +105,8 @@ p2.y = 2000
 # <__main__.Point2D object at 0x01070A78>.stored_value = 2000
 print()
 
-# p1 and p2's namespaces are populated by the setter
-# but not as we imagine (because the setter is overriding the same attribute)
+# p1 and p2's namespaces are populated by the setter but not as we imagined,
+# because the setter is OVERRIDNG the same attribute ("stored_value")
 print_obj_namespace(p1)
 # <__main__.Point2D object at 0x03548538> NAMESPACE:
 # <__main__.Point2D object at 0x03548538>.stored_value -> 200

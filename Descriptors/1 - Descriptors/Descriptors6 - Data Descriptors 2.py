@@ -1,4 +1,4 @@
-""""""
+"""Data Desriptors"""
 
 
 from typing import Any
@@ -43,7 +43,7 @@ for k, v in vars(Person).items():
     print(f"{k:12} - {v}")
 print()
 # __module__   - __main__
-# eye_color    - <__main__.Descriptor object at 0x0167F5C8>
+# eye_color    - <__main__.Descriptor object at 0x0167F5C8>  <<<--- DESCRIPTOR!!!
 # __init__     - <function Person.__init__ at 0x034B0190>
 # __dict__     - <attribute '__dict__' of 'Person' objects>
 # __weakref__  - <attribute '__weakref__' of 'Person' objects>
@@ -59,7 +59,7 @@ print("FINAL PERSON NAMESPACE: ")
 for k, v in vars(Person).items():
     print(f"{k:12} - {v}")
 # __module__   - __main__
-# eye_color    - Blue
+# eye_color    - Blue                                       <<<--- DESCRIPTOR NO MORE!
 # __init__     - <function Person.__init__ at 0x03510190>
 # __dict__     - <attribute '__dict__' of 'Person' objects>
 # __weakref__  - <attribute '__weakref__' of 'Person' objects>
