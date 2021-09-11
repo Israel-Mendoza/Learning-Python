@@ -5,6 +5,11 @@
 
 # Storing the setter's passed 'value' argument to an INSTANCE ATTRIBUTE,
 # which symbol/name has been HARDCODED in the __set__ method.
+#
+# Why is this a bad idea?
+# 1. It's always a bad idea to hardcode attribute names for other objects.
+# 2. If there is more than one data descriptor in the class, all of them
+#       will end up using the same hardcoded variable in the class instance.
 
 
 from typing import Any

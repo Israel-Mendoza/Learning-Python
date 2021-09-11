@@ -2,22 +2,33 @@
 
 # WHAT'S NOT SUPPOSED TO BE DONE
 
-# Using a dictionary within the descriptor's instance
-# to store the instance's attributes.
+# Using a dictionary in the descriptor to store 
+# the instance's attributes.
 # The instance is the key, the value, the value.
+# 
+# Why is this a bad idea?
+# 1. Because the storing dictionary may keep containing
+#       references to objects that may stop existing in the main
+#       scope of the program, which will prevent the Garbage Collector
+#       from claiming that object's memory.
+# 2. The key in the dictionary must be a hashable object.
 
 from ctypes import c_long
 
 
 def get_ref_count(address: int):
+    """
+    A simple function that returns the number of 
+    references to a given object in memory, 
+    which address is the passed integer.
+    """
     return c_long.from_address(address).value
 
 
 def print_obj_namespace(an_obj):
+    """A simple function that prints the namespace of any passed object"""
     print(f"{an_obj} NAMESPACE:")
-    for k, v in an_obj.__dict__.items():
-        print(f"{an_obj}.{k:12} -> {v}")
-    print()
+    print(f"{an_obj.__dict__}\n")
 
 
 class IntegerValue:
@@ -74,13 +85,16 @@ class Point1D:
             print(f"{k} -> {v}")
 
 
+# Creating two instances of Point1D
 p1 = Point1D("p1")
 p2 = Point1D("p2")
 
+# Storing p1's address into a variable
 p1_address = id(p1)
-print(f"p1 reference count: {get_ref_count(p1_address)}")
-# p1 reference count: 1
+print(f"{get_ref_count(p1_address) = }")
+# get_ref_count(p1_address) = 1
 
+# Using the descriptor to set and get:
 p1.x = 10
 # Adding/Updating instance's value in descriptor.
 p2.x = 20
@@ -90,34 +104,33 @@ p1.x
 p2.x
 # Getting instance's value from descriptor
 
-# Repeated info, because there is a single descriptor
-# object holding the values:
+# Repeated info, because the descriptor holds the data for
+# all of the instances that have used it:
 p1.show_x_descriptor()
-# <__main__.Point1D object at 0x03890C28> -> 10
-# <__main__.Point1D object at 0x03890748> -> 20
+# <__main__.Point1D object at 0x03890C28> -> 10 // (p1)
+# <__main__.Point1D object at 0x03890748> -> 20 // (p2)
 p2.show_x_descriptor()
-# <__main__.Point1D object at 0x03890C28> -> 10
-# <__main__.Point1D object at 0x03890748> -> 20
+# <__main__.Point1D object at 0x03890C28> -> 10 // (p1)
+# <__main__.Point1D object at 0x03890748> -> 20 // (p2)
 print()
 
 """Memory caveats. Possible memory leaks."""
 
-p1_address = id(p1)
-print(f"p1 memory address: {hex(p1_address).upper()}")
+print(f"{hex(p1_address).upper() = }")
 # p1 memory address: 0X3890C28
-print(f"p1 reference count: {get_ref_count(p1_address)}")
+print(f"{get_ref_count(p1_address) = }")
 # p1 reference count: 2
-print(f"Is p1 in the global scope? {'p1' in globals()}")
-# Is p1 in the global scope? True
+print(f"{'p1' in globals() = }") # Does "p1" exist in the global scope?
+# 'p1' in globals() = True
 
 # Deleting p1 from global scope
-print(f"Deleting p1 from the global scope.")
 del p1
 
-print(f"Is p1 in the global scope still? {'p1' in globals()}")
-# Is p1 in the global scope still? False
+print(f"{'p1' in globals() = }") # Does "p1" exist in the global scope?
+# 'p1' in globals() = False
 print(f"p1 reference count: {get_ref_count(p1_address)}")
 # p1 reference count: 1
+
 print("Where is this reference to this object?")
 print(f"Address in the descriptor's dict: "
       f"{hex(id(list(Point1D.x.values.keys())[0])).upper()}")
