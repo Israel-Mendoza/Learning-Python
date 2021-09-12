@@ -1,16 +1,19 @@
 """Using data descriptor's __set__ to store data"""
 
 
+# At this point, we can start calling 
+# the data descriptor's instance a PROPERTY.
+
 # WHAT'S NOT SUPPOSED TO BE DONE:
 
-# Storing the setter's passed 'value' argument to an INSTANCE ATTRIBUTE,
-# which symbol/name has been HARDCODED in the __set__ method.
+# Using an INSTANCE ATTRIBUTE to write to and read from, 
+# which symbol/name is HARDCODED in the __set__ and __get__ methods.
 #
 # Why is this a bad idea?
 # 1. It's always a bad idea to hardcode attribute names for other objects.
-# 2. If there is more than one data descriptor in the class, all of them
-#       will end up using the same hardcoded variable in the class instance, 
-#       or "stepping on our own toes"
+# 3. If used, __slots__ must include the name of the hardcoded attribute.
+# 2. If there is more than one property in the class, they will end up using 
+#       the same hardcoded instance attribute. We'll be basically stepping on our own toes.
 
 
 from typing import Any
@@ -25,17 +28,16 @@ def print_obj_namespace(an_obj: Any) -> None:
 
 
 class IntegerValue:
-    """Data descriptor"""
+    """Data descriptor to be used as a property for an integer value"""
 
     def __set__(self, instance, value):
         """
-        Storing the passed value into the instance attribute 
-        called "stored_value".
-        The instance class must not implement __slots__
+        Storing the value into and instance attribute called "stored_value".
+        The instance class must not implement __slots__,
         or __slots__ must include "stored_value".
         """
         print(f"{instance}.stored_value = {value}")
-        instance.stored_value = value
+        setattr(instance, "stored_value", value)
 
     def __get__(self, instance, owner):
         """

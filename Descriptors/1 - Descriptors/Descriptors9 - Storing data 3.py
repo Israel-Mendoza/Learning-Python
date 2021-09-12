@@ -11,7 +11,7 @@
 #       references to objects that may stop existing in the main
 #       scope of the program, which will prevent the Garbage Collector
 #       from claiming that object's memory.
-# 2. The key in the dictionary must be a hashable object.
+# 2. The key in the dictionary (the passed instance) must be a hashable object.
 
 from ctypes import c_long
 
@@ -68,6 +68,8 @@ class Point1D:
 
     x = IntegerValue()
 
+    # Feel free to use slots, since the x property won't 
+    # be using the instance's namespace to store any data.
     __slots__ = ("name",)
 
     def __init__(self, name: str) -> None:

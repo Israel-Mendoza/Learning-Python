@@ -2,9 +2,16 @@
 
 # WHAT'S NOT SUPPOSED TO BE DONE
 
-# Storing the setter's passed value to an instance attribute, 
-# which name is specified when initializing the data descriptor's instance
-
+# Using an INSTANCE ATTRIBUTE to write to and read from, 
+# which name is specified when initializing the property instance.
+# 
+# Why is this a bad idead?
+#   1. The name of the class attribute must be set twice (x = Descriptor("x")) 
+#   2. We are assuming the name if the instance attribute ("_" + attribute) 
+#       is not used by the instance namespace. If it is, we can be overriding 
+#       its contents. 
+#   3. Using __slots__ will be even more difficult, since the name of the instance attribute
+#       will habe to be calculated beforehand in order to be included in __slots__
 
 from typing import Any, Type
 
@@ -27,7 +34,7 @@ class IntegerValue:
         or __slots__ must include "_" + name.
         For instance, if the string "foo" is passed, 
         the descriptor will be writing and reading
-        to and from the instance attribute "_foo"
+        to and from the instance attribute "_foo".
         """
         self.storage_name = f"_{name}"
 
