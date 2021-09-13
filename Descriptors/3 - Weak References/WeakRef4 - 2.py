@@ -1,24 +1,26 @@
-"""
-Using a dictionary in a data descriptor to store 
-the instance's address as the key, and the value as the value.
-Pros:
-    Instances don't have to be hashable.
-Cons:
-    The key will remain in the dictionary even though the object
-    is destroyed. 
-    This can be memory expensive, and may return the wrong value
-    if Python decides to reuse the same memory address.
-"""
-
-from ctypes import c_long
+"""WeakKeyDictionary in data descriptors"""
 
 
-def get_ref_count(address: int) -> int:
+# Using a dictionary in a data descriptor to store 
+# the instance's address as the key, and the value as the value.
+# Pros:
+#     Instances don't have to be hashable.
+# Cons:
+#     The key will remain in the dictionary even though the object
+#     is destroyed. 
+#     This can be memory expensive, and may return the wrong value
+#     if Python decides to reuse the same memory address.
+
+import ctypes
+
+
+def get_ref_count(address: int):
     """
-    Returns the reference count to the object
-    in the passed address.
+    A simple function that returns the number of 
+    references to a given object in memory, 
+    which address is the passed integer.
     """
-    return c_long.from_address(address).value
+    return ctypes.c_long.from_address(address).value
 
 
 class IntegerValue:

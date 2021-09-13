@@ -1,31 +1,34 @@
-"""
-Using a dictionary in a data descriptor to store 
-the instance's address as the key, and the value is a tuple
-containing a weak reference to the instance and a callback,
-and the value to be stored.
-The callback function in the weak reference object will be called
-when all instances pointing to that object are destroyed.
-Pros:
-    Instances don't have to be hashable.
-    The dictionary can be freed up by using the weak reference's 
-    callback function.
-Cons:
-    Doesn't work if __slots__ are impletemted (this prevents __weakref__
-    from keep weak references).
-    If __slots__ are in place, make sure they include __weakref__
-"""
+"""Let's keep usong a dictionary in a data descriptor"""
+
+# The dictionary in the property will be used to store like this:
+#   Key [str]: The instance address location.
+#   Value [tuple[weakref.ref, value]]: A tuple containing a weakref object
+#                                       created with an instance to the object
+#                                       it's supposed to point to, and a callback
+#                                       function, which is supposed to run to delete
+#                                       the remaining reference.
+# Pros:
+#     Instances don't have to be hashable.
+#     The dictionary can be freed up by using the weak reference's 
+#     callback function.
+# Cons:
+#     Doesn't work if __slots__ are impletemted (this prevents __weakref__
+#     from keep weak references).
+#     If __slots__ are in place, make sure they include __weakref__
 
 
-from weakref import ref
-from ctypes import c_long
+
+import ctypes
+import weakref
 
 
-def get_ref_count(address: int) -> int:
+def get_ref_count(address: int):
     """
-    Returns the reference count to the object
-    in the passed address.
+    A simple function that returns the number of
+    references to a given object in memory,
+    which address is the passed integer.
     """
-    return c_long.from_address(address).value
+    return ctypes.c_long.from_address(address).value
 
 
 class IntegerValue:
@@ -39,9 +42,10 @@ class IntegerValue:
 
     def __get__(self, instance, owner):
         """
-        Descriptor getter method.
         Returns the descriptor instance if called from a class.
-        Returns the assigned value if called from an instance.
+        Returns the assigned value if called from an instance, 
+        which is stored in the self.values dictionary's second 
+        position of the value tuple.
         """
         if instance is None:
             return self
@@ -50,23 +54,22 @@ class IntegerValue:
 
     def __set__(self, instance, value):
         """
-        Descriptor setter method.
         Stores the value in the descriptor instance's value dictionary.
         The key will be the instance memory address.
         The value will be a tuple containing
-            index 0: a weak_ref object pointing to the instance
-                    and a callback method to be called when the instance
+            index 0: a weakref object instantiated with the instance it'll
+                    point to, and a callback method to be called when the instance 
                     is elligible for garbage collection.
             index 1: The value of the instance, to be obtained by the 
                     getter method.
         """
         address = id(instance)
-        self.values[address] = (ref(instance, self._remove_item), value)
+        self.values[address] = (weakref.ref(instance, self._remove_item), value)
 
     def _remove_item(self, weak_ref_obj):
         """
         Intended as a callback method.
-        When called, iterating through the self.values dictionary,
+        When called, it iterates through the self.values dictionary,
         looking for the key-value pair where the passed weak_ref
         object is.
         Once found, it deletes the dictionary entry.

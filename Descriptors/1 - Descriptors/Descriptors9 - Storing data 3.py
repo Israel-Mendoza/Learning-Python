@@ -13,7 +13,8 @@
 #       from claiming that object's memory.
 # 2. The key in the dictionary (the passed instance) must be a hashable object.
 
-from ctypes import c_long
+
+import ctypes
 
 
 def get_ref_count(address: int):
@@ -22,7 +23,7 @@ def get_ref_count(address: int):
     references to a given object in memory, 
     which address is the passed integer.
     """
-    return c_long.from_address(address).value
+    return ctypes.c_long.from_address(address).value
 
 
 def print_obj_namespace(an_obj):
@@ -76,6 +77,8 @@ class Point1D:
         self.name = name
 
     def __hash__(self) -> int:
+        # Remember that the object must be hashable if we want 
+        # the IntegerValue property to store values for this instance
         return hash(self.name)
 
     def show_x_descriptor(self) -> None:
