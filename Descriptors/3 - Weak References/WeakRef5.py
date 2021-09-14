@@ -1,28 +1,30 @@
 """Let's keep usong a dictionary in a data descriptor"""
 
 # The dictionary in the property will be used to store like this:
-#   Key [str]: The instance address location.
+#   Key [int]: The instance address location.
 #   Value [tuple[weakref.ref, value]]: A tuple containing a weakref object
-#                                       created with an instance to the object
-#                                       it's supposed to point to, and a callback
-#                                       function, which is supposed to run to delete
-#                                       the remaining reference.
+#                                      created with an instance to the object
+#                                      it's supposed to point to, and a callback
+#                                      function, which is supposed to run to delete
+#                                      the remaining reference.
 # Pros:
-#     Instances don't have to be hashable.
-#     The dictionary can be freed up by using the weak reference's 
-#     callback function.
+#     1. Instances don't have to be hashable (the key in the dictionary will be the int
+#        representing the instance's address).
+#     2. The dictionary can be freed up by using the weak reference's 
+#        callback function.
 # Cons:
-#     Doesn't work if __slots__ are impletemted (this prevents __weakref__
-#     from keep weak references).
-#     If __slots__ are in place, make sure they include __weakref__
+#     1. Doesn't work if __slots__ are impletemted, since __slots__ this prevents 
+#        __weakref__ from keeping weak references).
+#     2. If __slots__ are in place, make sure they include __weakref__
 
 
 
 import ctypes
 import weakref
+from typing import Any
 
 
-def get_ref_count(address: int):
+def get_ref_count(address: int) -> int:
     """
     A simple function that returns the number of
     references to a given object in memory,
@@ -32,41 +34,45 @@ def get_ref_count(address: int):
 
 
 class IntegerValue:
+    """
+    A Data Descriptor that stores the instance's values 
+    in a dictionary under the descriptor instance's namespace.
+    """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes an empty dictionary where the
         instance information and values will be stored.
         """
         self.values = {}
 
-    def __get__(self, instance, owner):
+    def __get__(self, instance, owner) -> Any:
         """
         Returns the descriptor instance if called from a class.
-        Returns the assigned value if called from an instance, 
-        which is stored in the self.values dictionary's second 
-        position of the value tuple.
+        Returns the passed intance's value in the self.values dictionary.
         """
         if instance is None:
+            # Returns the descriptor's intance, 
+            # since it was called from the class
             return self
+        # Returning the value assigned to the instance.
         address = id(instance)
         return self.values[address][1]
 
-    def __set__(self, instance, value):
+    def __set__(self, instance, value) -> None:
         """
-        Stores the value in the descriptor instance's value dictionary.
-        The key will be the instance memory address.
-        The value will be a tuple containing
-            index 0: a weakref object instantiated with the instance it'll
-                    point to, and a callback method to be called when the instance 
-                    is elligible for garbage collection.
-            index 1: The value of the instance, to be obtained by the 
-                    getter method.
+        Stores the passed value in the self.values dictionary, 
+        where the key will be the instance memory address.
+        The value will be a tuple containing:
+            at index 0: a weakref object instantiated with the instance 
+                        it'll point to, and a callback method to be called 
+                        when the instance is elligible for garbage collection.
+            at index 1: The actual value of the instance.
         """
-        address = id(instance)
+        address: int = id(instance)
         self.values[address] = (weakref.ref(instance, self._remove_item), value)
 
-    def _remove_item(self, weak_ref_obj):
+    def _remove_item(self, weakref_obj: weakref.ref) -> None:
         """
         Intended as a callback method.
         When called, it iterates through the self.values dictionary,
@@ -75,7 +81,8 @@ class IntegerValue:
         Once found, it deletes the dictionary entry.
         """
         for k, v in self.values.items():
-            if id(weak_ref_obj) == id(v[0]):
+            if id(weakref_obj) == id(v[0]):
+                print(f"Removing item {weakref_obj} from the descriptor's dictionary!")
                 del self.values[k]
                 break
 
@@ -96,9 +103,14 @@ class Point1D:
 
     @classmethod
     def show_x_descriptor(cls):
+        """
+        A class method that will print a dictionary version
+        of the WeakRefDictionary in the x property,
+        holding the instances values.
+        """
         print(f"{cls.__name__}.x's values:")
-        for k, v in cls.x.values.items():
-            print(f"Address {hex(k).upper()}:{v}")
+        for k, v in dict(cls.x.values).items():
+            print(f"Object at {hex(id(k)).upper()} has a value of {v}")
 
 
 p1 = Point1D()
@@ -113,6 +125,7 @@ Point1D.show_x_descriptor()
 # Address 0X1BF0550:(<weakref at 0x01C17D20; to 'Point1D' at 0x01BF0550>, 20)
 print()
 
+print(f"Deleting p1!")
 del p1
 print()
 

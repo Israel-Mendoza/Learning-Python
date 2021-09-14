@@ -70,7 +70,6 @@ class Point1D:
         print(f"{cls.__name__}.x's values:")
         for k, v in dict(cls.x.values).items():
             print(f"Object at {hex(id(k)).upper()} has a value of {v}")
-        # print(dict(cls.x.values))
 
 
 # Creating a couple of Point1D instances and

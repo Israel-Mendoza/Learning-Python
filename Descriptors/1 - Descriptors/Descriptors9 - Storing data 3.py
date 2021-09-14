@@ -11,7 +11,9 @@
 #       references to objects that may stop existing in the main
 #       scope of the program, which will prevent the Garbage Collector
 #       from claiming that object's memory.
-# 2. The key in the dictionary (the passed instance) must be a hashable object.
+# 2. This can be memory expensive, and may return the wrong value
+#       if Python decides to reuse the same memory address.
+# 3. The key in the dictionary (the passed instance) must be a hashable object.
 
 
 import ctypes
