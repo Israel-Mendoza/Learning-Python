@@ -12,7 +12,7 @@
 # points to is destroyed. 
 
 # TODO: Show how we can use the callback function in __callback__ to 
-# delete all traces references to destroyed objects.
+# delete all traces references to destroyed objects, including weak references.
 
 from typing import List
 import weakref
