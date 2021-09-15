@@ -1,16 +1,17 @@
 """Understanding why weak references are necessary."""
 
-# Playing around with the reference count.
+# Playing around with strong references and the strong reference count.
 
 
 import ctypes
 
 
-def get_ref_count(address: int):
+def get_ref_count(address: int) -> int:
     """
-    A simple function that returns the number of 
-    references to a given object in memory, 
-    which address is the passed integer.
+    A simple function that returns
+    the number or references to a
+    given object in memory, which
+    address is the passed integer.
     """
     return ctypes.c_long.from_address(address).value
 

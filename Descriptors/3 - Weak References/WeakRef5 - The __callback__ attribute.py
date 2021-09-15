@@ -59,8 +59,13 @@ print(f"{wk2.__callback__ = }")
 print(f"{wk1.__callback__ is my_callback = }")
 # wk1.__callback__ is my_callback = True
 
+# We can call the weak reference's callback from the real object:
+p1.__weakref__.__callback__(p1.__weakref__)
+# What a lovely callback, where the passed weakref is '<weakref at 0x7f69368bff40; to 'Person' at 0x7f6936843fa0>'
+
 # Deleting p1.
-# Notice how the callback in wk1 is called.
+# Notice how the callback in wk1 is called, 
+# passing the weak ref's instance as the only argument:
 del p1
 # What a lovely callback, where the passed weakref is '<weakref at 0x7f69368bff40; dead>'
 

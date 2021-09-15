@@ -9,6 +9,7 @@
 # Pros:
 #     The WeakKeyDictionary doesn't create a direct reference
 #     to the instance, which prevents memory leaks.
+#     Once the instance is destroyed, so is the weak reference key.
 # Cons:
 #     Instance must be hashable to be used as a key for the dictionary.
 
@@ -17,11 +18,12 @@ import ctypes
 import weakref
 
 
-def get_ref_count(address: int):
+def get_ref_count(address: int) -> int:
     """
-    A simple function that returns the number of
-    references to a given object in memory,
-    which address is the passed integer.
+    A simple function that returns
+    the number or references to a
+    given object in memory, which
+    address is the passed integer.
     """
     return ctypes.c_long.from_address(address).value
 

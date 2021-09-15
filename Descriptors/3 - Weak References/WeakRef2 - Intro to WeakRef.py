@@ -1,25 +1,25 @@
-"""
-Using the weak reference class.
-weakref.ref is an alias for weakref.ReferenceType(Generic[_T]):
+"""Using the weak reference class."""
 
-class ReferenceType(Generic[_T]):
-    __callback__: Callable[[ReferenceType[_T]], Any]
-    def __init__(self, o: _T, callback: Callable[[ReferenceType[_T]], Any] | None = ...) -> None: ...
-    def __call__(self) -> _T | None: ...
-    def __hash__(self) -> int: ...
-    if sys.version_info >= (3, 9):
-        def __class_getitem__(cls, item: Any) -> GenericAlias: ...
-"""
+# weakref.ref is an alias for weakref.ReferenceType(Generic[_T]):
+
+# class ReferenceType(Generic[_T]):
+#     __callback__: Callable[[ReferenceType[_T]], Any]
+#     def __init__(self, o: _T, callback: Callable[[ReferenceType[_T]], Any] | None = ...) -> None: ...
+#     def __call__(self) -> _T | None: ...
+#     def __hash__(self) -> int: ...
+#     if sys.version_info >= (3, 9):
+#         def __class_getitem__(cls, item: Any) -> GenericAlias: ...
 
 import ctypes
 import weakref
 
 
-def get_ref_count(address: int):
+def get_ref_count(address: int) -> int:
     """
-    A simple function that returns the number of 
-    references to a given object in memory, 
-    which address is the passed integer.
+    A simple function that returns
+    the number or references to a
+    given object in memory, which
+    address is the passed integer.
     """
     return ctypes.c_long.from_address(address).value
 

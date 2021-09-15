@@ -1,36 +1,23 @@
-"""Let's keep usong a dictionary in a data descriptor"""
+"""Let's keep using a dictionary in a data descriptor"""
 
 # The dictionary in the property will be used to store like this:
-#   Key [int]: The instance address location.
-#   Value [tuple[weakref.ref, value]]: A tuple containing a weakref object
-#                                      created with an instance to the object
-#                                      it's supposed to point to, and a callback
-#                                      function, which is supposed to run to delete
-#                                      the remaining reference.
+#   Key [int]: The instance address.
+#   Value [tuple[weakref.ref, value]]: A tuple containing a weakref object created
+#                                      with the instance it's supposed to point to
+#                                      and a callback function that runs to delete
+#                                      current dictionary entry.
 # Pros:
-#     1. Instances don't have to be hashable (the key in the dictionary will be the int
-#        representing the instance's address).
-#     2. The dictionary can be freed up by using the weak reference's 
-#        callback function.
+#     1. Instances don't have to be hashable because the key in the storing dictio-
+#        nary in the property is the int representing the instance's address.
+#     2. The weak reference dictionary entry can be freed up by using the weak refe-
+#        rence's callback function.
 # Cons:
-#     1. Doesn't work if __slots__ are impletemted, since __slots__ this prevents 
-#        __weakref__ from keeping weak references).
-#     2. If __slots__ are in place, make sure they include __weakref__
+#     1. __slots__ prevents __weakref__ from keeping weak references. If __slots__ 
+#        are in place, make sure they include __weakref__
 
 
-
-import ctypes
 import weakref
 from typing import Any
-
-
-def get_ref_count(address: int) -> int:
-    """
-    A simple function that returns the number of
-    references to a given object in memory,
-    which address is the passed integer.
-    """
-    return ctypes.c_long.from_address(address).value
 
 
 class IntegerValue:
@@ -82,7 +69,7 @@ class IntegerValue:
         """
         for k, v in self.values.items():
             if id(weakref_obj) == id(v[0]):
-                print(f"Removing item {weakref_obj} from the descriptor's dictionary!")
+                print(f"Removing {weakref_obj} from IntegerValue() at {hex(id(self)).upper()}'s values dictionary!")
                 del self.values[k]
                 break
 
@@ -110,7 +97,7 @@ class Point1D:
         """
         print(f"{cls.__name__}.x's values:")
         for k, v in dict(cls.x.values).items():
-            print(f"Object at {hex(id(k)).upper()} has a value of {v}")
+            print(f"{hex(id(k)).upper()} -> {v}")
 
 
 p1 = Point1D()
@@ -121,22 +108,31 @@ p2.x = 20
 
 Point1D.show_x_descriptor()
 # Point1D.x's values:
-# Address 0X1BF0C28:(<weakref at 0x01C17CD0; to 'Point1D' at 0x01BF0C28>, 10)
-# Address 0X1BF0550:(<weakref at 0x01C17D20; to 'Point1D' at 0x01BF0550>, 20)
+# 0X7F038D7313B0 -> (<weakref at 0x7f038d7ed9f0; to 'Point1D' at 0x7f038d86d8b0>, 10)
+# 0X7F038D7313D0 -> (<weakref at 0x7f038d7f7630; to 'Point1D' at 0x7f038d86d940>, 20)
 print()
 
-print(f"Deleting p1!")
+# Confirming the callback function in both dictionary entries:
+print(Point1D.x.values[id(p1)][0].__callback__)
+# <bound method IntegerValue._remove_item of <__main__.IntegerValue object at 0x7f038d86dcd0>>
+print(Point1D.x.values[id(p2)][0].__callback__)
+# <bound method IntegerValue._remove_item of <__main__.IntegerValue object at 0x7f038d86dcd0>>
+
 del p1
+# Removing <weakref at 0x7f038d7ed9f0; dead> from IntegerValue() at 0X7F038D86DCD0's values dictionary!
 print()
 
 Point1D.show_x_descriptor()
 # Point1D.x's values:
-# Address 0X1BF0550:(<weakref at 0x01C17D20; to 'Point1D' at 0x01BF0550>, 20)
+# 0X7F038D7313D0 -> (<weakref at 0x7f038d7f7630; to 'Point1D' at 0x7f038d86d940>, 20)
 print()
 
 del p2
+# Removing <weakref at 0x7f038d7f7630; dead> from IntegerValue() at 0X7F038D86DCD0's values dictionary!
 print()
 
+# The storing dictionary is empty! 
+# All references, strong and weak are destroyed.
 Point1D.show_x_descriptor()
 # Point1D.x's values:
 
