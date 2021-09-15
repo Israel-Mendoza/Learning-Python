@@ -38,9 +38,10 @@ class CurrentTime:
 
 class Person:
     """Class to represent a person"""
-    # CurrentTime instance created at compile time.
+    # CurrentTime instance created at compile time, 
+    # meaning, the CurrentTime object will be created 
+    # even before instantiating a Person object for the firt time.
     time = CurrentTime()
-    # Creating a CurrentTime instance // Python prints this at this point!
 
     def __init__(self, name, age):
         self.name = name
@@ -50,6 +51,9 @@ class Person:
         # By accessing the time attribute,
         # we are calling the descriptor's __get__ method.
         print(f"My name is {self.name} and the datetime is {self.time}")
+
+
+# Creating a CurrentTime instance // Python prints this at this point!
 
 
 p = Person("Israel", 28)

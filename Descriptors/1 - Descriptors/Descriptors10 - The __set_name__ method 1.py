@@ -1,10 +1,10 @@
-"""
-Using the __set_name__ method to record the name of the
-class attribute in the descriptor instance.
-This is useful to when using the __set__ method in order
-to use the instance itself to store the value.
-__set_name__ runs just after the __init__ method.
-"""
+"""Using the __set_name__ method"""
+
+# The __set_name__ is run just after __init__ and allows us 
+# to keep track of the class and the attribute name it's
+# assigned to.
+# This is useful when using the __set__ method in order
+# to use the instance itself to store the value.
 
 
 class ValidString:
@@ -17,19 +17,19 @@ class ValidString:
         self.min_length = min_length
         self.max_length = max_length
 
-    def __set_name__(self, owner_class, property_name):
+    def __set_name__(self, owner, property_name):
         """
         Set name descriptor method.
         Stores the class attribute name in self.property_name, 
         and the attribute name the instance will use to store
         the value, which will simulate a private attribute name.
         """
+        print(f"__set_name__({owner = }, {property_name = }) ")
         self.property_name = property_name
-        self.instance_attribute_name = f"_{owner_class.__name__}__{property_name}"
+        self.instance_attribute_name = f"_{owner.__name__}__{property_name}"
 
     def __get__(self, instance, owner):
         """
-        Descriptor getter method.
         Returns the descriptor if called from the class,
         or the value assigned to the instance attribute, 
         if called from the instance.
@@ -40,7 +40,6 @@ class ValidString:
 
     def __set__(self, instance, value):
         """
-        Descriptor setter method.
         Checks if the value is a valid string, as defined by the 
         self.check_valid_string method.
         If it is, stores the value in the instance's namespace,
@@ -68,14 +67,16 @@ class Person:
         self.__age = age
 
 
-p = Person(28)
-p_hex_address = hex(id(p)).upper()
-print(f"p address: {p_hex_address}")
-# p address: 0X2D20748
+# __set_name__(owner = <class '__main__.Person'>, property_name = 'first_name') 
+# __set_name__(owner = <class '__main__.Person'>, property_name = 'last_name') 
 
-print()
+
+p = Person(28)
+print(f"{hex(id(p)).upper() = }")
+# hex(id(p)).upper() = '0X7F4EBD585D00'
 
 p.first_name = "Israel"
 p.last_name = "Mendoza"
 print(vars(p))
 # {'_Person__age': 28, '_Person__first_name': 'Israel', '_Person__last_name': 'Mendoza'}
+
