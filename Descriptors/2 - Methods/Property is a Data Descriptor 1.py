@@ -3,6 +3,12 @@
 from numbers import Integral
 
 
+#####################################################################
+#####################################################################
+
+# Using the descriptor's @ notation:
+
+
 class Person:
 
     @property
@@ -19,11 +25,18 @@ class Person:
 
 
 p = Person()
+
 try:
     p.age = -10
 except ValueError as error:
     print(error)
 # Age must be a positive instance
+
+
+#####################################################################
+#####################################################################
+
+# Using the "traditional" notation:
 
 class Person:
 
@@ -41,8 +54,21 @@ class Person:
 
 
 p = Person()
+
 try:
     p.age = -10
 except ValueError as error:
     print(error)
 # Age must be a positive instance
+
+
+print(f"{Person.age = }")
+# Person.age = <property object at 0x7f11fababea0>
+print(f"{hasattr(Person.age, '__get__') = }")
+# hasattr(Person.age, '__get__') = True
+print(f"{hasattr(Person.age, '__set__') = }")
+# hasattr(Person.age, '__set__') = True
+print(f"{hasattr(Person.age, '__del__') = }")
+# hasattr(Person.age, '__del__') = False
+print(f"{hasattr(Person.age, '__set_name__') = }")
+# hasattr(Person.age, '__set_name__') = False
