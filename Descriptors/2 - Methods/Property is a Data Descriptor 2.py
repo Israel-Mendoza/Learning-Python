@@ -2,23 +2,23 @@
 
 from numbers import Integral
 from types import FunctionType
-from typing import Any
+from typing import Any, Callable, Optional
 
 
 class Property:
 
     def __init__(self,
-                 f_get: FunctionType = None,
-                 f_set: FunctionType = None,
-                 f_del: FunctionType = None) -> None:
+                 f_get: Optional[Callable[..., Any]] = None,
+                 f_set: Optional[Callable[..., Any]] = None,
+                 f_del: Optional[Callable[..., Any]] = None) -> None:
         self.get = f_get
         self.set = f_set
         self.delete = f_del
 
-    def __set_name__(self, cls, name):
+    def __set_name__(self, cls: type, name: str) -> None:
         self.property_name = name
 
-    def __get__(self, obj, cls) -> Any:
+    def __get__(self, obj: Any, cls: type) -> Any:
         """Descriptor's getter method"""
         if obj is None:
             # Called from a class.
@@ -31,7 +31,7 @@ class Property:
             raise AttributeError(
                 f"{cls.__name__} has not implemented a getter for '{self.property_name}'")
 
-    def __set__(self, obj, value) -> None:
+    def __set__(self, obj: Any, value: Any) -> None:
         """Descriptor's setter method"""
         if self.set:
             # self.set has been set.
@@ -41,7 +41,7 @@ class Property:
             raise AttributeError(
                 f"{obj.__class__.__name__} has not implemented a setter for '{self.property_name}'")
 
-    def __delete__(self, obj) -> None:
+    def __delete__(self, obj: Any) -> None:
         """Descriptor's delete method"""
         if self.delete:
             # self.delete has been set
@@ -50,14 +50,14 @@ class Property:
             raise AttributeError(
                 f"{obj.__class__.__name__} has not implemented a deleter for '{self.property_name}'")
 
-    def setter(self, f_set: FunctionType = None):
+    def setter(self, f_set: Optional[Callable[..., Any]] = None) -> "Property":
         """Implements the self.set method to be called by the setter"""
         if isinstance(f_set, FunctionType):
             self.set = f_set
             self.property_name = f_set.__name__
         return self
 
-    def deleter(self, f_del: FunctionType = None):
+    def deleter(self, f_del: Optional[Callable[..., Any]] = None) -> "Property":
         """Implements the self.delete method to be called by the delete method"""
         if isinstance(f_del, FunctionType):
             self.delete = f_del
@@ -67,50 +67,51 @@ class Property:
 
 class Person:
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
     @Property
-    def name(self):
+    def name(self) -> str:
         return getattr(self, "_name")
 
     @name.setter
-    def name(self, value):
+    def name(self, value: Any) -> None:
         if isinstance(value, str) and len(value) > 1:
             setattr(self, "_name", value)
         else:
             raise ValueError("name must be a non-empty string")
 
     @name.deleter
-    def name(self):
+    def name(self) -> None:
         delattr(self, "_name")
 
     @Property
-    def age(self):
+    def age(self) -> int:
         return getattr(self, "_age")
 
     @age.setter
-    def age(self, value):
+    def age(self, value: int):
         if isinstance(value, Integral) and value > 0:
             setattr(self, "_age", value)
         else:
             raise ValueError("Age must be a valid positive integer")
 
     @age.deleter
-    def age(self):
+    def age(self) -> None:
         delattr(self, "_age")
 
 
 class Point:
 
     def __init__(self, x: int):
+        self._x: int
         self.x = x
 
     x = Property()
 
     @x.setter
-    def x(self, value):
+    def x(self, value: int):
         print("Calling the x setter!")
         if isinstance(value, Integral):
             setattr(self, "_x", value)

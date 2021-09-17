@@ -14,14 +14,16 @@
 import weakref
 
 class Person:
+    
     def __init__(self, name: str) -> None:
+        self.__weakref__: weakref.ref["Person"]
         self.name = name
 
     def __repr__(self) -> str:
         return f"Person('{self.name}') at {hex(id(self)).upper()}"
 
 
-def my_callback(the_wk: weakref.ref) -> None:
+def my_callback(the_wk: weakref.ref[Person]) -> None:
     print(f"What a lovely callback, where the passed weakref is '{the_wk}'")
 
 p1 = Person("Israel")

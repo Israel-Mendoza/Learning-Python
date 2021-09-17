@@ -42,7 +42,7 @@ except Exception as error:
 
 # What happens if we try to create a weak reference?
 try:
-    wr1: weakref.ref = weakref.ref(p1)
+    wr1: weakref.ref[Person] = weakref.ref(p1)
 except Exception as error:
     print(f"{type(error).__name__}: {error}")
 # TypeError: cannot create weak reference to 'Person' object
@@ -64,8 +64,8 @@ class Person:
 p1 = Person("Israel Mendoza")
 
 # We can now create a weak reference:
-wr1: weakref.ref = weakref.ref(p1)
-wr2: weakref.ref = weakref.ref(p1)
+wr1: weakref.ref[Person] = weakref.ref(p1)
+wr2: weakref.ref[Person] = weakref.ref(p1)
 
 
 # Python doesn't create more than one

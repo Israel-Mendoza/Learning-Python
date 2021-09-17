@@ -16,6 +16,7 @@
 
 import ctypes
 import weakref
+from typing import Any, Optional
 
 
 def get_ref_count(address: int) -> int:
@@ -30,7 +31,7 @@ def get_ref_count(address: int) -> int:
 
 class IntegerValue:
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializing an empty WeakKeyDictionary intance
         where the intances will be keys, and the values, the values.
@@ -38,9 +39,9 @@ class IntegerValue:
         """
         # Creating an empty WeakKeyDictionary to store
         # the instances and their values
-        self.values = weakref.WeakKeyDictionary()
+        self.values: weakref.WeakKeyDictionary[Any, Any] = weakref.WeakKeyDictionary()
 
-    def __set__(self, instance, value):
+    def __set__(self, instance: Any, value: Any):
         """
         Creates/updates an entry in the self.value WeakKeyDictionary instance,
         where the key is the passed instance and the value is the passed value.
@@ -48,7 +49,7 @@ class IntegerValue:
         """
         self.values[instance] = value
 
-    def __get__(self, instance, owner):
+    def __get__(self, instance: Any, owner: type) -> Optional[Any]:
         """
         Returns the instance's corresponding value from the
         self.values WeakKeyReference dictionary.
@@ -70,8 +71,12 @@ class Point1D:
         holding the instances values.
         """
         print(f"{cls.__name__}.x's values:")
-        for k, v in dict(cls.x.values).items():
-            print(f"Object at {hex(id(k)).upper()} has a value of {v}")
+        try:
+            for k, v in dict(cls.x.values).items():
+                print(f"Object at {hex(id(k)).upper()} has a value of {v}")
+        except AttributeError as error:
+            print(f"{error.__class__.__name__}: {error}")
+            
 
 
 # Creating a couple of Point1D instances and

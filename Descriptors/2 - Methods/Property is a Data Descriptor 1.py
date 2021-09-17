@@ -9,14 +9,14 @@ from numbers import Integral
 # Using the descriptor's @ notation:
 
 
-class Person:
+class Person1:
 
     @property
     def age(self):
         return getattr(self, "_age", None)
 
     @age.setter
-    def age(self, value):
+    def age(self, value: int):
         if not isinstance(value, Integral):
             raise ValueError("Age must be a valid integer")
         if value < 0:
@@ -24,7 +24,7 @@ class Person:
         setattr(self, "_age", value)
 
 
-p = Person()
+p = Person1()
 
 try:
     p.age = -10
@@ -38,12 +38,12 @@ except ValueError as error:
 
 # Using the "traditional" notation:
 
-class Person:
+class Person2:
 
     def get_age(self):
         return getattr(self, "_age", None)
 
-    def set_age(self, value):
+    def set_age(self, value: int):
         if not isinstance(value, Integral):
             raise ValueError("Age must be a valid integer")
         if value < 0:
@@ -53,7 +53,7 @@ class Person:
     age = property(get_age, set_age)
 
 
-p = Person()
+p = Person2()
 
 try:
     p.age = -10
@@ -62,13 +62,13 @@ except ValueError as error:
 # Age must be a positive instance
 
 
-print(f"{Person.age = }")
+print(f"{Person2.age = }")
 # Person.age = <property object at 0x7f11fababea0>
-print(f"{hasattr(Person.age, '__get__') = }")
+print(f"{hasattr(Person2.age, '__get__') = }")
 # hasattr(Person.age, '__get__') = True
-print(f"{hasattr(Person.age, '__set__') = }")
+print(f"{hasattr(Person2.age, '__set__') = }")
 # hasattr(Person.age, '__set__') = True
-print(f"{hasattr(Person.age, '__del__') = }")
+print(f"{hasattr(Person2.age, '__del__') = }")
 # hasattr(Person.age, '__del__') = False
-print(f"{hasattr(Person.age, '__set_name__') = }")
+print(f"{hasattr(Person2.age, '__set_name__') = }")
 # hasattr(Person.age, '__set_name__') = False
