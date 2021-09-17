@@ -1,3 +1,6 @@
+"""Inheriting methods"""
+
+
 class Person:
     def eat(self):
         print(f"{self.__class__.__name__} eats")
@@ -15,9 +18,14 @@ class Person:
 
 
 class Student(Person):
+
+    # Student inherits the methods eat() and routine()
+
+    # Overriding the 'work' method
     def work(self):
         print(f"{self.__class__.__name__} goes to school")
 
+    # Overriding the 'sleep' method
     def sleep(self):
         print(f"{self.__class__.__name__} doesn't sleep")
 
@@ -26,5 +34,11 @@ p = Person()
 s = Student()
 
 p.routine()
-print()
+# Person eats
+# Person works
+# Person sleeps
+
 s.routine()
+# Student eats
+# Student goes to school
+# Student doesn't sleep
