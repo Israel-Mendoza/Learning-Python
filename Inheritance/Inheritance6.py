@@ -4,6 +4,9 @@ from typing import Optional, Union
 
 
 class Circle:
+
+    """A class to represent a circle"""
+
     def __init__(self, radius: Union[int, float]) -> None:
         self._radius_setter(radius)
         self._area = None
@@ -19,9 +22,9 @@ class Circle:
 
     def _radius_setter(self, new_radius: Union[int, float]) -> None:
         if isinstance(new_radius, Real) and new_radius > 0:
-            self._radius = new_radius
+            self._radius: Union[int, float] = new_radius
             self._area: Optional[float] = None
-            self._perimeter = None
+            self._perimeter: Optional[float] = None
         else:
             raise ValueError("Radius must be a positive number")
 
@@ -42,6 +45,9 @@ class Circle:
 
 
 class UnitCircle(Circle):
+
+    """UnitCircle class, with radius of value '1" as a read-only property"""
+
     def __init__(self):
         super().__init__(1)
 

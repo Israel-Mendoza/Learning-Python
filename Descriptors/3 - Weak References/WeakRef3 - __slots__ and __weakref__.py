@@ -1,14 +1,14 @@
 """Using __weakref__ and __slots__"""
 
-# Python allows (but does not require) to explicitly list 
-# the attributes a class instance will store by naming 
-# them in a special class attribute called __slots__. 
-# This is an optimization technique primarily used to save space 
+# Python allows (but does not require) to explicitly list
+# the attributes a class instance will store by naming
+# them in a special class attribute called __slots__.
+# This is an optimization technique primarily used to save space
 # when there will be MANY instances of a class.
 #
 # Where does the weakref fit into all this?
 #
-# When we create a weak reference to an object, 
+# When we create a weak reference to an object,
 # the weak reference is also stored in the instance's
 # namespace under the attribute "__weakref__".
 # If we're using __slots__ in the class, we must know that:
@@ -26,7 +26,7 @@ class Person:
 
     # We are not including '__weakref__' in __slots__
     __slots__ = ("fname",)
-    
+
     def __init__(self, full_name: str) -> None:
         self.fname = full_name
 
@@ -56,7 +56,7 @@ class Person:
 
     # Including '__weakref__' in __slots__
     __slots__ = ("fname", "__weakref__")
-    
+
     def __init__(self, full_name: str) -> None:
         self.fname = full_name
 
@@ -69,7 +69,7 @@ wr2: weakref.ref[Person] = weakref.ref(p1)
 
 
 # Python doesn't create more than one
-# weak reference to the same object:ce 
+# weak reference to the same object:ce
 print(f"{wr1 = }")
 # wr1 = <weakref at 0x7ff622bceea0; to 'Person' at 0x7ff622bc9d00>
 print(f"{wr2 = }")

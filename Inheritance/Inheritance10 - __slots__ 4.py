@@ -1,4 +1,14 @@
+"""Inheritance and __slots__"""
+
+# When an object is created from a class that inherited slots,
+# the object will have a __dict__.
+# When an object is created from a class that did NOT
+# inherit slots, but the class itself implements them,
+# the object will have a __dict__.
+
+
 def display_obj_namespace(an_object):
+    """Simple function to print an object's namespace"""
     print(f"OBJECT'S NAMESPACE:")
     for k, v in vars(an_object).items():
         if "__slots__" in vars(an_object) and k in vars(an_object)["__slots__"]:
@@ -26,12 +36,30 @@ class Student(Person):
 # Student will have an instance dictionary as well
 
 s = Student("James Bond", "MI6 Prep School", "007")
+
+# __dict__ and __weakref__ available:
 display_obj_namespace(Person)
-print()
+# OBJECT'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__init__': <function Person.__init__ at 0x7f44ab610820>
+# Class attribute '__dict__': <attribute '__dict__' of 'Person' objects>
+# Class attribute '__weakref__': <attribute '__weakref__' of 'Person' objects>
+# Class attribute '__doc__': None
+
+# No __dict__ or __weakref__ available:
 display_obj_namespace(Student)
-print()
+# OBJECT'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__slots__': ('school', 'student_number')
+# Class attribute '__init__': <function Student.__init__ at 0x7f44ab6108b0>
+# Slotted attribute 'school': <member 'school' of 'Student' objects>
+# Slotted attribute 'student_number': <member 'student_number' of 'Student' objects>
+# Class attribute '__doc__': None
+
+# Student objects will have a __dict__!!!
 display_obj_namespace(s)
-print()
+# OBJECT'S NAMESPACE:
+# Class attribute 'name': James Bond
 
 
 class Person:
@@ -54,3 +82,8 @@ class Student(Person):
 
 s = Student("James Bond", "MI6 Prep School", "007")
 display_obj_namespace(s)
+
+
+# OBJECT'S NAMESPACE:
+# Class attribute 'school': MI6 Prep School
+# Class attribute 'student_number': 007

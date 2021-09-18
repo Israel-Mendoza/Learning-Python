@@ -49,7 +49,7 @@ weak1 = weakref.ref(p1)
 print(f"{get_ref_count(p1_address) = }")
 # get_ref_count(p1_address) = 2
 
-# What is 'weak1' pointing to then? 
+# What is 'weak1' pointing to then?
 # It's poiting to the same object p1 and p2 do:
 print(f"{weak1 = }")
 # weak1 = <weakref at 0x7f6316179400; to 'Person' at 0x7f631615dfd0>
