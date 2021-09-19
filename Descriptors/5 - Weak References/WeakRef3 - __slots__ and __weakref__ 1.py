@@ -1,16 +1,10 @@
 """Using __weakref__ and __slots__"""
 
-# Python allows (but does not require) to explicitly list
-# the attributes a class instance will store by naming
-# them in a special class attribute called __slots__.
-# This is an optimization technique primarily used to save space
-# when there will be MANY instances of a class.
-#
-# Where does the weakref fit into all this?
-#
+
 # When we create a weak reference to an object,
 # the weak reference is also stored in the instance's
 # namespace under the attribute "__weakref__".
+#
 # If we're using __slots__ in the class, we must know that:
 #   1. Creating a weak reference to an object means the reference
 #      will be added to the original object's namespace under

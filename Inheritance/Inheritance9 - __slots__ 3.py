@@ -1,13 +1,74 @@
-"""Inheritance with __slots__"""
+"""Inheritance and __slots__"""
+
+# When an object is created from a class that inherited slots,
+# but doesn't implements them itself, the object will have a __dict__.
+# When an object is created from a class that did NOT inherit slots,
+# but the class itself implements them, the object will have a __dict__.
+#
+# In short, the final object will try to inherit the __dict__ when it can.
+
+from typing import Any
 
 
-def display_obj_namespace(an_object):
-    print(f"{an_object.__name__.upper()}'S NAMESPACE:")
+def display_obj_namespace(an_object: Any):
+    """Simple function to print an object's namespace"""
+    print(f"OBJECT'S NAMESPACE:")
     for k, v in vars(an_object).items():
         if "__slots__" in vars(an_object) and k in vars(an_object)["__slots__"]:
             print(f"Slotted attribute '{k}': {v}")
         else:
             print(f"Class attribute '{k}': {v}")
+
+
+"""Super class doesn't have slots. Subclass has slots."""
+
+
+class Person:
+    def __init__(self, name: str) -> None:
+        self.name: str = name
+
+
+class Student(Person):
+    __slots__ = ("school", "student_number")
+
+    def __init__(self, name: str, school: str, student_number: str) -> None:
+        super().__init__(name)
+        self.school = school
+        self.student_number = student_number
+
+
+# Because the Student subclass implements slots,
+# but inherits from a class that doesn't,
+# Student will have an instance dictionary as well
+
+s = Student("James Bond", "MI6 Prep School", "007")
+
+# __dict__ and __weakref__ available:
+display_obj_namespace(Person)
+# OBJECT'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__init__': <function Person.__init__ at 0x7f44ab610820>
+# Class attribute '__dict__': <attribute '__dict__' of 'Person' objects>
+# Class attribute '__weakref__': <attribute '__weakref__' of 'Person' objects>
+# Class attribute '__doc__': None
+
+# No __dict__ or __weakref__ available:
+display_obj_namespace(Student)
+# OBJECT'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__slots__': ('school', 'student_number')
+# Class attribute '__init__': <function Student.__init__ at 0x7f44ab6108b0>
+# Slotted attribute 'school': <member 'school' of 'Student' objects>
+# Slotted attribute 'student_number': <member 'student_number' of 'Student' objects>
+# Class attribute '__doc__': None
+
+# Student objects will have a __dict__!!!
+display_obj_namespace(s)
+# OBJECT'S NAMESPACE:
+# Class attribute 'name': James Bond
+
+
+"""Super class has slots. Subclass doesn't have slots."""
 
 
 class Person:
@@ -18,41 +79,19 @@ class Person:
 
 
 class Student(Person):
-
-    __slots__ = ("school", "student_number")
-
-    def __init__(self, name, school, student_number):
+    def __init__(self, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
         self.school = school
         self.student_number = student_number
 
 
-# Instantiating a Student obkect:
+# Because the Person class implements slots,
+# but its subclass Student doesn't, Student
+# will have an instance dictionary as well.
+
 s = Student("James Bond", "MI6 Prep School", "007")
 
-# Because the Student subclass also implements slots,
-# there is no instance dictionary.
-try:
-    s.email = "email@email.com"
-except Exception as error:
-    print(f"{type(error).__name__}: {error}")
-# AttributeError: 'Student' object has no attribute 'email'
-
-# No __dict__ or __weakref__. Notice the slotted attribute:
-display_obj_namespace(Person)
-# PERSON'S NAMESPACE:
-# Class attribute '__module__': __main__
-# Class attribute '__slots__': ('name',)
-# Class attribute '__init__': <function Person.__init__ at 0x7f4f2c93b790>
-# Slotted attribute 'name': <member 'name' of 'Person' objects>
-# Class attribute '__doc__': None
-
-# No __dict__ or __weakref__. Notice the slotted attributes:
-display_obj_namespace(Student)
-# STUDENT'S NAMESPACE:
-# Class attribute '__module__': __main__
-# Class attribute '__slots__': ('school', 'student_number')
-# Class attribute '__init__': <function Student.__init__ at 0x7f4f2c93b820>
-# Slotted attribute 'school': <member 'school' of 'Student' objects>
-# Slotted attribute 'student_number': <member 'student_number' of 'Student' objects>
-# Class attribute '__doc__': None
+display_obj_namespace(s)
+# OBJECT'S NAMESPACE:
+# Class attribute 'school': MI6 Prep School
+# Class attribute 'student_number': 007

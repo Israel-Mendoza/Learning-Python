@@ -1,5 +1,21 @@
 """Inheritance with __slots__"""
 
+# When the superclass implements slots, and the inheriting class implements
+# them as well, the instances of the inheriting class will inherit both slots.
+# Needless to say, the instance won't have a __dict__.
+
+
+from typing import Any
+
+
+def display_obj_namespace(an_object: Any):
+    print(f"{an_object.__name__.upper()}'S NAMESPACE:")
+    for k, v in vars(an_object).items():
+        if "__slots__" in vars(an_object) and k in vars(an_object)["__slots__"]:
+            print(f"Slotted attribute '{k}': {v}")
+        else:
+            print(f"Class attribute '{k}': {v}")
+
 
 class Person:
     __slots__ = ("name",)
@@ -9,35 +25,41 @@ class Person:
 
 
 class Student(Person):
-    """Subclass of Person"""
+
+    __slots__ = ("school", "student_number")
+
+    def __init__(self, name: str, school: str, student_number: str):
+        super().__init__(name)
+        self.school: str = school
+        self.student_number: str = student_number
 
 
-p = Person("Margarita")
-s = Student("Israel")
+# Instantiating a Student obkect:
+s = Student("James Bond", "MI6 Prep School", "007")
 
-# Person instances don't have a namespace:
+# Because the Student subclass also implements slots,
+# there is no instance dictionary.
 try:
-    print(f"Person namespace: {vars(p)}")
-except TypeError as error:
-    print("Person namespace: ")
-    print(f"\tTypeError: {error}")
-# Person namespace:
-# TypeError: vars() argument must have __dict__ attribute
+    s.email = "email@email.com"
+except Exception as error:
+    print(f"{type(error).__name__}: {error}")
+# AttributeError: 'Student' object has no attribute 'email'
 
-# Student instances DO have a namespace:
-print(f"Student namespace: {vars(s)}")
-# Student namespace: {}
+# No __dict__ or __weakref__. Notice the slotted attribute:
+display_obj_namespace(Person)
+# PERSON'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__slots__': ('name',)
+# Class attribute '__init__': <function Person.__init__ at 0x7f4f2c93b790>
+# Slotted attribute 'name': <member 'name' of 'Person' objects>
+# Class attribute '__doc__': None
 
-
-# Because the Student subclass doesn't
-# implement slots, it inherits the one
-# from the parent class, but it also makes
-# use of the __dict__ namespace dictionary.
-s.major = "Computer Science"
-
-print(s.major)
-# Computer Science
-
-# Printing the Student instance's namespace:
-print(f"{s.__dict__ = }")
-# s.__dict__ = {'major': 'Computer Science'}
+# No __dict__ or __weakref__. Notice the slotted attributes:
+display_obj_namespace(Student)
+# STUDENT'S NAMESPACE:
+# Class attribute '__module__': __main__
+# Class attribute '__slots__': ('school', 'student_number')
+# Class attribute '__init__': <function Student.__init__ at 0x7f4f2c93b820>
+# Slotted attribute 'school': <member 'school' of 'Student' objects>
+# Slotted attribute 'student_number': <member 'student_number' of 'Student' objects>
+# Class attribute '__doc__': None
