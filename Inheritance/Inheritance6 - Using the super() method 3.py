@@ -1,3 +1,5 @@
+"""Using the super() method"""
+
 from math import pi
 from numbers import Real
 from typing import Optional, Union
