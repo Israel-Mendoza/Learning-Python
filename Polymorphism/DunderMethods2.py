@@ -1,16 +1,19 @@
 # Creating a vector to test the dunder methods
 
+# TODO: Fix annotations
+
 from numbers import Real
+from typing import Any, Tuple
 
 
 class Vector:
-    def __init__(self, *components):
+    def __init__(self, *components: Real):
         if len(components) < 1:
             raise ValueError("Cannot create an empty Vector!")
         for component in components:
             if not isinstance(component, Real):
                 raise ValueError("All components must be real numbers!")
-        self._components = tuple(components)
+        self._components: Tuple[Real, ...] = tuple(components)
 
     @property
     def components(self):
@@ -64,7 +67,7 @@ class Vector:
         self._components = tuple(components)
         return self
 
-    def validate(self, other):
+    def validate(self, other: Any) -> bool:
         """Returns true if the passed vector is the same length as self"""
         if Vector.validate_type(other):
             if len(self) == len(other):
@@ -75,7 +78,7 @@ class Vector:
             raise VectorError("Both objects must be instances of Vector!")
 
     @staticmethod
-    def validate_type(a_type) -> bool:
+    def validate_type(a_type: Any) -> bool:
         """Returns true if the passed argument is a Vector instance"""
         return isinstance(a_type, Vector)
 
