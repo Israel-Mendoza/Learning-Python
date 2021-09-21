@@ -1,52 +1,57 @@
-# Using Rich Comparations
+"""Using Rich Comparations"""
+
+
+from typing import Any, Union
 
 
 class Vector:
-    def __init__(self, x, y):
+    def __init__(self, x: Union[int, float], y: Union[int, float]) -> None:
         self._x = x
         self._y = y
 
     @property
-    def x(self):
+    def x(self) -> Union[int, float]:
         """X value of the vector"""
         return self._x
 
     @x.setter
-    def x(self, value):
+    def x(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
             self._x = value
         else:
             raise ValueError("X value of vector must be a valid number...")
 
     @property
-    def y(self):
+    def y(self) -> Union[int, float]:
         """Y value of the vector"""
         return self._y
 
     @y.setter
-    def y(self, value: float):
+    def y(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
             self._y = value
         else:
             raise ValueError("Y value of vector must be a valid number...")
 
-    def __eq__(self, other):
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x == other.x and self.y == other.y
         else:
             return NotImplemented
 
-    def __lt__(self, other):
+    def __lt__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x < other.x and self.y < other.y
         else:
             return NotImplemented
 
-    def __le__(self, other):
+    def __le__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x <= other.x and self.y <= other.y
+        else:
+            return NotImplemented
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Vector({self.x}, {self.y})"
 
 
@@ -54,9 +59,14 @@ v1 = Vector(10, 20)
 v2 = Vector(10, 20)
 v3 = Vector(20, 30)
 
-print(f"v1's address: {hex(id(v1)).upper()}")
-print(f"v2's address: {hex(id(v2)).upper()}\n")
+print(f"{hex(id(v1)).upper() = }")
+# hex(id(v1)).upper() = '0X7F7C50F255B0'
+print(f"{hex(id(v2)).upper() = }\n")
+# hex(id(v2)).upper() = '0X7F7C50F25310'
 
-print(f"v1 is v2 = {v1 is v2}")
-print(f"v1 == v2 = {v1 == v2}")
-print(f"v1 > v3 = {v1 > v3}")
+print(f"{v1 is v2 = }")
+# v1 is v2 = False
+print(f"{v1 == v2 = }")
+# v1 == v2 = True
+print(f"{v1 > v3 = }")
+# v1 > v3 = False

@@ -1,42 +1,45 @@
+"""Dunder Methods"""
+
 # Creating a vector to test the dunder methods
 
-# TODO: Fix annotations
-
 from numbers import Real
-from typing import Any, Tuple
+from typing import Any, Tuple, Union
 
 
 class Vector:
-    def __init__(self, *components: Real):
+    def __init__(self, *components: Union[int, float]) -> None:
         if len(components) < 1:
             raise ValueError("Cannot create an empty Vector!")
         for component in components:
             if not isinstance(component, Real):
                 raise ValueError("All components must be real numbers!")
-        self._components: Tuple[Real, ...] = tuple(components)
+        self._components: Tuple[Union[int, float], ...] = tuple(components)
 
     @property
-    def components(self):
+    def components(self) -> Tuple[Union[int, float], ...]:
         """The Vector's components"""
         return self._components
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self.components)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"Vector{self.components}"
 
-    def __add__(self, other):
+    def __add__(self, other: "Vector") -> "Vector":
         if self.validate(other):
             components = (x + y for x, y in zip(self.components, other.components))
             return Vector(*components)
+        else:
+            return self
 
-    def __sub__(self, other):
+    def __sub__(self, other: "Vector") -> "Vector":
         if self.validate(other):
             components = (x - y for x, y in zip(self.components, other.components))
             return Vector(*components)
+        return self
 
-    def __mul__(self, other):
+    def __mul__(self, other: "Vector") -> "Vector":
         if isinstance(other, Vector):
             if len(self) == len(other):
                 components = (x * y for x, y in zip(self.components, other.components))
@@ -50,18 +53,18 @@ class Vector:
             else:
                 return NotImplemented
 
-    def __rmul__(self, other):
+    def __rmul__(self, other: "Vector") -> "Vector":
         # No need to implement the logic again. The regular __mul__ can be used for this
         return self * other
 
-    def __iadd__(self, other):
+    def __iadd__(self, other: "Vector"):
         # Implementing the += operator, as if Vector was a mutable object
         if self.validate(other):
             components = (x + y for x, y in zip(self.components, other.components))
             self._components = tuple(components)
             return self
 
-    def __neg__(self):
+    def __neg__(self) -> "Vector":
         # Implementing the negation operator, as if Vector was a mutable object
         components = (x * -1 for x in self.components)
         self._components = tuple(components)
@@ -92,5 +95,9 @@ v2 = Vector(15, 25)
 
 # Checking that Vector is a mutable class
 print(f"{v1} = {hex(id(v1)).upper()}")
+# Vector(2, 3) = 0X7F06650EC5B0
+
 v1 = -v1
+
 print(f"{v1} = {hex(id(v1)).upper()}")
+# Vector(-2, -3) = 0X7F06650EC5B0
