@@ -1,24 +1,27 @@
 from time import perf_counter
 from types import FunctionType
 from functools import wraps
+from typing import Any, Callable, Optional
+
+# TODO: Why can't I wrap in a class?
 
 
 class FunctionProfiler:
-    def __init__(self, func):
-        self._func = func
-        self._count = 0
-        self._execution_time = 0
-        self._execution_avg = None
+    def __init__(self, func: Callable[..., Any]) -> None:
+        self._func: Callable[..., Any] = func
+        self._count: int = 0
+        self._execution_time: float = 0
+        self._execution_avg: Optional[float] = None
 
     @property
-    def func(self) -> FunctionType:
+    def func(self) -> Callable[..., Any]:
         """The function the object is wrapping"""
         return self._func
 
     @func.setter
-    def func(self, func: FunctionType) -> None:
+    def func(self, func: Callable[..., Any]) -> None:
         if isinstance(func, FunctionType):
-            self._func = func
+            self._func: Callable[..., Any] = func
 
     @property
     def count(self):
@@ -26,14 +29,14 @@ class FunctionProfiler:
         return self._count
 
     @property
-    def execution_avg(self):
+    def execution_avg(self) -> float:
         if self._execution_avg is None:
             self._execution_avg = self._execution_time / self.count
             return self._execution_avg
         return self._execution_avg
 
-    @wraps(self.func)
-    def __call__(self, *args):
+    # @wraps(func)
+    def __call__(self, *args: Any) -> Any:
         self._execution_avg = None
         self._count += 1
         start_time = perf_counter()
@@ -58,7 +61,8 @@ for i in range(10):
     counting()
 
 print(
-    f"Counting function called {counting.count} times with an average of {counting.execution_avg:.3f} seconds per call"
+    f"Function called {counting.count} times with an average of "
+    f"{counting.execution_avg:.3f} seconds per call"
 )
 
 help(counting)
