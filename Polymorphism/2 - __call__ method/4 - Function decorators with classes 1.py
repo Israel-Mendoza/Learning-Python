@@ -1,9 +1,8 @@
+"""Using a class' __call__ method to make it a decorator"""
+
 from time import perf_counter
 from types import FunctionType
-from functools import wraps
 from typing import Any, Callable, Optional
-
-# TODO: Why can't I wrap in a class?
 
 
 class FunctionProfiler:
@@ -35,7 +34,6 @@ class FunctionProfiler:
             return self._execution_avg
         return self._execution_avg
 
-    # @wraps(func)
     def __call__(self, *args: Any) -> Any:
         self._execution_avg = None
         self._count += 1
@@ -59,10 +57,53 @@ def counting():
 
 for i in range(10):
     counting()
+# Function 'counting' took 0.058 seconds to run
+# Function 'counting' took 0.054 seconds to run
+# Function 'counting' took 0.051 seconds to run
+# Function 'counting' took 0.047 seconds to run
+# Function 'counting' took 0.046 seconds to run
+# Function 'counting' took 0.082 seconds to run
+# Function 'counting' took 0.052 seconds to run
+# Function 'counting' took 0.077 seconds to run
+# Function 'counting' took 0.047 seconds to run
+# Function 'counting' took 0.068 seconds to run
 
 print(
     f"Function called {counting.count} times with an average of "
     f"{counting.execution_avg:.3f} seconds per call"
 )
+# Function called 10 times with an average of 0.066 seconds per call
 
 help(counting)
+# Help on FunctionProfiler in module __main__ object:
+
+# class FunctionProfiler(builtins.object)
+#  |  FunctionProfiler(func: Callable[..., Any]) -> None
+#  |
+#  |  Methods defined here:
+#  |
+#  |  __call__(self, *args: Any) -> Any
+#  |      Call self as a function.
+#  |
+#  |  __init__(self, func: Callable[..., Any]) -> None
+#  |      Initialize self.  See help(type(self)) for accurate signature.
+#  |
+#  |  ----------------------------------------------------------------------
+#  |  Readonly properties defined here:
+#  |
+#  |  count
+#  |      The count of times the object has been called
+#  |
+#  |  execution_avg
+#  |
+#  |  ----------------------------------------------------------------------
+#  |  Data descriptors defined here:
+#  |
+#  |  __dict__
+#  |      dictionary for instance variables (if defined)
+#  |
+#  |  __weakref__
+#  |      list of weak references to the object (if defined)
+#  |
+#  |  func
+#  |      The function the object is wrapping
