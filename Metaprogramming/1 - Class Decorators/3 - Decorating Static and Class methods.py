@@ -2,9 +2,8 @@
 
 
 from functools import wraps
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable
 
-T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 
 
@@ -19,7 +18,7 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
     return inner
 
 
-def logger_to_class_callables(cls: T) -> T:
+def logger_to_class_callables(cls: type) -> type:
     for attr_name, attr_value in vars(cls).items():
         if callable(attr_value):
             print(f"Decorating {cls.__name__}.{attr_name} with function_logger")

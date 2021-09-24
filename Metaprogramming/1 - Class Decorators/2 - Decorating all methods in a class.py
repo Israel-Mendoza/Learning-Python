@@ -1,17 +1,18 @@
 """Using class decorators to decorate all callables in a class"""
 
 
+from __future__ import annotations
 from functools import wraps
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable
 
-T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 
 """Decorating methods in a class one by one... Argh..."""
 
 
 # Creating a simple function logger decorator
-def function_logger(fn: Callable[..., Any]) -> Callable[..., Any]:
+# to be used to decorate classes' methods
+def function_logger(fn: AnyCallable) -> AnyCallable:
     @wraps(fn)
     def inner(*args: Any, **kwargs: Any) -> Any:
         result = fn(*args, **kwargs)
@@ -48,10 +49,11 @@ p1.greet()
 
 
 # Creating a class decorator to decorate all class methods at once with hardcoded function
-def logger_to_class_callables(cls: T) -> T:
+def logger_to_class_callables(cls: type) -> type:
+    # Iterating through all the class attributes:
     for attr_name, attr_value in vars(cls).items():
         if callable(attr_value):
-            print(f"Decorating {cls.__name__}.{attr_name} with function_logger")
+            print(f"Decorating '{cls.__name__}.{attr_name}' with 'function_logger'")
             setattr(cls, attr_name, function_logger(attr_value))
     return cls
 
@@ -67,8 +69,8 @@ class Person2:
 
 
 # Output:
-# Decorating Person2.__init__ with function_logger
-# Decorating Person.greet with function_logger
+# Decorating 'Person2.__init__' with 'function_logger'
+# Decorating 'Person2.greet' with 'function_logger'
 
 
 """
@@ -78,11 +80,12 @@ being able to select the function that will serve as decorator.
 
 
 # Creating a parameterized class decorator to decorate all class methods at once
-def decorating_callables(fn: Callable[[AnyCallable], AnyCallable]) -> Callable[[T], T]:
-    def _decorating_callables(cls: T) -> T:
+def func_decorator(fn: Callable[[AnyCallable], AnyCallable]) -> Callable[[type], type]:
+    def _decorating_callables(cls: type) -> type:
         for attr_name, attr_value in vars(cls).items():
             if callable(attr_value):
-                print(f"Decorating {cls.__name__}.{attr_name} with {fn.__qualname__}")
+                func_name = f"{cls.__name__}.{attr_name}"
+                print(f"Decorating '{func_name}' with '{fn.__qualname__}'")
                 # Using setattr() because mappingproxies don't accept item assignment
                 setattr(cls, attr_name, fn(attr_value))
         return cls
@@ -90,13 +93,13 @@ def decorating_callables(fn: Callable[[AnyCallable], AnyCallable]) -> Callable[[
     return _decorating_callables
 
 
-@decorating_callables(function_logger)
+@func_decorator(function_logger)
 class Person3:
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 
-    def greet(self):
+    def greet(self) -> str:
         return f"Hello, my name is {self.age} and I'm {self.age} years old"
 
 
