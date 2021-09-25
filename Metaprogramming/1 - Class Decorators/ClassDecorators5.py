@@ -1,11 +1,12 @@
 """Caveats of decorating any callable in a class"""
 
-
+from __future__ import annotations
 from functools import wraps
 from typing import Any, Callable, TypeVar
 
 T = TypeVar("T")
 AnyCallable = Callable[..., Any]
+FunctionDecorator = Callable[[AnyCallable], AnyCallable]
 
 # Simple logger function to decorate functions
 def function_logger(fn: AnyCallable) -> AnyCallable:
@@ -21,11 +22,15 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
 
 # Class decorator that will decorate callables, properties, class and static
 # methods in the decorated class using the function_logger decorator.
-def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
-    def _func_decorator(cls: T) -> T:
+def class_decorator(wrapper_function: AnyCallable) -> Callable[[type], type]:
+    """Parameterized Class Decorator"""
+
+    def _class_decorator(cls: type) -> type:
+        """Class Decorator"""
         for name, value in vars(cls).items():
+            attr_name = f"{cls.__name__}.{name}"
             if callable(value):
-                print(f"'{name}' is a callable... Decorating it!")
+                print(f"'{attr_name}' is a callable... Decorating it!")
                 setattr(cls, name, wrapper_function(value))
             elif isinstance(value, classmethod):
                 new_method = classmethod(wrapper_function(value.__func__))
@@ -44,7 +49,7 @@ def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
 
         return cls
 
-    return _func_decorator
+    return _class_decorator
 
 
 @class_decorator(function_logger)
