@@ -4,6 +4,8 @@
 from functools import wraps
 from typing import Any, Callable, TypeVar
 
+print("Para mi amigo Victor!")
+
 T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 
