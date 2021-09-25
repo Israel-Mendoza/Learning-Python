@@ -99,10 +99,11 @@ class Person:
     def class_method(cls) -> None:
         print(f"{cls.__name__} says hello!")
 
-    # If implemented, the program will fall into a recursive endless
-    # loop, because the wrapper function (from function_logger),
-    # will print the passed arguments to __init__, with in its turn
-    # will call __repr__ on the passed instance again and again:
+    # If implemented, the program will fall into a recursive loop
+    # because the wrapper function (from function_logger), will
+    # print the passed arguments to __init__, with in its turn
+    # will call __repr__ on the passed instance, which will cause
+    # the wrapper function to be called with __repr__ again and again:
     #
     # def __repr__(self) -> str:
     #     f"Person('{self._name}')"
