@@ -65,6 +65,8 @@ class TimerError(Exception):
 
 Timer.set_tz(-5, "CDMX")
 print(Timer.tz)
+# CDMX
+
 
 # Instantiating the Timer class
 t1 = Timer()
@@ -75,20 +77,26 @@ try:
     t1.start_time
 except TimerError as error:
     print(error)
+# Timer hasn't been started yet!
 
 try:
     t2.start_time
 except TimerError as error:
     print(error)
+# Timer hasn't been started yet!
 
 try:
     t3.start_time
 except TimerError as error:
     print(error)
+# Timer hasn't been started yet!
 
 t1.start()
 sleep(randint(0, 5))
 t1.stop()
 print(f"\nStart time: {t1.start_time}")
+# Start time: 2023-03-31 14:55:03.884109-05:00
 print(f"Stop time: {t1.end_time}")
+# Stop time: 2023-03-31 14:55:06.885079-05:00
 print(f"Total time elapsed: {t1.elapsed_time:.2f} seconds")
+# Total time elapsed: 3.00 seconds
