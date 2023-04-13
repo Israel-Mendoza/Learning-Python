@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 
-"""Data Desriptors"""
+"""Data Descriptors"""
 
 
 class Descriptor:
