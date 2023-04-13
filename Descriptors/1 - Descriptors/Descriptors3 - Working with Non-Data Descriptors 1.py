@@ -1,19 +1,18 @@
-"""
-Non-data descriptors"""
+from __future__ import annotations
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+"""Non-data descriptors"""
 
 # We can change the behavior of the descriptor whether 
 # it is accessed from a class or an instance.
 
 
-from datetime import datetime, tzinfo
-from zoneinfo import ZoneInfo
-
-
 class UTCTimeDescriptor:
 
-    """Non-data descriptor."""
+    """Non-data descriptor"""
 
-    def __get__(self, instance, owner):
+    def __get__(self, instance: any, owner: type) -> UTCTimeDescriptor | str:
         """
         Returns the descriptor instance if called from a class.
         Returns the current UTC datetime in ISO format if called
@@ -28,7 +27,7 @@ class UTCTimeDescriptor:
 class Logger:
     """A simple logger class"""
 
-    current_time = UTCTimeDescriptor()
+    current_time: UTCTimeDescriptor = UTCTimeDescriptor()
 
 
 # Instantiating the Logger
