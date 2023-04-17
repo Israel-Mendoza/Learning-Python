@@ -1,15 +1,16 @@
-"""Functions (and methods) are non-data descriptors"""
+from __future__ import annotations
+
+"""Functions (and methods) are NON-DATA descriptors"""
 
 # Function objects implement the __get__ method,
 # which makes them non-data descriptors.
 # We'll see how to get the return value of
 # a function's __get__ method in this file.
 
-
 import sys
 
 
-def add(a, b):
+def add(a: int, b: int) -> int:
     return a + b
 
 
@@ -29,9 +30,9 @@ print(f"{type(current_module) = }")
 # type(current_module) = <class 'module'>
 
 # Getting the return value from the __get__ method.
-# Remember that we must pass two arguments to the 
+# Remember that we must pass two arguments to the
 # __get__ method: the instance and the owner class.
-# PWe'll pass None as the instance, and current_module
+# We'll pass None as the instance, and current_module
 # as the owner class, because we're at module level.
 f = add.__get__(None, current_module)
 
