@@ -1,69 +1,101 @@
+from __future__ import annotations
+
 """Applying descriptors to validate types"""
 
 
-from typing import Any
+class IntDescriptor:
+    def __set_name__(self, owner: type, name: str) -> None:
+        self.class_name: str = owner.__name__
+        self.attribute_name: str = name
 
-
-class Int:
-
-    def __set_name__(self, cls, name) -> None:
-        self.name = name
-
-    def __set__(self, obj, value) -> None:
-        if not isinstance(value, int):
-            raise ValueError(f"{self.name} must be a valid integer")
-        obj.__dict__[self.name] = value
-
-    def __get__(self, obj, cls) -> Any:
-        if obj is None:
+    def __get__(self, instance: object, owner: type) -> int | IntDescriptor:
+        if instance is None:
             return self
-        return obj.__dict__.get(self.name, None)
+        return getattr(instance, self.attribute_name)
+
+    def __set__(self, instance: object, new_value: int) -> None:
+        if isinstance(new_value, int):
+            # Remember write on top of the dict to avoid recursive method calling:
+            instance.__dict__[self.attribute_name] = new_value
+            return
+        raise ValueError(
+            f"Attribute '{self.attribute_name}' of a '{self.class_name}' instance must be a valid int."
+        )
 
 
-class Float:
+class FloatDescriptor:
+    def __set_name__(self, owner: type, name: str) -> None:
+        self.class_name = owner.__name__
+        self.attribute_name: str = name
 
-    def __set_name__(self, cls, name):
-        self.name = name
-
-    def __set__(self, obj, value):
-        if not isinstance(value, float):
-            raise ValueError(f"{self.name} must be a valid float")
-        obj.__dict__[self.name] = value
-
-    def __get__(self, obj, cls):
-        if obj is None:
+    def __get__(self, instance: object, owner: type) -> float | FloatDescriptor:
+        if instance is None:
             return self
-        return obj.__dict__.get(self.name, None)
+        return getattr(instance, self.attribute_name)
+
+    def __set__(self, instance: object, new_value: float) -> None:
+        if isinstance(new_value, float):
+            # Remember write on top of the dict to avoid recursive method calling:
+            instance.__dict__[self.attribute_name] = new_value
+            return
+        raise ValueError(
+            f"Attribute '{self.attribute_name}' of a {self.class_name} instance must be a valid float."
+        )
 
 
-class List:
+class StringDescriptor:
+    def __set_name__(self, owner: type, name: str) -> None:
+        self.class_name: str = owner.__name__
+        self.attribute_name: str = name
 
-    def __set_name__(self, cls, name):
-        self.name = name
-
-    def __set__(self, obj, value):
-        if not isinstance(value, list):
-            raise ValueError(f"{self.name} must be a valid list")
-        obj.__dict__[self.name] = value
-
-    def __get__(self, obj, cls):
-        if obj is None:
+    def __get__(self, instance: object, owner: type) -> str | StringDescriptor:
+        if instance is None:
             return self
-        return obj.__dict__.get(self.name, None)
+        return getattr(instance, self.attribute_name)
+
+    def __set__(self, instance: object, new_value: str) -> None:
+        if isinstance(new_value, str):
+            new_value = new_value.strip()
+            if new_value:
+                # Remember write on top of the dict to avoid recursive method calling:
+                instance.__dict__[self.attribute_name] = new_value
+                return
+        raise ValueError(
+            f"Attribute '{self.attribute_name}' of a {self.class_name} instance must be a non-empty string."
+        )
 
 
 class Person:
+    name: StringDescriptor = StringDescriptor()
+    age: IntDescriptor = IntDescriptor()
+    height_in_meters: FloatDescriptor = FloatDescriptor()
 
-    age = Int()
-    height = Float()
-    tags = List()
-    favorite_foods = List()
+    def __init__(self, name: str, age: int, height_in_meters: float) -> None:
+        self.name: str = name
+        self.age: int = age
+        self.height_in_meters: float = height_in_meters
+        print(
+            f"Person instance successfully created at memory address: {hex(id(self)).upper()}"
+        )
 
-
-p = Person()
 
 try:
-    p.favorite_foods = "hello"
-except ValueError as error:
-    print(error)
-# favorite_foods must be a valid list
+    p1: Person = Person("", 31, 1.76)
+except ValueError as err:
+    print(err)
+# Attribute 'name' of a Person instance must be a non-empty string.
+
+try:
+    p1: Person = Person("Israel", 31.5, 1.76)
+except ValueError as err:
+    print(err)
+# Attribute 'age' of a 'Person' instance must be a valid int.
+
+try:
+    p1: Person = Person("Israel", 31, 176)
+except ValueError as err:
+    print(err)
+# Attribute 'height_in_meters' of a Person instance must be a valid float.
+
+p1: Person = Person("Israel", 31, 1.76)
+# Person instance successfully created at memory address: 0X100C4C8D0
