@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Slotted attributes are data descriptors in the class instance"""
 
 
@@ -16,23 +18,20 @@
 # prevent the instance to have a namespace (no __dict__ attribute).
 # The class won't have __dict__ nor __weakref__ either.
 
-from typing import Any
 
-
-def display_obj_namespace(an_object: Any):
+def display_obj_namespace(an_object: any) -> None:
     for k, v in vars(an_object).items():
         print(f"Class attribute '{k}': {v} ({type(v)})")
 
 
 class Person:
-
     # Any Person instance can only have
     # the following two instance attributes:
-    __slots__ = "_name", "age"
+    __slots__: tuple[str, str] = ("_name", "age")
 
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: int = age
 
     @property
     def name(self) -> str:
