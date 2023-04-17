@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Methods (and functions) are non-data descriptors"""
 
 # Method objects also implement the __get__ method.
@@ -6,11 +8,10 @@
 
 
 class Person:
+    def __init__(self, name: str) -> None:
+        self.name: str = name
 
-    def __init__(self, name):
-        self.name = name
-
-    def say_hello(self):
+    def say_hello(self) -> str:
         return f"{self.name} says hello!"
 
 
@@ -28,15 +29,15 @@ a_function = Person.say_hello.__get__(None, Person)
 a_method = Person.say_hello.__get__(p, Person)
 
 print(Person.say_hello, a_function)
-# <function Person.say_hello at 0x7f5a153ec790> 
+# <function Person.say_hello at 0x7f5a153ec790>
 # <function Person.say_hello at 0x7f5a153ec790>
 print(p.say_hello, a_method)
-# <bound method Person.say_hello of <__main__.Person object at 0x7f0759c42fd0>> 
+# <bound method Person.say_hello of <__main__.Person object at 0x7f0759c42fd0>>
 # <bound method Person.say_hello of <__main__.Person object at 0x7f0759c42fd0>>
 
-# Furthermore, a MethodType object 
+# Furthermore, a MethodType object
 # stores the function under __func__:
 print(p.say_hello.__func__)
-# <function Person.say_hello at 0x7f5a153ec790> 
+# <function Person.say_hello at 0x7f5a153ec790>
 print(f"{p.say_hello.__func__ is Person.say_hello = }")
 # p.say_hello.__func__ is Person.say_hello = True
