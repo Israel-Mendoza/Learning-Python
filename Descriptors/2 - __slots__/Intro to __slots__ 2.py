@@ -1,15 +1,15 @@
-from typing import Any
+from __future__ import annotations
 
 
-def display_obj_namespace(an_object: Any):
+def display_obj_namespace(an_object: any) -> None:
     for k, v in vars(an_object).items():
         print(f"Class attribute '{k}': {v} ({type(v)})")
 
 
 class Person:
-    __slots__ = "name", "__dict__"
+    __slots__: tuple[str, str] = "name", "__dict__"
 
-    def __init__(self, name: str, age: int):
+    def __init__(self, name: str, age: int) -> None:
         self.name: str = name
         self.age: int = age
 
