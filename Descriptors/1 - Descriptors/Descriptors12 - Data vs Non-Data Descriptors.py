@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Using a data descriptor to access an instance attribute"""
 
 
@@ -5,19 +7,17 @@
 
 
 class IntegerValue:
-
-    def __get__(self, instance, owner):
+    def __get__(self, instance: object, owner: type) -> IntegerValue:
         if instance is None:
             return self
         print("__get__ called!")
 
-    def __set__(self, instance, value):
+    def __set__(self, instance: object, value: int):
         print("__set__ called!")
 
 
 class Point:
-
-    x = IntegerValue()
+    x: IntegerValue = IntegerValue()
 
 
 p = Point()
@@ -45,13 +45,11 @@ p.x
 
 
 class IntegerValue:
-
-    def __get__(self, instance, owner):
+    def __get__(self, instance: object, owner: type):
         print("__get__ called!")
 
 
 class Point:
-
     x = IntegerValue()
 
 
