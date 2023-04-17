@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Simulating how the property class works"""
 
 from numbers import Integral
@@ -6,11 +8,12 @@ from typing import Any, Callable, Optional
 
 
 class Property:
-
-    def __init__(self,
-                 f_get: Optional[Callable[..., Any]] = None,
-                 f_set: Optional[Callable[..., Any]] = None,
-                 f_del: Optional[Callable[..., Any]] = None) -> None:
+    def __init__(
+        self,
+        f_get: Optional[Callable[..., Any]] = None,
+        f_set: Optional[Callable[..., Any]] = None,
+        f_del: Optional[Callable[..., Any]] = None,
+    ) -> None:
         self.get = f_get
         self.set = f_set
         self.delete = f_del
@@ -29,7 +32,8 @@ class Property:
             return self.get(obj)
         else:
             raise AttributeError(
-                f"{cls.__name__} has not implemented a getter for '{self.property_name}'")
+                f"{cls.__name__} has not implemented a getter for '{self.property_name}'"
+            )
 
     def __set__(self, obj: Any, value: Any) -> None:
         """Descriptor's setter method"""
@@ -39,7 +43,8 @@ class Property:
             self.set(obj, value)
         else:
             raise AttributeError(
-                f"{obj.__class__.__name__} has not implemented a setter for '{self.property_name}'")
+                f"{obj.__class__.__name__} has not implemented a setter for '{self.property_name}'"
+            )
 
     def __delete__(self, obj: Any) -> None:
         """Descriptor's delete method"""
@@ -48,16 +53,17 @@ class Property:
             self.delete(obj)
         else:
             raise AttributeError(
-                f"{obj.__class__.__name__} has not implemented a deleter for '{self.property_name}'")
+                f"{obj.__class__.__name__} has not implemented a deleter for '{self.property_name}'"
+            )
 
-    def setter(self, f_set: Optional[Callable[..., Any]] = None) -> "Property":
+    def setter(self, f_set: Optional[Callable[..., Any]] = None) -> Property:
         """Implements the self.set method to be called by the setter"""
         if isinstance(f_set, FunctionType):
             self.set = f_set
             self.property_name = f_set.__name__
         return self
 
-    def deleter(self, f_del: Optional[Callable[..., Any]] = None) -> "Property":
+    def deleter(self, f_del: Optional[Callable[..., Any]] = None) -> Property:
         """Implements the self.delete method to be called by the delete method"""
         if isinstance(f_del, FunctionType):
             self.delete = f_del
@@ -66,7 +72,6 @@ class Property:
 
 
 class Person:
-
     def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
@@ -103,7 +108,6 @@ class Person:
 
 
 class Point:
-
     def __init__(self, x: int):
         self._x: int
         self.x = x
@@ -146,4 +150,4 @@ try:
     print(point.x)
 except AttributeError as error:
     print(error)
-#Point has not implemented a getter for 'x'
+# Point has not implemented a getter for 'x'
