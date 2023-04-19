@@ -21,16 +21,13 @@ from typing import Any, Optional
 
 def get_ref_count(address: int) -> int:
     """
-    A simple function that returns
-    the number or references to a
-    given object in memory, which
-    address is the passed integer.
+    A simple function that returns the number or references to a
+    given object in memory, which address is the passed integer.
     """
     return ctypes.c_long.from_address(address).value
 
 
 class IntegerValue:
-
     def __init__(self) -> None:
         """
         Initializing an empty WeakKeyDictionary intance
@@ -41,7 +38,7 @@ class IntegerValue:
         # the instances and their values
         self.values: weakref.WeakKeyDictionary[Any, Any] = weakref.WeakKeyDictionary()
 
-    def __set__(self, instance: Any, value: Any):
+    def __set__(self, instance: Any, value: Any) -> None:
         """
         Creates/updates an entry in the self.value WeakKeyDictionary instance,
         where the key is the passed instance and the value is the passed value.
@@ -49,7 +46,7 @@ class IntegerValue:
         """
         self.values[instance] = value
 
-    def __get__(self, instance: Any, owner: type) -> Optional[Any]:
+    def __get__(self, instance: Any, _: type) -> Optional[Any]:
         """
         Returns the instance's corresponding value from the
         self.values WeakKeyReference dictionary.
@@ -60,7 +57,6 @@ class IntegerValue:
 
 
 class Point1D:
-
     x = IntegerValue()
 
     @classmethod
@@ -76,7 +72,6 @@ class Point1D:
                 print(f"Object at {hex(id(k)).upper()} has a value of {v}")
         except AttributeError as error:
             print(f"{error.__class__.__name__}: {error}")
-            
 
 
 # Creating a couple of Point1D instances and
@@ -84,6 +79,7 @@ class Point1D:
 p1 = Point1D()
 p1_address = id(p1)
 p1_hex_address = hex(p1_address).upper()
+
 p2 = Point1D()
 p2_address = id(p2)
 p2_hex_address = hex(p2_address).upper()
@@ -93,6 +89,9 @@ print(f"{p1_hex_address = }")
 print(f"{get_ref_count(p1_address) = }")
 # get_ref_count(p1_address) = 1
 print()
+
+# Calling the __set__ method of the x descriptor,
+# thus creating two entries in the weakdict instance.
 p1.x = 10
 p2.x = 20
 print(f"{p1.x = }")
