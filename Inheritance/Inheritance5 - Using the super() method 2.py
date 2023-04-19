@@ -1,14 +1,17 @@
+from __future__ import annotations
+
+
 """Using the super() method"""
 
 
 class Person:
-    def work(self):
+    def work(self: Person) -> str:
         return f"{type(self).__name__} at {hex(id(self))} works..."
 
 
 class Student(Person):
-    def work(self):
-        result = super().work()
+    def work(self: Student) -> str:
+        result: str = super().work()
         return f"{type(self).__name__} at {hex(id(self))} studies... and {result}"
 
 
@@ -18,7 +21,13 @@ class PythonStudent(Student):
         return f"{type(self).__name__} at {hex(id(self))} codes... and {result}"
 
 
-ps = PythonStudent()
+p: Person = Person()
+s: Student = Student()
+ps: PythonStudent = PythonStudent()
 
+print(p.work())
+# Person at 0x7fb09ad54c90 works...
+print(s.work())
+# Student at 0x7fb09ad55f50 studies... and Student at 0x7fb09ad55f50 works...
 print(ps.work())
-# PythonStudent at 0x7f03dfea0c70 codes... and PythonStudent at 0x7f03dfea0c70 studies... and PythonStudent at 0x7f03dfea0c70 works...
+# PythonStudent at 0x7fb09ad54ed0 codes... and PythonStudent at 0x7fb09ad54ed0 studies... and PythonStudent at 0x7fb09ad54ed0 works...
