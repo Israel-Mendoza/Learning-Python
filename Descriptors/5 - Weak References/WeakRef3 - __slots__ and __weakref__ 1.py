@@ -17,15 +17,14 @@ import weakref
 
 
 class Person:
-
     # We are not including '__weakref__' in __slots__
-    __slots__ = ("fname",)
+    __slots__: tuple[str] = ("fname",)
 
     def __init__(self, full_name: str) -> None:
-        self.fname = full_name
+        self.fname: str = full_name
 
 
-p1 = Person("Israel Mendoza")
+p1: Person = Person("Israel Mendoza")
 
 # What happens if we try to add an unslotted attribute?
 try:
@@ -47,12 +46,11 @@ except Exception as error:
 
 
 class Person:
-
     # Including '__weakref__' in __slots__
     __slots__ = ("fname", "__weakref__")
 
     def __init__(self, full_name: str) -> None:
-        self.fname = full_name
+        self.fname: str = full_name
 
 
 p1 = Person("Israel Mendoza")
