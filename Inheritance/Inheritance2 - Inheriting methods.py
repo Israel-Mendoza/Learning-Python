@@ -1,17 +1,20 @@
+from __future__ import annotations
+
+
 """Inheriting methods"""
 
 
 class Person:
-    def eat(self):
-        print(f"{self.__class__.__name__} eats")
+    def eat(self: Person) -> None:
+        print(f"{self.__class__.__name__} eats.")
 
-    def work(self):
-        print(f"{self.__class__.__name__} works")
+    def work(self: Person) -> None:
+        print(f"{self.__class__.__name__} works.")
 
-    def sleep(self):
-        print(f"{self.__class__.__name__} sleeps")
+    def sleep(self: Person) -> None:
+        print(f"{self.__class__.__name__} sleeps.")
 
-    def routine(self):
+    def routine(self: Person) -> None:
         self.eat()
         self.work()
         self.sleep()
@@ -22,23 +25,23 @@ class Student(Person):
     # Student inherits the methods eat() and routine()
 
     # Overriding the 'work' method
-    def work(self):
-        print(f"{self.__class__.__name__} goes to school")
+    def work(self: Student) -> None:
+        print(f"{self.__class__.__name__} goes to school.")
 
     # Overriding the 'sleep' method
-    def sleep(self):
-        print(f"{self.__class__.__name__} doesn't sleep")
+    def sleep(self: Student) -> None:
+        print(f"{self.__class__.__name__} rarely sleeps.")
 
 
-p = Person()
-s = Student()
+p: Person = Person()
+s: Student = Student()
 
 p.routine()
-# Person eats
-# Person works
-# Person sleeps
+# Person eats.
+# Person works.
+# Person sleeps.
 
 s.routine()
-# Student eats
-# Student goes to school
-# Student doesn't sleep
+# Student eats.
+# Student goes to school.
+# Student rarely sleeps.
