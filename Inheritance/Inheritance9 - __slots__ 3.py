@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Inheritance and __slots__"""
 
 # When an object is created from a class that inherited slots,
@@ -10,7 +12,7 @@
 from typing import Any
 
 
-def display_obj_namespace(an_object: Any):
+def display_obj_namespace(an_object: Any) -> None:
     """Simple function to print an object's namespace"""
     print(f"OBJECT'S NAMESPACE:")
     for k, v in vars(an_object).items():
@@ -24,17 +26,17 @@ def display_obj_namespace(an_object: Any):
 
 
 class Person:
-    def __init__(self, name: str) -> None:
+    def __init__(self: Person, name: str) -> None:
         self.name: str = name
 
 
 class Student(Person):
-    __slots__ = ("school", "student_number")
+    __slots__: tuple[str, str] = ("school", "student_number")
 
-    def __init__(self, name: str, school: str, student_number: str) -> None:
+    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
-        self.school = school
-        self.student_number = student_number
+        self.school: str = school
+        self.student_number: str = student_number
 
 
 # Because the Student subclass implements slots,
@@ -72,24 +74,24 @@ display_obj_namespace(s)
 
 
 class Person:
-    __slots__ = ("name",)
+    __slots__: tuple[str] = ("name",)
 
-    def __init__(self, name: str) -> None:
-        self.name = name
+    def __init__(self: Person, name: str) -> None:
+        self.name: str = name
 
 
 class Student(Person):
-    def __init__(self, name: str, school: str, student_number: str) -> None:
+    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
-        self.school = school
-        self.student_number = student_number
+        self.school: str = school
+        self.student_number: str = student_number
 
 
 # Because the Person class implements slots,
 # but its subclass Student doesn't, Student
 # will have an instance dictionary as well.
 
-s = Student("James Bond", "MI6 Prep School", "007")
+s: Student = Student("James Bond", "MI6 Prep School", "007")
 
 display_obj_namespace(s)
 # OBJECT'S NAMESPACE:
