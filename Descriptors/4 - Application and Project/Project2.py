@@ -1,29 +1,30 @@
-from types import FunctionType, MethodType
-from typing import Any, Type
+from __future__ import annotations
 
 
 class BaseValidator:
-
     def __init__(self, min_value: int = None, max_value: int = None):
-        self._min = min_value
-        self._max = max_value
+        if self._init_validator(min_value, max_value):
+            self._min = min_value
+            self._max = max_value
+        else:
+            raise ValueError("Initial min and max values are invalid.")
 
-    def __set_name__(self, cls: Type, name: str) -> None:
+    def __set_name__(self, _: type, attr_name: str) -> None:
         """
         __set_name__ method. Stores the descriptor's instance name.
         """
-        self.name = name
+        self.attr_name = attr_name
 
-    def __set__(self, obj: Any, value: Any) -> None:
+    def __set__(self, obj: object, value: object) -> None:
         """
         __set__ method. Stores the value in the passed object's __dict__
         only if the value is within the valid ranges defined at the
         descriptor's initialization time.
         """
         if self._validator(value):
-            obj.__dict__[self.name] = value
+            obj.__dict__[self.attr_name] = value
 
-    def __get__(self, obj: Any, cls: Type) -> Any:
+    def __get__(self, obj: object, _: type) -> object:
         """
         __get__ method. Returns the value stored by the __set__ method in
         the object's __dict__. None if the __set__ has not been used.
@@ -31,7 +32,15 @@ class BaseValidator:
         """
         if obj is None:
             return self
-        return obj.__dict__.get(self.name, None)
+        return obj.__dict__.get(self.attr_name, None)
+
+    @staticmethod
+    def _init_validator(value_1: int, value_2: int):
+        """
+        Validates the initial min and max values.
+        To be overriden by subclasses.
+        """
+        return True
 
     def _validator(self, value) -> bool:
         """
@@ -42,34 +51,48 @@ class BaseValidator:
 
 
 class IntegerField(BaseValidator):
+    @staticmethod
+    def _init_validator(value_1: int, value_2: int) -> bool:
+        return (
+            isinstance(value_1, int) and isinstance(value_2, int) and value_1 <= value_2
+        )
 
     def _validator(self, value) -> bool:
         if not isinstance(value, int):
-            raise ValueError(f"'{self.name}' must be of type int")
+            raise ValueError(f"'{self.attr_name}' must be of type int")
         if self._min is not None and value < self._min:
-            raise ValueError(f"'{self.name}' can't be less than {self._min}")
+            raise ValueError(f"'{self.attr_name}' can't be less than {self._min}")
         if self._max is not None and value > self._max:
-            raise ValueError(f"'{self.name}' can't be more than {self._max}")
+            raise ValueError(f"'{self.attr_name}' can't be more than {self._max}")
         return True
 
 
 class CharField(BaseValidator):
+    @staticmethod
+    def _init_validator(value_1: int, value_2: int) -> bool:
+        return (
+            isinstance(value_1, int)
+            and isinstance(value_2, int)
+            and value_1 <= value_2
+            and value_1 > 0
+        )
 
     def _validator(self, value) -> bool:
         if not isinstance(value, str):
-            raise ValueError(f"'{self.name}' must be of type str")
+            raise ValueError(f"'{self.attr_name}' must be of type str")
         if self._min is not None and len(value) < self._min:
-            raise ValueError(f"Length of '{self.name}' can't be "
-                             f"less than {self._min}")
+            raise ValueError(
+                f"Length of '{self.attr_name}' can't be " f"less than {self._min}"
+            )
         if self._max is not None and len(value) > self._max:
-            raise ValueError(f"Length of '{self.name}' can't be "
-                             f"more than {self._max}")
+            raise ValueError(
+                f"Length of '{self.attr_name}' can't be " f"more than {self._max}"
+            )
         return True
 
 
 class Person:
-
-    age = IntegerField(3, 99)
+    age = IntegerField(12, 42)
     name = CharField(3, 25)
 
     def __init__(self, name, age):
@@ -85,3 +108,4 @@ try:
     print(p)
 except BaseException as ex:
     print(f"{type(ex).__name__}: {ex}")
+# ValueError: 'age' must be of type int
