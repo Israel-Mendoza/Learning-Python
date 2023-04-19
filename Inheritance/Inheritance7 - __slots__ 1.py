@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Inheritance with __slots__"""
 
 # When the superclass implements slots, but the inheriting class doesn't,
@@ -7,18 +9,18 @@
 
 
 class Person:
-    __slots__ = ("name",)
+    __slots__: tuple[str] = ("name",)
 
-    def __init__(self, name: str) -> None:
-        self.name = name
+    def __init__(self: Person, name: str) -> None:
+        self.name: str = name
 
 
 class Student(Person):
     """Subclass of Person"""
 
 
-p = Person("Margarita")
-s = Student("Israel")
+p: Person = Person("Margarita")
+s: Student = Student("Israel")
 
 # Person instances don't have a namespace:
 try:
@@ -34,11 +36,10 @@ print(f"Student namespace: {vars(s)}")
 # Student namespace: {}
 
 
-# Because the Student subclass doesn't
-# implement slots, it inherits the one
-# from the parent class, but it also makes
-# use of the __dict__ namespace dictionary.
-s.major = "Computer Science"
+# Because the Student subclass doesn't implement slots, it inherits the one
+# from the parent class, but it also makes use of the __dict__ namespace dictionary.
+s.major: str = "Computer Science"
+s.name: str = "Israel"
 
 print(s.major)
 # Computer Science
@@ -46,3 +47,10 @@ print(s.major)
 # Printing the Student instance's namespace:
 print(f"{s.__dict__ = }")
 # s.__dict__ = {'major': 'Computer Science'}
+print(f"Person class namespace: \n\t{vars(Person)}")
+# Person class namespace: {'__module__': '__main__', 
+#                           '__annotations__': {'__slots__': 'tuple[str]'}, 
+#                           '__slots__': ('name',), 
+#                           '__init__': <function Person.__init__ at 0x7f20a8ca05e0>, 
+#                           'name': <member 'name' of 'Person' objects>, 
+#                           '__doc__': None}
