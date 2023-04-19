@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Inheritance with __slots__"""
 
 # When the superclass implements slots, and the inheriting class implements
@@ -8,7 +10,7 @@
 from typing import Any
 
 
-def display_obj_namespace(an_object: Any):
+def display_obj_namespace(an_object: Any) -> None:
     print(f"{an_object.__name__.upper()}'S NAMESPACE:")
     for k, v in vars(an_object).items():
         if "__slots__" in vars(an_object) and k in vars(an_object)["__slots__"]:
@@ -18,29 +20,29 @@ def display_obj_namespace(an_object: Any):
 
 
 class Person:
-    __slots__ = ("name",)
+    __slots__: tuple[str] = ("name",)
 
-    def __init__(self, name: str) -> None:
-        self.name = name
+    def __init__(self: Person, name: str) -> None:
+        self.name: str = name
 
 
 class Student(Person):
 
-    __slots__ = ("school", "student_number")
+    __slots__: tuple[str, str] = ("school", "student_number")
 
-    def __init__(self, name: str, school: str, student_number: str):
+    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
         self.school: str = school
         self.student_number: str = student_number
 
 
 # Instantiating a Student obkect:
-s = Student("James Bond", "MI6 Prep School", "007")
+s: Student = Student("James Bond", "MI6 Prep School", "007")
 
 # Because the Student subclass also implements slots,
 # there is no instance dictionary.
 try:
-    s.email = "email@email.com"
+    s.email: str = "email@email.com"
 except Exception as error:
     print(f"{type(error).__name__}: {error}")
 # AttributeError: 'Student' object has no attribute 'email'
