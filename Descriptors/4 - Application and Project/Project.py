@@ -44,11 +44,7 @@ class Integer:
         """
         if instance is None:
             return self
-        # value_to_return: int | None = getattr(instance, self.attr_name)
-        try:
-            value_to_return: int | None = instance.__dict__[self.attr_name]
-        except KeyError:
-            value_to_return = None
+        value_to_return: int | None = instance.__dict__.get(self.attr_name, None)
         if value_to_return:
             return value_to_return
         else:
@@ -95,10 +91,7 @@ class String:
         """
         if instance is None:
             return self
-        try:
-            value_to_return: str | None = instance.__dict__[self.attr_name]
-        except KeyError:
-            value_to_return = None
+        value_to_return: str | None = instance.__dict__.get(self.attr_name, None)
         if value_to_return is None:
             raise AttributeError(f"'{self.attr_name}' has not been set yet.")
         return value_to_return
