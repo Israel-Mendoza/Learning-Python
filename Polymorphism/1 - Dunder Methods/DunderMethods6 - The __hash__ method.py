@@ -1,13 +1,17 @@
-# Implementing __hash__
-# Remember that the __hash__ will be based on an immutable attribute in the object
-# We must enforce that this attribute will not be changed
+from __future__ import annotations
+
+"""Implementing __hash__"""
+
+
+# Remember that the __hash__ will be based on an immutable attribute in the object.
+# We must enforce that this attribute will not be changed.
 
 
 from typing import Any
 
 
 class Person:
-    def __init__(self, name: str) -> None:
+    def __init__(self: Person, name: str) -> None:
         if self._validate_name(name):
             self._name = name
         else:
@@ -18,23 +22,23 @@ class Person:
         return isinstance(a_name, str) and len(a_name.strip()) > 0
 
     @property
-    def name(self) -> str:
+    def name(self: Person) -> str:
         """The name of the person"""
         return self._name
 
-    def __eq__(self, other: Any) -> bool:
+    def __eq__(self: Person, other: Any) -> bool:
         return isinstance(other, Person) and self.name == other.name
 
-    def __hash__(self) -> int:
+    def __hash__(self: Person) -> int:
         # self._name must be immutable and "read-only"
         return hash(self.name)
 
-    def __repr__(self) -> str:
+    def __repr__(self: Person) -> str:
         return f"Person('{self.name}')"
 
 
-p1 = Person("Israel")
-p2 = Person("Arturo")
+p1: Person = Person("Israel")
+p2: Person = Person("Arturo")
 
 print(f"{p1 = }")
 # p1 = Person('Israel')
