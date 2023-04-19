@@ -2,7 +2,7 @@ from __future__ import annotations
 
 """Practical applications of the weakref's __callback__"""
 
-# We will be using function storedd in the weakref.ref's __callback__
+# We will be using the function stored in the weakref.ref's __callback__
 # class attribute to distroy the current weakreference instance when 
 # the object it points to is destroyed.
 # This will prevent us from having potential memory leak when an object
