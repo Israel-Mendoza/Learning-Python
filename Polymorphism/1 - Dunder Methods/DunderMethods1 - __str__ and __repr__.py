@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Playing with the __str__ and the __repr__ methods"""
 
 # If only __repr__ is overriden,
@@ -5,16 +7,16 @@
 
 
 class Person:
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self: Person, name: str, age: int) -> None:
         self.name: str = name
         self.age: int = age
 
-    def __repr__(self) -> str:
+    def __repr__(self: Person) -> str:
         print("__repr__ called")
         return f"Person(name='{self.name}', age={self.age})"
 
 
-p = Person("Israel", 28)
+p: Person = Person("Israel", 28)
 
 # Only __repr__ was implemented.
 print(repr(p))
@@ -26,16 +28,16 @@ print(p, end="\n\n")
 
 
 class Person:
-    def __init__(self, name: str, age: int) -> None:
+    def __init__(self: Person, name: str, age: int) -> None:
         self.name: str = name
         self.age: int = age
 
-    def __str__(self):
+    def __str__(self: Person) -> str:
         print("__str__ called")
         return f"Person(name='{self.name}', age={self.age})"
 
 
-p = Person("Israel", 28)
+p: Person = Person("Israel", 28)
 
 # Only __str__ was implemented:
 print(repr(p))
@@ -46,20 +48,20 @@ print(p, end="\n\n")
 
 
 class Person:
-    def __init__(self, name: str, age: int):
-        self.name = name
-        self.age = age
+    def __init__(self: Person, name: str, age: int) -> None:
+        self.name: str = name
+        self.age: str = age
 
-    def __repr__(self) -> str:
+    def __repr__(self: Person) -> str:
         print("__repr__ called")
         return f"Person(name='{self.name}', age={self.age})"
 
-    def __str__(self) -> str:
+    def __str__(self: Person) -> str:
         print("__str__ called")
         return f"{self.name} is {self.age} years old"
 
 
-p = Person("Israel", 28)
+p: Person = Person("Israel", 28)
 
 # Both __repr__ and __str__ were implemented:
 print(repr(p))
