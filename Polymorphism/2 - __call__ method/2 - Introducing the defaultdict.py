@@ -1,91 +1,98 @@
 from __future__ import annotations
-
-"""Introducing the defaultdict"""
-
 from collections import defaultdict
 
-# How does the defaultdict work?
-#
-# It works just like a dictionary.
-# However, we must use a callback function when instantiating the dictionary.
-# This function will be called whenever a key is not found.
-# The return value will be then assigned to the previoysly missing key.
+"""
+Implementing a class, which instances will be callables.
+We can use these callable objects as "callback" functions
+for the defaultdict dictionary. 
+The instance will keep track of the times we use the callback, 
+and will also return the default value the defaultdect will 
+use to assign to missing keys. 
+"""
 
 
-# Defining a "default_value" function to be used by the defaultdict
-def default_value1() -> str:
-    return "N/A"
+
+class DefaultValue:
+    def __init__(self: DefaultValue, default_value: str) -> None:
+        """
+        Initializes the default value attribute and the counter. 
+        Args:
+            default_value [str]: The default value to be returned every
+                                    time we call the DefaultValue instance.
+        """
+        self.default_value: str = default_value
+        self._counter: int = 0
+
+    @property
+    def counter(self: DefaultValue) -> int:
+        """The counter attribute of the object"""
+        return self._counter
+
+    def __call__(self: DefaultValue) -> str:
+        """
+        Whenever the instance is called, it will return the 
+        value stored in the "default_valie" instance attribute
+        and will increase the _counter attribute by one. 
+        """
+        self._counter += 1
+        return self.default_value
 
 
-# Instantiating a dictionary
-my_dict1: defaultdict[str, str] = defaultdict(default_value1)
+# Creating a couple of DefaultValue instances:
+counter_1 = DefaultValue("N/A")
+counter_2 = DefaultValue("Undefined")
 
-print(f"{my_dict1 = }")
-# my_dict1 = defaultdict(<function default_value1 at 0x7ffbffa7df80>, {})
+# Creating a couple of defaultdict instances with our
+# DefaultValue instances (remember that they're callable):
+my_dict_1: defaultdict[str, str] = defaultdict(counter_1)
+my_dict_2: defaultdict[str, str] = defaultdict(counter_2)
 
-# Creating a couple of keys:
-my_dict1["a"] = "Alpha"
-my_dict1["b"] = "Beta"
+# Let's create some key/value pairs in both dictionaries:
+my_dict_1["a"] = "Alpha"
+my_dict_1["b"] = "Beta"
+my_dict_2["g"] = "Gamma"
+my_dict_2["d"] = "Delta"
 
-# Accesing the available keys and one not available:
-for letter in "abc":
-    print(my_dict1[letter])
+# Trying accessing some keys in both dictionaries:
+for letter in "abcde":
+    print(f"'{letter}' in my_dict_1 = {my_dict_1[letter]}")
+    print(f"'{letter}' in my_dict_2 = {my_dict_2[letter]}")
+# 'a' in my_dict_1 = Alpha
+# 'a' in my_dict_2 = Undefined
+# 'b' in my_dict_1 = Beta
+# 'b' in my_dict_2 = Undefined
+# 'c' in my_dict_1 = N/A
+# 'c' in my_dict_2 = Undefined
+# 'd' in my_dict_1 = N/A
+# 'd' in my_dict_2 = Delta
+# 'e' in my_dict_1 = N/A
+# 'e' in my_dict_2 = Undefined
+
+print(f"{counter_1.counter = }")
+# counter_1.counter = 3
+print(f"{counter_2.counter = }")
+# counter_2.counter = 4
+
+########################################################################
+
+# We can created these instances as we are creating the defaultdict instances:
+
+my_dict_3: defaultdict[str, str] = defaultdict(DefaultValue("Undefined"))
+
+my_dict_3["a"] = "Alpha"
+my_dict_3["b"] = "Beta"
+my_dict_3["g"] = "Gamma"
+my_dict_3["d"] = "Delta"
+
+for char in "abcdefg":
+    print(my_dict_3[char])
 # Alpha
 # Beta
-# N/A  // # 'c' not found. Callable assigned as default was called and returned instead.
+# Undefined
+# Delta
+# Undefined
+# Undefined
+# Gamma
 
-# Final state of my_dict1:
-print(f"{my_dict1 = }")
-# my_dict1 = defaultdict(<function default_value1 at 0x7ffbffa7df80>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A'})
-
-"""The callback function is stored in the defaultdict's defaultfactory attribute"""
-
-print(f"{hex(id(default_value1))} | {hex(id(my_dict1.default_factory))}")
-# 0x7fbe83ce3b00 | 0x7fbe83ce3b00
-print(f"{default_value1 is my_dict1.default_factory = }")
-# default_value1 is my_dict1.default_factory = True
-
-"""Counting missing key calls"""
-
-# Let's suppose we want to know how may times the "default_value"
-# function was called. We can implement the function as follows:
-
-counter: int = 0
-
-
-def default_value2():
-    global counter
-    counter += 1
-    return "N/A"
-
-
-# Re-instantiating the defaultdict with the new function
-my_dict2: defaultdict[str, str] = defaultdict(default_value2)
-
-print(f"{my_dict2 = }")
-# my_dict2 = defaultdict(<function default_value2 at 0x7ffbff841d00>, {})
-
-# Creating a couple of keys:
-my_dict2["a"] = "Alpha"
-my_dict2["b"] = "Beta"
-
-# Accesing the available keys and a couple of missing ones:
-for letter in "abcd":
-    print(my_dict2[letter])
-# Alpha
-# Beta
-# N/A
-# N/A
-
-# Checking the global "counter" variable:
-print(f"{counter = }")
-# counter = 2
-
-# Final state of my_dict1:
-print(f"{my_dict2 = }")
-# my_dict2 = defaultdict(<function default_value2 at 0x7ffbff841d00>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A', 'd': 'N/A'})
-
-
-# The drawback with this implementation is that every instantiated "defaultdict"
-# will use the same function, and therefore, the same counter.
-# We can create instances of the default_value "function" using a custom class
+# Accessing the DefaultValue instance's _counter attribute:
+print(f"{my_dict_3.default_factory._counter = }")
