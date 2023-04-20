@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 """Introducing the defaultdict"""
 
 from collections import defaultdict
@@ -19,7 +21,7 @@ def default_value1() -> str:
 my_dict1: defaultdict[str, str] = defaultdict(default_value1)
 
 print(f"{my_dict1 = }")
-# my_dict1 = defaultdict(<function default_value at 0x7f66872d8310>, {})
+# my_dict1 = defaultdict(<function default_value1 at 0x7ffbffa7df80>, {})
 
 # Creating a couple of keys:
 my_dict1["a"] = "Alpha"
@@ -30,11 +32,11 @@ for letter in "abc":
     print(my_dict1[letter])
 # Alpha
 # Beta
-# N/A // # 'c' not found. Callable assigned as default was called and returned instead.
+# N/A  // # 'c' not found. Callable assigned as default was called and returned instead.
 
 # Final state of my_dict1:
 print(f"{my_dict1 = }")
-# my_dict1 = defaultdict(<function default_value1 at 0x7ffb56d58310>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A'})
+# my_dict1 = defaultdict(<function default_value1 at 0x7ffbffa7df80>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A'})
 
 
 """Counting missing key calls"""
@@ -42,7 +44,7 @@ print(f"{my_dict1 = }")
 # Let's suppose we want to know how may times the "default_value"
 # function was called. We can implement the function as follows:
 
-counter = 0
+counter: int = 0
 
 
 def default_value2():
@@ -55,7 +57,7 @@ def default_value2():
 my_dict2: defaultdict[str, str] = defaultdict(default_value2)
 
 print(f"{my_dict2 = }")
-# my_dict2 = defaultdict(<function default_value2 at 0x7f7488458790>, {})
+# my_dict2 = defaultdict(<function default_value2 at 0x7ffbff841d00>, {})
 
 # Creating a couple of keys:
 my_dict2["a"] = "Alpha"
@@ -64,13 +66,18 @@ my_dict2["b"] = "Beta"
 # Accesing the available keys and a couple of missing ones:
 for letter in "abcd":
     print(my_dict2[letter])
+# Alpha
+# Beta
+# N/A
+# N/A
 
 # Checking the global "counter" variable:
-print(f"{counter}")
+print(f"{counter = }")
+# counter = 2
 
 # Final state of my_dict1:
 print(f"{my_dict2 = }")
-# my_dict2 = defaultdict(<function default_value2 at 0x7f7488458790>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A', 'd': 'N/A'})
+# my_dict2 = defaultdict(<function default_value2 at 0x7ffbff841d00>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A', 'd': 'N/A'})
 
 
 # The drawback with this implementation is that every instantiated "defaultdict"
