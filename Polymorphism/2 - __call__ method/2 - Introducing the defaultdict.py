@@ -38,6 +38,12 @@ for letter in "abc":
 print(f"{my_dict1 = }")
 # my_dict1 = defaultdict(<function default_value1 at 0x7ffbffa7df80>, {'a': 'Alpha', 'b': 'Beta', 'c': 'N/A'})
 
+"""The callback function is stored in the defaultdict's defaultfactory attribute"""
+
+print(f"{hex(id(default_value1))} | {hex(id(my_dict1.default_factory))}")
+# 0x7fbe83ce3b00 | 0x7fbe83ce3b00
+print(f"{default_value1 is my_dict1.default_factory = }")
+# default_value1 is my_dict1.default_factory = True
 
 """Counting missing key calls"""
 
