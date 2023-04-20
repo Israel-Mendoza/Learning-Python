@@ -95,4 +95,5 @@ for char in "abcdefg":
 # Gamma
 
 # Accessing the DefaultValue instance's _counter attribute:
-print(f"{my_dict_3.default_factory._counter = }")
+print(f"{my_dict_3.default_factory.counter = }")
+# my_dict_3.default_factory.counter = 3
