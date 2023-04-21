@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Callable
+
+
 """Using simple class decorators"""
 
 
@@ -6,16 +10,28 @@
 # but to monkeypatch the class by adding new
 # class attributes.
 
-from __future__ import annotations
-from typing import Callable
 
-
-def savings(cls: type[Account]) -> type[Account]:
+def savings(cls: type) -> type:
+    """
+    Class decorator. It adds a class attribute called 'account type'.
+    Args:
+        cls [type] = A type called "Account"
+    Returns:
+        cls [type] = A decorated type called "Account"
+    """
+    
     cls.account_type = "savings"
     return cls
 
 
-def checking(cls: type[Account]) -> type[Account]:
+def checking(cls: type) -> type:
+    """
+    Class decorator. It adds a class attribute called 'account type'.
+    Args:
+        cls [type] = A type called "Account"
+    Returns:
+        cls [type] = A decorated type called "Account"
+    """
     cls.account_type = "checking"
     return cls
 
@@ -23,6 +39,7 @@ def checking(cls: type[Account]) -> type[Account]:
 # Decorating classes with these class decorators
 
 
+# Base class
 class Account:
     pass
 
@@ -37,6 +54,9 @@ class BankSavings02(Account):
     pass
 
 
+###############################
+
+
 @checking
 class BankChecking01(Account):
     pass
@@ -47,12 +67,17 @@ class BankChecking02(Account):
     pass
 
 
+###############################
+
+
 # The "account_type" attribute was injected to the
 # classes by the decorators 'savings' and 'checking':
+
 print(vars(BankSavings01))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
 print(vars(BankSavings02))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
+
 print(vars(BankChecking01))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'checking'}
 print(vars(BankChecking02))
@@ -64,8 +89,14 @@ print(vars(BankChecking02))
 # Creating a parameterized class decorator
 
 
-def account_type(acc_type: str) -> Callable[[type[Account]], type[Account]]:
-    """Decorator factory"""
+def account_type(acc_type: str) -> Callable[[type], type]:
+    """
+    Decorator factory.
+    Args:
+        acc_type [str] = A string value represending the account type.
+    Returns:
+        class_decorator [Callable[type], type] = A class decorator.
+    """
 
     def class_decorator(cls: type[Account]) -> type[Account]:
         """A class decorator"""
@@ -88,6 +119,9 @@ class BankSavings2(Account):
     pass
 
 
+##############################
+
+
 @account_type("checking")
 class BankChecking1(Account):
     pass
@@ -98,12 +132,15 @@ class BankChecking2(Account):
     pass
 
 
+##############################
+
 # The "account_type" attribute was injected to the
 # classes by the decorators 'savings' and 'checking':
 print(vars(BankSavings1))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
 print(vars(BankSavings2))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
+
 print(vars(BankChecking1))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'checking'}
 print(vars(BankChecking2))
@@ -113,8 +150,8 @@ print(vars(BankChecking2))
 """Using class decorator to add a function to the decorated class"""
 
 
-def adding_greeting(cls: type[Person]) -> type[Person]:
-    def _adding_greeting(self: Person) -> str:
+def adding_greeting(cls: type) -> type:
+    def _adding_greeting(self) -> str:
         return f"{self} says hello!"
 
     cls.say_hello = _adding_greeting
