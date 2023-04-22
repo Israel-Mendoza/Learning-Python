@@ -8,6 +8,7 @@ AnyCallable = Callable[..., Any]
 
 
 def function_logger(fn: AnyCallable) -> AnyCallable:
+    """A function decorator"""
     @wraps(fn)
     def inner(*args: Any, **kwargs: Any) -> Any:
         result = fn(*args, **kwargs)
@@ -19,6 +20,10 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
 
 
 def logger_to_class_callables(cls: type) -> type:
+    """
+    A class decorator that will take the 'function_logger' function 
+    decorator and will decorate all callables in that function with it.
+    """
     for attr_name, attr_value in vars(cls).items():
         if callable(attr_value):
             print(f"Decorating {cls.__name__}.{attr_name} with function_logger")
