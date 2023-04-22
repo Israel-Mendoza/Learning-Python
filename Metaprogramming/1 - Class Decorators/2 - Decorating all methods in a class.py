@@ -1,10 +1,11 @@
-"""Using class decorators to decorate all callables in a class"""
-
-
 from __future__ import annotations
 from functools import wraps
 from typing import Any, Callable
 
+"""Using class decorators to decorate all callables in a class"""
+
+
+# Creating type annotation alias
 AnyCallable = Callable[..., Any]
 
 """Decorating methods in a class one by one... Argh..."""
@@ -13,10 +14,13 @@ AnyCallable = Callable[..., Any]
 # Creating a simple function logger decorator
 # to be used to decorate classes' methods
 def function_logger(fn: AnyCallable) -> AnyCallable:
-    @wraps(fn)
+    """Function decorator to decorate functions and give them logging capabilities."""
+    @wraps(fn) # Using wraps to keep the wrapped function's annotations/docs.
     def inner(*args: Any, **kwargs: Any) -> Any:
-        result = fn(*args, **kwargs)
+        result = fn(*args, **kwargs) # Calling original function and storing its return value.
+        # Printing the name of the function and the args it was called with:
         print(f"\nFunction called: {fn.__qualname__}({args}, {kwargs})")
+        # Printing the returned value of the called function:
         print(f"Returned value: {result}\n")
         return result
 
@@ -26,23 +30,23 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
 class Person1:
     @function_logger
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: str = age
 
     @function_logger
-    def greet(self):
-        return f"Hello, my name is {self.age} and I'm {self.age} years old"
+    def greet(self) -> str:
+        return f"Hello, my name is {self.name} and I'm {self.age} years old."
 
 
 # Testing the logger.
 
 p1 = Person1("Israel", 28)
-# Function called: Person.__init__((<__main__.Person object at 0x24E30B26F70>, 'Israel', 28), {})
+# Function called: Person1.__init__((<__main__.Person1 object at 0x7f245e914590>, 'Israel', 28), {})
 # Returned value: None
 
 p1.greet()
-# Function called: Person.greet((<__main__.Person object at 0x24E30B26F70>,), {})
-# Returned value: Hello, my name is 28 and I'm 28 years old
+# Function called: Person1.greet((<__main__.Person1 object at 0x7f245e914590>,), {})
+# Returned value: Hello, my name is Israel and I'm 28 years old.
 
 
 """Decorating with function_logger all methods in a class at once"""
@@ -52,7 +56,7 @@ p1.greet()
 def logger_to_class_callables(cls: type) -> type:
     # Iterating through all the class attributes:
     for attr_name, attr_value in vars(cls).items():
-        if callable(attr_value):
+        if callable(attr_value): # If the attr_value is a callable...
             print(f"Decorating '{cls.__name__}.{attr_name}' with 'function_logger'")
             setattr(cls, attr_name, function_logger(attr_value))
     return cls
@@ -61,11 +65,11 @@ def logger_to_class_callables(cls: type) -> type:
 @logger_to_class_callables
 class Person2:
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: str = age
 
-    def greet(self):
-        return f"Hello, my name is {self.age} and I'm {self.age} years old"
+    def greet(self: Person2):
+        return f"Hello, my name is {self.age} and I'm {self.age} years old."
 
 
 # Output:
@@ -85,7 +89,7 @@ def func_decorator(fn: Callable[[AnyCallable], AnyCallable]) -> Callable[[type],
         for attr_name, attr_value in vars(cls).items():
             if callable(attr_value):
                 func_name = f"{cls.__name__}.{attr_name}"
-                print(f"Decorating '{func_name}' with '{fn.__qualname__}'")
+                print(f"Decorating '{func_name}' with '{fn.__qualname__}'.")
                 # Using setattr() because mappingproxies don't accept item assignment
                 setattr(cls, attr_name, fn(attr_value))
         return cls
@@ -95,11 +99,11 @@ def func_decorator(fn: Callable[[AnyCallable], AnyCallable]) -> Callable[[type],
 
 @func_decorator(function_logger)
 class Person3:
-    def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+    def __init__(self: Person3, name: str, age: int) -> None:
+        self.name: str = name
+        self.age: str = age
 
-    def greet(self) -> str:
+    def greet(self: Person3) -> str:
         return f"Hello, my name is {self.age} and I'm {self.age} years old"
 
 
@@ -114,4 +118,4 @@ p1 = Person3("Israel", 28)
 
 p1.greet()
 # Function called: Person.greet((<__main__.Person object at 0x24E30D867C0>,), {})
-# Returned value: Hello, my name is 28 and I'm 28 years old
+# Returned value: Hello, my name is 28 and I'm 28 years old.
