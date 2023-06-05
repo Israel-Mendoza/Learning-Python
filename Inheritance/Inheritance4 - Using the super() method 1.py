@@ -1,0 +1,46 @@
+from __future__ import annotations
+
+"""Overriding inherited methods and calling super()"""
+
+
+class Person:
+    def __init__(self: Person, name: str, age: int) -> None:
+        print(f"Calling Person({name}, {age})")
+        self.name: str = name
+        self.age: int = age
+
+    def hello(self: Person) -> None:
+        print(f"{self} says hello!")
+
+    def __repr__(self: Person) -> str:
+        return f"{type(self).__name__}('{self.name}', {self.age})"
+
+
+# Overriding ALL inherited methods and using super()
+class Student(Person):
+    def __init__(self: Student, name: str, age: int, major: str) -> None:
+        print(f"Calling Student('{name}', {age}, '{major}')")
+        super().__init__(name, age) # Calling the "original" __init__
+        self.major: str = major # Assigning the extra argument the original __init__ didn't account for
+
+    def hello(self: Student) -> None:
+        print(f"{self} says hello!") # Doing something extra.
+        super().hello() # Calling the "original" hello() method.
+
+    def __repr__(self: Student) -> str:
+        # Overriding the __repr__ method as well.
+        return f"{type(self).__name__}({self.name}, {self.age}, {self.major})"
+
+
+# Creating a Person and a Student instance (calls the __init__ method):
+p = Person("Arturo", 74)
+# Calling Person(Arturo, 74)
+s = Student("Israel", 31, "Computer Science")
+# Calling Student('Israel', 31, 'Computer Science')
+# Calling Person(Israel, 31)
+
+p.hello()
+# Person('Arturo', 74) says hello!
+s.hello()
+# Student(Israel, 31, Computer Science) says hello!
+# Student(Israel, 31, Computer Science) says hello!
