@@ -2,12 +2,12 @@
 
 
 class Program:
-    # Setting attributed from within the class
+    # Setting attributes within the class
     language = "Python"
     version = "3.6"
 
     @staticmethod
-    def say_hello():
+    def say_hello() -> None:
         print(f"Hello from {Program.language}")
 
 
@@ -84,7 +84,7 @@ print(f"{getattr(Program, 'version', None) = }")
 print(f"{Program.__dict__['version'] = }")
 # Program.__dict__['version'] = '3.8'
 
-# Setting inexistent attributes
+# Setting non-existing attributes
 setattr(Program, "operating_system", "Windows 10")
 print(f"{Program.operating_system = }")
 # Program.operating_system = 'Windows 10'
@@ -93,7 +93,14 @@ print(f"{getattr(Program, 'operating_system', None) = }")
 print(f"{Program.__dict__['operating_system'] = }")
 # Program.__dict__['operating_system'] = 'Windows 10'
 
-# We can't use the mappingproxy to assign attrinutes:
+try:
+    Program.pocho = "Pocho"
+except TypeError as error:
+    print(f"{error = }")
+
+# error = TypeError("'mappingproxy' object does not support item assignment")
+
+# We can't use the mappingproxy to assign attributes:
 try:
     Program.__dict__["new_attribute"] = "New Attribute"
 except TypeError as error:
@@ -120,4 +127,8 @@ for k in Program.__dict__:
 a_func = getattr(Program, "say_hello", None)
 if a_func:
     a_func()
+# Hello from Python
+
+a_func = Program.say_hello
+a_func()
 # Hello from Python

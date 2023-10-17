@@ -23,7 +23,7 @@ print(f"{Person.say_hello = }\n")
 # Person.say_hello = <function Person.say_hello at 0x7fe591004700>
 
 # Creating an instance of Person
-p = Person()
+p: Person = Person()
 
 # Analyzing the instance:
 print(f"{hex(id(p)) = }")
@@ -60,7 +60,7 @@ class Person:
         print(f"Passed arguments to say_hello: {args}")
 
 
-p = Person()
+p: Person = Person()
 print(f"{hex(id(p)).upper() = }\n")
 # hex(id(p)).upper() = '0X7FE591010F70'
 
@@ -77,7 +77,7 @@ class Person:
         self.name = new_name
 
 
-p = Person()
+p: Person = Person()
 p.set_name("Israel")
 print(f"{p.__dict__ = }")
 # p.__dict__ = {'name': 'Israel'}

@@ -2,7 +2,7 @@ class MyClass:
     pass
 
 
-# Instanciating from MyClass
+# Instantiating from MyClass
 obj = MyClass()
 
 print(MyClass.__name__)
@@ -10,7 +10,7 @@ print(MyClass.__name__)
 print(type(MyClass))
 # <class 'type'>
 print(isinstance(MyClass, type))
-# True|
+# True
 print(isinstance(obj, MyClass))
 # True
 print(obj.__class__, type(obj))

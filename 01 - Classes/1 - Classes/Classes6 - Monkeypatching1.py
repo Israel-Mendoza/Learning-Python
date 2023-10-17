@@ -14,8 +14,8 @@ class Person:
 
 
 # Creating two instances of the Person class
-p1 = Person()
-p2 = Person()
+p1: Person = Person()
+p2: Person = Person()
 
 # Calling the methods on the two recently created instances:
 p1.say_hello()
@@ -33,7 +33,13 @@ for k in Person.__dict__:
 # Person.__doc__: None
 
 """Adding a instance method to the class on the fly"""
-setattr(Person, "do_work", lambda self: f"{self} is working!")
+
+
+def do_work(self):
+    return f"{self} is working"
+
+
+setattr(Person, "do_work", do_work)
 
 # Checking the Person's namespace:
 for k in Person.__dict__:
@@ -41,15 +47,15 @@ for k in Person.__dict__:
 # .
 # .
 # .
-# Person.do_work: <function <lambda> at 0x7f435cf95700>
+# Person.do_work: <function do_work at 0x1048942c0>
 
 # Calling the new method on both instances:
 print(f"{p1.do_work = }")
-# p1.do_work = <bound method <lambda> of <__main__.Person object at 0x7f8aa335bfd0>>
+# p1.do_work = <bound method do_work of <__main__.Person object at 0x7f8aa335bfd0>>
 print(p1.do_work())
 # <__main__.Person object at 0x7f8aa335bfd0> is working! 
 print(f"{p2.do_work = }")
-# p2.do_work = <bound method <lambda> of <__main__.Person object at 0x7f8aa335bfa0>>
+# p2.do_work = <bound method do_work of <__main__.Person object at 0x7f8aa335bfa0>>
 print(p2.do_work())
 # <__main__.Person object at 0x7f8aa335bfa0> is working! 
 
@@ -65,3 +71,19 @@ print(f"{type(p1.other_func) = }")
 
 print(p1.other_func())  # No self argument is passed
 # Other function with args: ()
+
+class Person:
+    pass
+
+
+def a_func(*args) -> None:
+    print("Passed arguments", args)
+
+
+p: Person = Person()
+
+setattr(Person, "class_func", a_func)
+setattr(p, "instance_func", a_func)
+
+print(type(p.class_func))
+print(type(p.instance_func))

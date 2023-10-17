@@ -7,7 +7,7 @@ class Person:
         setattr(self, "name", name) # Or self.name = name
 
 
-p = Person()
+p: Person = Person()
 
 # After creation, the object namespace is empty
 print(f"{p.__dict__ = }")
@@ -40,7 +40,7 @@ class Person:
         print("$" * 60, end="\n\n")
 
 
-p = Person("Israel", 28, "Mexican")
+p: Person = Person("Israel", 28, "Mexican")
 
 # $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 # __init__ started running!!!

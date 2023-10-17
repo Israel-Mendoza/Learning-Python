@@ -6,7 +6,7 @@ class MyClass:
 
 
 # Instantiating an object out of MyClass
-my_obj = MyClass()
+my_obj: MyClass = MyClass()
 
 print(f"{type(my_obj) = }")
 # type(my_obj) = <class '__main__.MyClass'>
@@ -27,7 +27,7 @@ class MyClass:
     __class__ = str
 
 
-my_obj = MyClass()  # Instantiating an object out of MyClass
+my_obj: MyClass = MyClass()  # Instantiating a MyClass object
 
 # type() is not fooled by the change:
 print(f"{type(my_obj) = }" )

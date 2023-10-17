@@ -89,7 +89,7 @@ print(f"{acc2.is_open = }")
 # getattr(acc1, 'bank_name', None) = 'Chase'
 # acc2.is_open = False
 
-"""Atributes with spaces in between"""
+"""Attributes with spaces in between"""
 
 # There are two ways to add attributes with spaces to an instance:
 setattr(acc2, "bank name", "BB&T")
