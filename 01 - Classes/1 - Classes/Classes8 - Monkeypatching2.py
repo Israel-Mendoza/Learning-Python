@@ -30,8 +30,8 @@ def say_bye(self: Person):
 
 
 # Setting "bound method" objects to attributes
-p1.say_hello = MethodType(say_hello, p1) # setattr(p1, "say_hello", MethodType(say_bye, p1))
-p1.say_bye = MethodType(say_bye, p1) # setattr(p1, "say_bye", MethodType(say_bye, p1))
+p1.say_hello = MethodType(say_hello, p1)  # setattr(p1, "say_hello", MethodType(say_bye, p1))
+p1.say_bye = MethodType(say_bye, p1)  # setattr(p1, "say_bye", MethodType(say_bye, p1))
 print(f"{p1.__dict__ = }")
 # p1.__dict__ = {
 #  'name': 'Israel', 
