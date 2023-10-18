@@ -23,8 +23,7 @@ print("\n")
 # __isabstractmethod__: <attribute '__isabstractmethod__' of 'property' objects>
 
 
-# Defining functions that will eventually be passed as
-# arguments when creating a property object:
+# Defining functions that will eventually be passed as arguments when creating a property object:
 
 
 def get_prop(self):
@@ -41,7 +40,7 @@ def del_prop(self):
 
 # Creating a property object
 # Passing the 'get_prop' function as the fget argument
-prop = property(get_prop)
+prop: property = property(get_prop)
 print(f"{type(prop) = }")
 # type(prop) = <class 'property'>
 print(f"{hex(id(prop)) = }\n")
@@ -49,23 +48,23 @@ print(f"{hex(id(prop)) = }\n")
 
 # Using the .setter attribute to add the set_prop function.
 # It returns a NEW property object. Assigning the result to a new variable.
-prop_s = prop.setter(set_prop)
+prop_s: property = prop.setter(set_prop)  # The .setter method returns a new version of the property
 print(f"{type(prop_s) = }")
 print(f"{hex(id(prop_s)) = }")
 # hex(id(prop_s)) = '0x7f4944ec3a40'
-print(f"But most importantly: prop is prop_s = {prop is prop_s}\n")
-# But most importantly: prop is prop_s = False
+print(f"But most importantly: prop is prop_s ? = {prop is prop_s}\n")
+# But most importantly: prop is prop_s ? = False
 
 # Using the .deleter attribute to add the del_prop function.
 # It returns a NEW property object. Assigning the result to a new variable.
-prop_d = prop.deleter(del_prop)
+prop_d: property = prop.deleter(del_prop)
 
 print(f"{type(prop_d) = }")
 # type(prop_d) = <class 'property'>
 print(f"{hex(id(prop_d)) = }")
 # hex(id(prop_d)) = '0x7f4944ec3ae0'
-print(f"But most importantly: prop_s is prop_d = {prop_s is prop_d}\n")
-# But most importantly: prop_s is prop_d = False
+print(f"But most importantly: prop_s is prop_d ? = {prop_s is prop_d}\n")
+# But most importantly: prop_s is prop_d ? = False
 
 print(f"prop: {prop}\nprop_s: {prop_s}\nprop_d: {prop_d}\n")
 # prop: <property object at 0x7f4944ec3950>
@@ -74,21 +73,21 @@ print(f"prop: {prop}\nprop_s: {prop_s}\nprop_d: {prop_d}\n")
 
 # We can, however, add and assign the returned objects to the same symbol
 
-prop = property(get_prop)
-prop = prop.setter(set_prop)
-prop = prop.deleter(del_prop)
+prop: property = property(get_prop)  # The first argument will be the getter
+prop: property = prop.setter(set_prop)
+prop: property = prop.deleter(del_prop)
 print(f"'prop' containing three different members: {prop}\n\n")
 # 'prop' containing three different members: <property object at 0x7f4944ec3b30>
 
 
-# Adding our existant 'prop' object to a real property within a class
+# Adding our existent 'prop' object to a real property within a class
 
 
 class MyClass:
-    name = prop
+    name: property = prop
 
 
-obj = MyClass()
+obj: MyClass = MyClass()
 
 # Using the getter function
 obj.name

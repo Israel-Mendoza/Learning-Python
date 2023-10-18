@@ -1,10 +1,11 @@
 """The PROPERTY object"""
 
+
 class Person:
     """This is a Person object"""
 
-    def __init__(self, name: str):
-        self.name = name
+    def __init__(self, name: str) -> None:
+        self.name: str = name
 
     def get_name(self) -> str:  # Getter
         return self._name
@@ -13,14 +14,14 @@ class Person:
         if isinstance(value, str):
             value = value.strip()
             if len(value) > 1:
-                self._name = value
+                self._name: str = value
                 print(f"{self}.name = '{self.get_name()}'\n")
             else:
                 raise ValueError(f"'{value}' is too short for a name!\n")
         else:
             raise ValueError(f"'{value}' is not a valid string for a name!\n")
 
-    def del_name(self): # Deleter
+    def del_name(self):  # Deleter
         print(f"It's not a good idea to delete an attribute, my friend...")
         print(f".\n.\n.\nBut as you wish...")
         del self._name
@@ -32,7 +33,7 @@ class Person:
 
 
 # Instantiating the class
-p = Person("Israel")
+p: Person = Person("Israel")
 
 print(f"{p.__dict__ = }")
 # p.__dict__ = {'_name': 'Israel'}
@@ -64,7 +65,7 @@ except ValueError as error:
 p.__dict__["name"] = "Nacho"
 print(p.__dict__)
 # {'_name': 'Coco', 'name': 'Nacho'}
-print(p.name)  
+print(p.name)
 # Coco
 print(getattr(p, "name", None))
 # Coco
@@ -82,7 +83,7 @@ print(f"{p.__dict__ = }")
 # p.__dict__ = {'name': 'Nacho'}
 
 # We can still use the setter out of the property,
-# because THE PROPERTY WAS NOT DELERED
+# because THE PROPERTY WAS NOT DELETED
 p.name = "Pancho"
 print(f"{p.__dict__ = }\n")
 # p.__dict__ = {'name': 'Nacho', '_name': 'Pancho'}

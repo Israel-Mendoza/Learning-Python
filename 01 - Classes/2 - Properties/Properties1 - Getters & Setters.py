@@ -2,15 +2,15 @@
 
 
 class Person:
-    def __init__(self, name: str):
-        print("Initializating object...")
+    def __init__(self, name: str) -> None:
+        print("Initializing object...")
         self.set_name(name)
 
     def get_name(self) -> str:  # Getter
         """Returns the "_name" attribute of the instance"""
         return self._name
 
-    def set_name(self, value: str):  # Setter
+    def set_name(self, value: str) -> None:  # Setter
         """
         Sets the "_name" attribute of the instance 
         only if the passed argument is a string longer than
@@ -19,7 +19,7 @@ class Person:
         if isinstance(value, str):
             value = value.strip()
             if len(value) > 1:
-                self._name = value
+                self._name: str = value
                 print(f"{self}.name = '{self.get_name()}'\n")
             else:
                 raise ValueError(f"'{value}' is too short for a name!\n")
@@ -28,8 +28,8 @@ class Person:
 
 
 # Instantiating the class
-p = Person("Israel")
-# Initializating object...
+p: Person = Person("Israel")
+# Initializing object...
 # <__main__.Person object at 0x7f3ae8e2afd0>.name = 'Israel'
 
 print(f"{p.__dict__ = }")
