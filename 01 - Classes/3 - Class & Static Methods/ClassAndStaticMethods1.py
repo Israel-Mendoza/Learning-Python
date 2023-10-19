@@ -1,15 +1,15 @@
 class MyClass:
-    def hello():
+    def hello() -> None:
         """
         When called from the class:
             It doesn't pass anything as an argument. Runs as expected.
         When called from an instance:
             It passes the instance as the argument. Raises an error.
-        Note: we should never declare a method like this.
+        Note: we should never declare a method like this!!!
         """
         print("Hello...")
 
-    def inst_hello(self):
+    def instance_hello(self) -> None:
         """
         When called from the class:
             It doesn't pass anything as an argument.
@@ -21,7 +21,7 @@ class MyClass:
         print(f"Hello from {self}")
 
     @classmethod
-    def cls_hello(cls):
+    def class_hello(cls) -> None:
         """
         When called from the class:
             It  passes the class as an argument. Runs as expected.
@@ -32,7 +32,7 @@ class MyClass:
         print(f"Hello from {cls}")
 
     @staticmethod
-    def static_hello():
+    def static_hello() -> None:
         """
         When called from the class:
             It doesn't pass anything as an argument. Runs as expected.
@@ -42,7 +42,7 @@ class MyClass:
         print("Hello statically!")
 
 
-o = MyClass()
+o: MyClass = MyClass()
 
 ##########################################################################
 ##########################################################################
@@ -54,9 +54,8 @@ MyClass.hello()
 try:
     o.hello()
 except TypeError as error:
-    print(error)
+    print(error, end="\n\n")
 # hello() takes 0 positional arguments but 1 was given
-print()
 
 
 ##########################################################################
@@ -65,12 +64,12 @@ print()
 """Running the second function in the class (instance method)"""
 
 try:
-    MyClass.inst_hello()
+    MyClass.instance_hello()
 except TypeError as error:
     print(error)
-# inst_hello() missing 1 required positional argument: 'self'
+# instance_hello() missing 1 required positional argument: 'self'
 
-o.inst_hello()
+o.instance_hello()
 # Hello from <__main__.MyClass object at 0x7fafd149ff70>
 print()
 
@@ -79,9 +78,9 @@ print()
 
 """Running the third function in the class (class method)"""
 
-MyClass.cls_hello()
+MyClass.class_hello()
 # Hello from <class '__main__.MyClass'>
-o.cls_hello()
+o.class_hello()
 # Hello from <class '__main__.MyClass'>
 print()
 

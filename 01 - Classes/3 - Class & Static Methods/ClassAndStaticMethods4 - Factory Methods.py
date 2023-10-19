@@ -1,65 +1,70 @@
-# Using class methods to create alternative constructors
+from __future__ import annotations
+
+
+"""Using class methods to create alternative constructors"""
 
 
 class Employee:
+    raise_amount: float = 1.04  # 4% salary raise
 
-    raise_amount = 1.04  # 4% salary raise
-
-    def __init__(self, first_name: str, last_name: str, age: int, salary: int):
+    def __init__(self, first_name: str, last_name: str, age: int, salary: int) -> None:
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
         self.salary = salary
 
+    def __str__(self) -> str:
+        return f"{self.full_name} is {self.age} years old and has a monthly salary of ${self.salary:.2f}"
+
     @property
-    def first_name(self):
+    def first_name(self) -> str:
         """The Employee's first name"""
         return self._first_name
 
     @first_name.setter
-    def first_name(self, new_first_name: str):
+    def first_name(self, new_first_name: str) -> None:
         if len(new_first_name.strip()) > 0:
-            self._first_name = new_first_name
+            self._first_name: str = new_first_name
         else:
             raise ValueError("New first name must be a valid string...")
 
     @property
-    def last_name(self):
+    def last_name(self) -> str:
         """The Employee's last name"""
         return self._last_name
 
     @last_name.setter
-    def last_name(self, new_last_name: str):
+    def last_name(self, new_last_name: str) -> None:
         if len(new_last_name.strip()) > 0:
-            self._last_name = new_last_name
+            self._last_name: str = new_last_name
 
     @property
-    def full_name(self):
+    def full_name(self) -> str:
         """The Employee's full name"""
         return f"{self.first_name} {self.last_name}"
 
     @property
-    def age(self):
+    def age(self) -> int:
         """The Employee's age"""
         return self._age
 
     @age.setter
-    def age(self, new_age: int):
-        self._age = Employee.age_format_checker(new_age)
+    def age(self, new_age: int) -> None:
+        self._age: int = Employee.age_format_checker(new_age)
 
     @property
-    def salary(self):
+    def salary(self) -> float:
         """The Employee's salary"""
         return self._salary
 
     @salary.setter
-    def salary(self, new_salary: float):
+    def salary(self, new_salary: float) -> None:
         if isinstance(new_salary, int) or isinstance(new_salary, float):
-            self._salary = abs(new_salary)
+            self._salary: float = float(abs(new_salary))
         else:
             try:
-                new_salary = float(new_salary)
-                self._salary = new_salary
+                new_salary: float = float(new_salary)
+                self._salary: float = new_salary
             except ValueError:
                 raise ValueError("Salary must be a valid number...")
 
@@ -71,7 +76,7 @@ class Employee:
         self.salary *= self.raise_amount
 
     @classmethod
-    def from_string(cls, emp_str: str, separator: str):
+    def from_string(cls, emp_str: str, separator: str) -> Employee:
         """
         Alternative constructor.
         args:
@@ -88,12 +93,12 @@ class Employee:
         Check that the passed age argument is a valid integer,
         excluding numbers between -17 and 17.
         Returns valid positive int
-        Raises ValueError if numbers between -17 and 17 or not a 
+        Raises ValueError if numbers between -17 and 17 or not a
         valid int
         """
-        checker = 0
+        checker: int = 0
         if isinstance(age, int):
-            age = abs(age)
+            age: int = abs(age)
             if age >= 18:
                 return age
             else:
@@ -110,23 +115,20 @@ class Employee:
         else:
             raise ValueError("Age must be a valid number...")
 
-    def __str__(self):
-        return f"{self.full_name} is {self.age} years old and has a monthly salary of ${self.salary:.2f}"
 
+e1: str = "Ezra--Kaltenberg--31--52000"
+e2: str = "Mike--Schmidt--26--26000"
+e3: str = "Edward--Rodriguez--27--17000"
 
-e1 = "Ezra--Kaltberg--28--28000"
-e2 = "Mike--Schmidt--26--26000"
-e3 = "Edward--Rodriguez--27--17000"
-
-emp_strings = [e1, e2, e3]
-emp_objects = []
+emp_strings: list[str] = [e1, e2, e3]
+emp_objects: list[Employee] = []
 
 for employee in emp_strings:
-    temp_emp = Employee.from_string(employee, "--")
+    temp_emp: Employee = Employee.from_string(employee, "--")
     emp_objects.append(temp_emp)
 
 for employee in emp_objects:
     print(employee)
-# Ezra Kaltberg is 28 years old and has a monthly salary of $28000.00
+# Ezra Kaltenberg is 31 years old and has a monthly salary of $52000.00
 # Mike Schmidt is 26 years old and has a monthly salary of $26000.00
 # Edward Rodriguez is 27 years old and has a monthly salary of $17000.00

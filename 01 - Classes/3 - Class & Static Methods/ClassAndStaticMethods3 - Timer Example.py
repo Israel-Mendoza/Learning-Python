@@ -4,51 +4,39 @@ from datetime import datetime, timezone, timedelta
 
 
 class Timer:
-    tz = timezone.utc
+    tz: timezone = timezone.utc
 
-    def __init__(self):
-        self._time_start = None
-        self._time_end = None
+    def __init__(self) -> None:
+        self._time_start: datetime | None = None
+        self._time_end: datetime | None = None
 
-    @classmethod
-    def set_tz(cls, offset, name):
-        cls.tz = timezone(timedelta(hours=offset), name)
-
-    @staticmethod
-    def current_dt_utc():
-        return datetime.now(timezone.utc)
-
-    @classmethod
-    def current_dt(cls):
-        return datetime.now(cls.tz)
-
-    def start(self):
+    def start(self) -> None:
         """Starts the instance of the timer"""
         self._time_start = self.current_dt_utc()
         self._time_end = None
 
-    def stop(self):
+    def stop(self) -> None:
         """Stops the instance of the timer"""
         if self._time_start is None:
             raise TimerError("Timer hasn't been started yet!")
-        self._time_end = self.current_dt_utc()
+        self._time_end: datetime = self.current_dt_utc()
 
     @property
-    def start_time(self):
+    def start_time(self) -> datetime:
         """The time the timer was started"""
         if self._time_start is None:
             raise TimerError("Timer hasn't been started yet!")
         return self._time_start.astimezone(self.tz)
 
     @property
-    def end_time(self):
+    def end_time(self) -> datetime:
         """The time the timer was stopped"""
         if self._time_end is None:
             raise TimerError("Timer hasn't been stopped yet!")
         return self._time_end.astimezone(self.tz)
 
     @property
-    def elapsed_time(self):
+    def elapsed_time(self) -> float:
         """Returns the elapsed time since the start of the timer"""
         if self._time_start is None:
             raise TimerError("The timer must be started first!")
@@ -58,9 +46,25 @@ class Timer:
             elapsed = self._time_end - self._time_start
         return elapsed.total_seconds()
 
+    @classmethod
+    def set_tz(cls, offset: float, name: str) -> None:
+        """Sets the class' timezone information"""
+        cls.tz = timezone(timedelta(hours=offset), name)
+
+    @classmethod
+    def current_dt(cls) -> datetime:
+        """Returns the current datetime, set with the class timezone"""
+        return datetime.now(cls.tz)
+
+    @staticmethod
+    def current_dt_utc() -> datetime:
+        """Returns the current datetime, set with the passed timezone information"""
+        return datetime.now(timezone.utc)
+
 
 class TimerError(Exception):
-    """A custom excepion used for the Timer class"""
+    """A custom exception used for the Timer class"""
+    pass
 
 
 Timer.set_tz(-5, "CDMX")
@@ -69,24 +73,28 @@ print(Timer.tz)
 
 
 # Instantiating the Timer class
-t1 = Timer()
-t2 = Timer()
-t3 = Timer()
+t1: Timer = Timer()
+t2: Timer = Timer()
+t3: Timer = Timer()
+
+
+# Creating start_time placeholder:
+start_time: datetime | None = None
 
 try:
-    t1.start_time
+    start_time = t1.start_time
 except TimerError as error:
     print(error)
 # Timer hasn't been started yet!
 
 try:
-    t2.start_time
+    start_time = t2.start_time
 except TimerError as error:
     print(error)
 # Timer hasn't been started yet!
 
 try:
-    t3.start_time
+    start_time = t3.start_time
 except TimerError as error:
     print(error)
 # Timer hasn't been started yet!
