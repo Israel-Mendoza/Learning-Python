@@ -4,28 +4,28 @@ from math import pi
 
 
 class Circle:
-    def __init__(self, radius):
-        self.radius = radius
+    def __init__(self, radius: int | float):
+        self.radius = radius  # Using the setter to set the initial self._radius attribute.
 
     @property
-    def radius(self):
+    def radius(self) -> int | float:
         """The radius of the circle"""
         return self._radius
 
     @radius.setter
-    def radius(self, value):
+    def radius(self, value: int | float) -> None:
         if value <= 0:
             raise ValueError("'radius' attribute must be a positive number")
-        self._radius = value
+        self._radius: int | float = value
 
     @property
-    def area(self):  # Read-only calculated property
+    def area(self) -> float:  # Read-only calculated property
         """The area of the circle"""
         return pi * self.radius * self.radius
 
 
 # Creating a circle instance
-c = Circle(2)
+c: Circle = Circle(2)
 print(f"{c.radius = }")
 # c.radius = 2
 print(f"{c.area = :.2f}")
@@ -35,26 +35,26 @@ print(f"\n")
 
 # Creating the same class, caching the area value
 class Circle:
-    def __init__(self, radius):
+    def __init__(self, radius: int | float):
         self.radius = radius
-        self._area = None
+        self._area: float | None = None
 
     @property
-    def radius(self):
+    def radius(self) -> int | float:
         """The radius of the circle"""
         return self._radius
 
     @radius.setter
-    def radius(self, value):
+    def radius(self, value: int | float) -> None:
         if value <= 0:
             raise ValueError("'radius' must be a positive value")
         print(f"Setting new radius value to {value}")
-        self._radius = value
+        self._radius: int | float = value
         # Deleting cached area value
-        self._area = None
+        self._area: float | None = None
 
     @property
-    def area(self):
+    def area(self) -> float:
         """The area of the circle"""
         if self._area is None:
             print("Calculating new area value...")
@@ -63,7 +63,7 @@ class Circle:
 
 
 # Creating a circle instance
-c = Circle(2)
+c: Circle = Circle(2)
 # Setting new radius value to 2
 print(f"{c.radius = :.2f}")
 # c.radius = 2.00

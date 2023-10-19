@@ -1,30 +1,28 @@
 class Person:
-    def __init__(self, name: str):
+    def __init__(self, name: str) -> None:
         self._name = name
 
     # name = property(name)
     @property
-    def name(self):
+    def name(self) -> str:
         return self._name
 
-    # When chaining property decorators, 
-    # the decorator will take the name
-    # of the function it wraps: 
-    # name = name.setter(name)
+    # When chaining property decorators, the decorator will take the name
+    # of the function it wraps: name = name.setter(name)
     @name.setter
-    def name(self, new_name: str):
+    def name(self, new_name: str) -> None:
         print(f"Setting .name attribute to '{new_name}'")
         self._name = new_name
 
-    # names will be the final name of the property
+    # names (with an "s") will be the final name of the property
     # names = name.deleter(name)
     @name.deleter
-    def names(self):
+    def names(self) -> None:
         print("Deleting .name attribute...")
         del self._name
 
 
-p = Person("Israel")
+p: Person = Person("Israel")
 # Using "names" as the property, because that is the last name of the property
 print(p.names)
 # Israel

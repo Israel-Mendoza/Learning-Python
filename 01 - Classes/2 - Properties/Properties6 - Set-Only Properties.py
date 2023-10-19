@@ -5,19 +5,19 @@
 
 
 class Person:
-    def __init__(self, name):
-        self._name = name
+    def __init__(self, name: str) -> None:
+        self._name: str = name
 
-    def set_name(self, new_name: str):
+    def set_name(self, new_name: str) -> None:
         print("Setter called!!!")
-        self._name = new_name
+        self._name: str = new_name
 
-    name = property(
+    name: property = property(
         fset=set_name, doc="Write-only property represents the name of the person"
     )
 
 
-p = Person("Israel")
+p: Person = Person("Israel")
 try:
     p.name
 except AttributeError as error:
@@ -33,21 +33,20 @@ print()
 
 
 class Person:
-    def __init__(self, name):
-        self._name = name
+    def __init__(self, name: str) -> None:
+        self._name: str = name
 
-    # Create an empty property object (otherwise, 
-    # the first function risks of being the getter (fget):
-    name = property(doc="Write-only property represents the name of the person")
+    # Create an empty property object (otherwise, the first function risks of being the getter (fget)):
+    name: property = property(doc="Write-only property represents the name of the person")
 
     # Continue chaining the property as usual
     @name.setter
-    def name(self, new_name):
+    def name(self, new_name: str) -> None:
         print("Setter called!!!")
-        self._name = new_name
+        self._name: str = new_name
 
 
-p = Person("Israel")
+p: Person = Person("Israel")
 try:
     p.name
 except AttributeError as error:
