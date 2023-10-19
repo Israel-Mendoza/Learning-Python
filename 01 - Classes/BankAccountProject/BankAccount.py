@@ -3,7 +3,7 @@ from Transaction import BankTransaction
 
 class BankAccount:
 
-    interest_rate = 1.05
+    interest_rate: float = 1.05
 
     def __init__(self, first_name: str, last_name: str, account_number: int, initial_balance: float, preferred_tz):
         self._first_name = first_name
@@ -50,7 +50,7 @@ class BankAccount:
         self._preferred_tz = value
 
     @property
-    def transaction_list(self) -> list:
+    def transaction_list(self) -> list[BankTransaction]:
         """The account holder's transaction list"""
         return self._transaction_list
 

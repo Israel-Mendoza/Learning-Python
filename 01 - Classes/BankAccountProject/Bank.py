@@ -3,19 +3,19 @@ from BankAccount import BankAccount
 
 class Bank:
 
-    def __init__(self, bank_name: str):
-        self._bank_name = bank_name
-        self._last_account_number = 1_001_000
-        self._active_accounts = []
-        self._inactive_accounts = []
+    def __init__(self, bank_name: str) -> None:
+        self._bank_name: str = bank_name
+        self._last_account_number: int = 1_001_000
+        self._active_accounts: list[BankAccount] = []
+        self._inactive_accounts: list[BankAccount] = []
 
     @property
-    def active_accounts(self) -> list:
+    def active_accounts(self) -> list[BankAccount]:
         """The list containing the active accounts in this instance"""
         return self._active_accounts
 
     @property
-    def inactive_accounts(self) -> list:
+    def inactive_accounts(self) -> list[BankAccount]:
         """the list containing the inactive accounts in this instance"""
         return self._inactive_accounts
 
@@ -25,7 +25,7 @@ class Bank:
         self._active_accounts.append(new_account)
         return new_account
 
-    def delete_account(self, account_number: int):
+    def delete_account(self, account_number: int) -> None:
         if isinstance(account_number, int):
             if account_number in self._active_accounts:
                 self._active_accounts.remove(account_number)
@@ -35,7 +35,7 @@ class Bank:
                 print(f"Account <{account_number}> does not exist...")
         else:
             try:
-                account_number = int(account_number)
+                account_number: int = int(account_number)
                 if account_number in self._active_accounts:
                     self._active_accounts.remove(account_number)
                     self._inactive_accounts.append(account_number)
@@ -57,7 +57,7 @@ class Bank:
         else:
             print("Account does not exist...")
 
-    def account_lookup(self, account_number: int) -> BankAccount:
+    def account_lookup(self, account_number: int) -> BankAccount | None:
         for account in self.active_accounts:
             if account_number == account.account_number:
                 return account
