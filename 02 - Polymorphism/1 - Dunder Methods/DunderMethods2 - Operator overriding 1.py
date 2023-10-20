@@ -5,11 +5,11 @@ from __future__ import annotations
 # Creating a vector to test the dunder methods
 
 from numbers import Real
-from typing import Any, Tuple, Union
+from typing import Any
 
 
 class Vector:
-    def __init__(self: Vector, *components: int | float) -> None:
+    def __init__(self, *components: int | float) -> None:
         if len(components) < 1:
             raise ValueError("Cannot create an empty Vector!")
         for component in components:
@@ -18,30 +18,30 @@ class Vector:
         self._components: tuple[int | float, ...] = tuple(components)
 
     @property
-    def components(self: Vector) -> tuple[int | float, ...]:
+    def components(self) -> tuple[int | float, ...]:
         """The Vector's components"""
         return self._components
 
-    def __len__(self: Vector) -> int:
+    def __len__(self) -> int:
         return len(self.components)
 
-    def __repr__(self: Vector) -> str:
+    def __repr__(self) -> str:
         return f"Vector{self.components}"
 
-    def __add__(self: Vector, other: Vector) -> Vector:
+    def __add__(self, other: Vector) -> Vector:
         if self.validate(other):
             components = (x + y for x, y in zip(self.components, other.components))
             return Vector(*components)
         else:
             return self
 
-    def __sub__(self: Vector, other: Vector) -> Vector:
+    def __sub__(self, other: Vector) -> Vector:
         if self.validate(other):
             components = (x - y for x, y in zip(self.components, other.components))
             return Vector(*components)
         return self
 
-    def __mul__(self: Vector, other: Vector) -> Vector:
+    def __mul__(self, other: Vector) -> Vector:
         if isinstance(other, Vector):
             if len(self) == len(other):
                 components = (x * y for x, y in zip(self.components, other.components))
@@ -72,7 +72,7 @@ class Vector:
         self._components = tuple(components)
         return self
 
-    def validate(self: Vector, other: Any) -> bool:
+    def validate(self, other: Any) -> bool:
         """Returns true if the passed vector is the same length as self"""
         if Vector.validate_type(other):
             if len(self) == len(other):

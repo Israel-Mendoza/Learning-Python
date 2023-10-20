@@ -12,17 +12,17 @@ class MyClass:
     pass
 
 
-obj = MyClass()
+obj: MyClass = MyClass()
 
 # Neither __bool__ nor __len__ has been implemented
 print(f"Is 'obj' True or False: {bool(obj)}")  # True
 
 
 class MyList1:
-    def __init__(self: MyList1, length: int) -> None:
+    def __init__(self, length: int) -> None:
         self._length: int = length
 
-    def __len__(self: MyList1) -> int:
+    def __len__(self) -> int:
         return self._length
 
 
@@ -38,10 +38,10 @@ print()
 
 
 class MyList2:
-    def __init__(self: MyList2, length: int) -> None:
+    def __init__(self, length: int) -> None:
         self._length: int = length
 
-    def __len__(self: MyList2) -> int:
+    def __len__(self) -> int:
         return self._length
 
     def __bool__(self) -> bool:
@@ -49,13 +49,13 @@ class MyList2:
         return self._length > 0
 
 
-obj_1 = MyList2(0)
-obj_2 = MyList2(10)
+o1: MyList2 = MyList2(0)
+o2: MyList2 = MyList2(10)
 
 # __len__ and __bool have been implemented
-print(f"{bool(obj_1) = }")
+print(f"{bool(o1) = }")
 # __bool__ called!
-# bool(obj_1) = False
-print(f"{bool(obj_2) = }")
+# bool(o1) = False
+print(f"{bool(o2) = }")
 # __bool__ called!
-# bool(obj_2) = True
+# bool(o2) = True

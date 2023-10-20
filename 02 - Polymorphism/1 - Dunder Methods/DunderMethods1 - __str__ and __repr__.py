@@ -2,16 +2,15 @@ from __future__ import annotations
 
 """Playing with the __str__ and the __repr__ methods"""
 
-# If only __repr__ is overriden,
-# it'll take precedence to __str__
+# If only __repr__ is overriden, it'll take precedence to __str__
 
 
 class Person:
-    def __init__(self: Person, name: str, age: int) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name: str = name
         self.age: int = age
 
-    def __repr__(self: Person) -> str:
+    def __repr__(self) -> str:
         print("__repr__ called")
         return f"Person(name='{self.name}', age={self.age})"
 
@@ -28,7 +27,7 @@ print(p, end="\n\n")
 
 
 class Person:
-    def __init__(self: Person, name: str, age: int) -> None:
+    def __init__(self, name: str, age: int) -> None:
         self.name: str = name
         self.age: int = age
 

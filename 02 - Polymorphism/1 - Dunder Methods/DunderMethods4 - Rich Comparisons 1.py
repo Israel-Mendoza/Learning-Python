@@ -1,23 +1,23 @@
 from __future__ import annotations
 
-"""Using Rich Comparations"""
+"""Using Rich Comparison"""
 
 
 from typing import Any
 
 
 class Vector:
-    def __init__(self: Vector, x: int | float, y: int | float) -> None:
+    def __init__(self, x: int | float, y: int | float) -> None:
         self._x: int | float = x
         self._y: int | float = y
 
     @property
-    def x(self: Vector) -> int | float:
+    def x(self) -> int | float:
         """X value of the vector"""
         return self._x
 
     @x.setter
-    def x(self: Vector, value: Any) -> None:
+    def x(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
             self._x = value
         else:
@@ -29,31 +29,31 @@ class Vector:
         return self._y
 
     @y.setter
-    def y(self: Vector, value: Any) -> None:
+    def y(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
             self._y = value
         else:
             raise ValueError("Y value of vector must be a valid number...")
 
-    def __eq__(self: Vector, other: Any) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x == other.x and self.y == other.y
         else:
             return NotImplemented
 
-    def __lt__(self: Vector, other: Any) -> bool:
+    def __lt__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x < other.x and self.y < other.y
         else:
             return NotImplemented
 
-    def __le__(self: Vector, other: Any) -> bool:
+    def __le__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x <= other.x and self.y <= other.y
         else:
             return NotImplemented
 
-    def __repr__(self: Vector) -> str:
+    def __repr__(self) -> str:
         return f"Vector({self.x}, {self.y})"
 
 

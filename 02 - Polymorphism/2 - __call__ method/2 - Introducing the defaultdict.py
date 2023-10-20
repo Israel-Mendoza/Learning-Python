@@ -6,14 +6,13 @@ Implementing a class, which instances will be callables.
 We can use these callable objects as "callback" functions
 for the defaultdict dictionary. 
 The instance will keep track of the times we use the callback, 
-and will also return the default value the defaultdect will 
+and will also return the default value the defaultdict will 
 use to assign to missing keys. 
 """
 
 
-
 class DefaultValue:
-    def __init__(self: DefaultValue, default_value: str) -> None:
+    def __init__(self, default_value: str) -> None:
         """
         Initializes the default value attribute and the counter. 
         Args:
@@ -28,10 +27,10 @@ class DefaultValue:
         """The counter attribute of the object"""
         return self._counter
 
-    def __call__(self: DefaultValue) -> str:
+    def __call__(self) -> str:
         """
         Whenever the instance is called, it will return the 
-        value stored in the "default_valie" instance attribute
+        value stored in the "default_value" instance attribute
         and will increase the _counter attribute by one. 
         """
         self._counter += 1
@@ -39,8 +38,8 @@ class DefaultValue:
 
 
 # Creating a couple of DefaultValue instances:
-counter_1 = DefaultValue("N/A")
-counter_2 = DefaultValue("Undefined")
+counter_1: DefaultValue = DefaultValue("N/A")
+counter_2: DefaultValue = DefaultValue("Undefined")
 
 # Creating a couple of defaultdict instances with our
 # DefaultValue instances (remember that they're callable):
@@ -75,9 +74,11 @@ print(f"{counter_2.counter = }")
 
 ########################################################################
 
-# We can created these instances as we are creating the defaultdict instances:
+# We can create these instances as we are creating the defaultdict instances:
 
-my_dict_3: defaultdict[str, str] = defaultdict(DefaultValue("Undefined"))
+dummy_factory: DefaultValue = DefaultValue("Undefined")
+dummy_factory_address: str = hex(id(dummy_factory)).upper()
+my_dict_3: defaultdict[str, str] = defaultdict(dummy_factory)
 
 my_dict_3["a"] = "Alpha"
 my_dict_3["b"] = "Beta"
@@ -94,6 +95,11 @@ for char in "abcdefg":
 # Undefined
 # Gamma
 
-# Accessing the DefaultValue instance's _counter attribute:
+# The DefaultValue instance we created for my_dict_3 is stored in .default_factory
 print(f"{my_dict_3.default_factory.counter = }")
 # my_dict_3.default_factory.counter = 3
+
+print(dummy_factory_address)
+# 0X1005F2150
+print(hex(id(my_dict_3.default_factory)))
+# 0x1005f2150

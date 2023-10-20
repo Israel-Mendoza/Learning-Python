@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any, Callable
 
 
 """Implementing the __call__ method"""
@@ -6,11 +7,8 @@ from __future__ import annotations
 # Implementing the __call__ method makes the instance callable.
 
 
-from typing import Any, Callable
-
-
 class Person:
-    def __call__(self: Person) -> None:
+    def __call__(self) -> None:
         print("__call__ was called! LOL")
 
 
@@ -23,7 +21,7 @@ p()
 
 
 class MyPartial:
-    def __init__(self: MyPartial, func: Callable[..., Any], *args: Any) -> None:
+    def __init__(self, func: Callable[..., Any], *args: Any) -> None:
         """
         Arguments:
             func [Callable[..., Any]] = A function that takes any number of arguments and returns anything.
@@ -32,7 +30,7 @@ class MyPartial:
         self._func: Callable[..., Any] = func
         self._args: tuple[Any, ...] = args
 
-    def __call__(self: MyPartial, *args: Any) -> Any:
+    def __call__(self, *args: Any) -> Any:
         """
         Making the object callable:
         Accepts any number of arguments, passes them to the
@@ -43,7 +41,7 @@ class MyPartial:
 
 
 def a_function(a: int, b: int, c: int) -> tuple[int, ...]:
-    return (a, b, c)
+    return a, b, c
 
 
 partial_func: MyPartial = MyPartial(a_function, 1, 2)

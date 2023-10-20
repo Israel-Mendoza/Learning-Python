@@ -7,50 +7,50 @@ from functools import total_ordering
 
 @total_ordering
 class Vector:
-    def __init__(self: Vector, x: int | float, y: int | float) -> None:
+    def __init__(self, x: int | float, y: int | float) -> None:
         self._x: int | float = x
         self._y: int | float = y
 
     @property
-    def x(self) ->int | float:
+    def x(self) -> int | float:
         """X value of the vector"""
         return self._x
 
     @x.setter
-    def x(self: Vector, value: Any) -> None:
+    def x(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
             self._x: int | float = value
         else:
             raise ValueError("X value of vector must be a valid number...")
 
     @property
-    def y(self: Vector) -> int | float:
+    def y(self) -> int | float:
         """Y value of the vector"""
         return self._y
 
     @y.setter
-    def y(self: Vector, value: Any) -> None:
+    def y(self, value: Any) -> None:
         if isinstance(value, float) or isinstance(value, int):
-            self._y = value
+            self._y: int | float = value
         else:
             raise ValueError("Y value of vector must be a valid number...")
 
-    def __eq__(self: Vector, other: Any) -> bool:
+    def __eq__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x == other.x and self.y == self.y
         else:
             return NotImplemented
 
-    def __lt__(self: Vector, other: Any) -> bool:
+    def __lt__(self, other: Any) -> bool:
         if isinstance(other, Vector):
             return self.x < other.x and self.y < other.y
         else:
             return NotImplemented
 
 
-v1 = Vector(10, 20)
-v2 = Vector(10, 20)
-v3 = Vector(20, 30)
+v1: Vector = Vector(10, 20)
+v2: Vector = Vector(10, 20)
+v3: Vector = Vector(20, 30)
 
 print(f"{v1 is v2 = }")
 # v1 is v2 = False

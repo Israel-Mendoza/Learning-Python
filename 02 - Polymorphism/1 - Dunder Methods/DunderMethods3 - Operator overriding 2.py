@@ -1,12 +1,9 @@
 from __future__ import annotations
-
-""""""
-
 from typing import Any
 
 
 class Person:
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name = name
 
     @property
@@ -14,7 +11,7 @@ class Person:
         return self._name
 
     @name.setter
-    def name(self: Person, new_name: str) -> None:
+    def name(self, new_name: str) -> None:
         if len(new_name.strip()) > 0:
             self._name: str = new_name
         else:
@@ -25,13 +22,13 @@ class Person:
 
 
 class Family:
-    def __init__(self: Family, mother: Person, father: Person) -> None:
+    def __init__(self, mother: Person, father: Person) -> None:
         self.mother: Person = mother
         self.father: Person = father
         self.children: list[Person] = []
         self.num_of_children: int = 0
 
-    def __iadd__(self: Family, child: Person) -> Family:
+    def __iadd__(self, child: Person) -> Family:
         # Family is a mutable object because it returns itself
         if self.check_child(child):
             self.children.append(child)
@@ -40,13 +37,13 @@ class Family:
         else:
             raise ValueError("Child must be an instance of Person")
 
-    def __len__(self: Family) -> int:
+    def __len__(self) -> int:
         return len(self.children) + 2
 
-    def __repr__(self: Family) -> str:
+    def __repr__(self) -> str:
         return f"A Family living in {hex(id(self)).upper()}"
 
-    def introduce_family(self: Family) -> None:
+    def introduce_family(self) -> None:
         print(f"This is the family living at {hex(id(self)).upper()}")
         print(f"\tFather: {self.father}")
         print(f"\tMother: {self.mother}")
