@@ -1,20 +1,22 @@
 from __future__ import annotations
+from typing import override
 
 
 """Inheriting methods"""
 
 
 class Person:
-    def eat(self: Person) -> None:
-        print(f"{self.__class__.__name__} eats.")
+    # We could also get the name of the class by calling self.__class__.__name__
+    def eat(self) -> None:
+        print(f"{type(self).__name__} eats.")
 
-    def work(self: Person) -> None:
-        print(f"{self.__class__.__name__} works.")
+    def work(self) -> None:
+        print(f"{type(self).__name__} works.")
 
-    def sleep(self: Person) -> None:
-        print(f"{self.__class__.__name__} sleeps.")
+    def sleep(self) -> None:
+        print(f"{type(self).__name__} sleeps.")
 
-    def routine(self: Person) -> None:
+    def routine(self) -> None:
         self.eat()
         self.work()
         self.sleep()
@@ -24,11 +26,11 @@ class Student(Person):
 
     # Student inherits the methods eat() and routine()
 
-    # Overriding the 'work' method
+    @override
     def work(self: Student) -> None:
-        print(f"{self.__class__.__name__} goes to school.")
+        print(f"{type(self).__name__} goes to school.")
 
-    # Overriding the 'sleep' method
+    @override
     def sleep(self: Student) -> None:
         print(f"{self.__class__.__name__} rarely sleeps.")
 
