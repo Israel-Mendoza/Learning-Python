@@ -1,0 +1,1074 @@
+[2019-08-17 00:00:01] Error reading from 127.0.0.1:3391: ConnectionReset
+[2019-08-17 00:00:02] Will attempt to reconnect to 127.0.0.1:3391
+[2019-08-17 00:00:02] SocketDataChannel: SetDisconnected()
+[2019-08-17 00:00:02] SocketDataChannel: OnClosed()
+[2019-08-17 00:00:02] SusannaDataChannel: Linked data channel closed
+[2019-08-17 00:00:02] SocketDataChannel: Close() (closed = False)
+[2019-08-17 00:00:02] SocketDataChannel: SetDisconnected()
+[2019-08-17 00:00:02] NetworkConnectionFactory: Cancel requested
+[2019-08-17 00:00:02] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:02] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:03] NetworkConnectionFactory: Error trying to connect to 127.0.0.1:3391: System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:3391
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at SusannaCore.NetworkConnectionFactory.ConnectCallback(IAsyncResult iar) in C:\src\generic\Lib\SusannaCore\NetworkConnectionFactory.cs:line 204
+[2019-08-17 00:00:03] NetworkConnectionFactory: Failure: All 1 addresses attempted, none succeeded
+[2019-08-17 00:00:03] SusannaDataChannel: Factory failed to open data channel!
+[2019-08-17 00:00:03] SusannaDataChannel: Waiting 00:00:01.7355778 before retrying connection
+[2019-08-17 00:00:05] NetworkConnectionFactory: Cancel requested
+[2019-08-17 00:00:05] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:05] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:06] NetworkConnectionFactory: Error trying to connect to 127.0.0.1:3391: System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:3391
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at SusannaCore.NetworkConnectionFactory.ConnectCallback(IAsyncResult iar) in C:\src\generic\Lib\SusannaCore\NetworkConnectionFactory.cs:line 204
+[2019-08-17 00:00:06] NetworkConnectionFactory: Failure: All 1 addresses attempted, none succeeded
+[2019-08-17 00:00:06] SusannaDataChannel: Factory failed to open data channel!
+[2019-08-17 00:00:06] SusannaDataChannel: Waiting 00:00:00.7323802 before retrying connection
+[2019-08-17 00:00:06] NetworkConnectionFactory: Cancel requested
+[2019-08-17 00:00:06] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:06] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:07] NetworkConnectionFactory: Error trying to connect to 127.0.0.1:3391: System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:3391
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at SusannaCore.NetworkConnectionFactory.ConnectCallback(IAsyncResult iar) in C:\src\generic\Lib\SusannaCore\NetworkConnectionFactory.cs:line 204
+[2019-08-17 00:00:07] NetworkConnectionFactory: Failure: All 1 addresses attempted, none succeeded
+[2019-08-17 00:00:07] SusannaDataChannel: Factory failed to open data channel!
+[2019-08-17 00:00:07] SusannaDataChannel: Waiting 00:00:00.8779805 before retrying connection
+[2019-08-17 00:00:08] NetworkConnectionFactory: Cancel requested
+[2019-08-17 00:00:08] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:08] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:09] NetworkConnectionFactory: Error trying to connect to 127.0.0.1:3391: System.Net.Sockets.SocketException (0x80004005): No connection could be made because the target machine actively refused it 127.0.0.1:3391
+   at System.Net.Sockets.Socket.EndConnect(IAsyncResult asyncResult)
+   at SusannaCore.NetworkConnectionFactory.ConnectCallback(IAsyncResult iar) in C:\src\generic\Lib\SusannaCore\NetworkConnectionFactory.cs:line 204
+[2019-08-17 00:00:09] NetworkConnectionFactory: Failure: All 1 addresses attempted, none succeeded
+[2019-08-17 00:00:09] SusannaDataChannel: Factory failed to open data channel!
+[2019-08-17 00:00:09] SusannaDataChannel: Waiting 00:00:00.1749805 before retrying connection
+[2019-08-17 00:00:09] NetworkConnectionFactory: Cancel requested
+[2019-08-17 00:00:09] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:09] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:09] NetworkConnectionFactory: Connection to 127.0.0.1:3391 succeeded!
+[2019-08-17 00:00:09] SusannaDataChannel: Linked data channel opened (SocketDataChannel)
+[2019-08-17 00:00:12] Service stopping...
+[2019-08-17 00:00:12] Shutting down MsrLib...
+[2019-08-17 00:00:12] Unregistered driver factory: SimpleMsrDeviceFactory
+[2019-08-17 00:00:12] Unregistered driver factory: RamMsrDeviceFactory
+[2019-08-17 00:00:12] Unregistered driver factory: FpeMsrDeviceFactory
+[2019-08-17 00:00:12] Unregistered driver factory: CpxMsrDeviceFactory
+[2019-08-17 00:00:12] Unregistered driver factory: RbaMsrDeviceFactory
+[2019-08-17 00:00:12] Stopping device enumerator: LibUsbDeviceEnumerator
+[2019-08-17 00:00:12] Stopping device enumerator: HidDeviceEnumerator
+[2019-08-17 00:00:12] [Lane 0] Device removed
+[2019-08-17 00:00:12] [Lane 0] [TransFlow] Device disconnected
+[2019-08-17 00:00:12] [Lane 0] [DMP] Ignoring DMP event 'DeviceDisconnected' raised while we don't have valid credentials
+[2019-08-17 00:00:12] Stopping loggers...
+[2019-08-17 00:00:12] [DMP] Ignoring DMP event 'SusannaShutdown' raised while we don't have valid credentials
+[2019-08-17 00:00:12] [Lane 0] SetStateIdle()
+[2019-08-17 00:00:12] Service stopped.
+[2019-08-17 00:00:15] Starting up 'client' logger
+[2019-08-17 00:00:15] Service v4.1.4.34 starting.  Arguments: ""
+[2019-08-17 00:00:15] Initializing PAL
+[2019-08-17 00:00:15] Initialalizing PAL subsystem (profile location = C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat)
+[2019-08-17 00:00:15] PAL initialized.
+[2019-08-17 00:00:15] FCCDaemon: Initializing FreewayMsrLib v2.2.8.8
+[2019-08-17 00:00:15] Single-lane mode (first connected device will be used on lane 0)
+[2019-08-17 00:00:15] Registering driver factory: RbaMsrDeviceFactory
+[2019-08-17 00:00:15] Registering driver factory: CpxMsrDeviceFactory
+[2019-08-17 00:00:15] Registering driver factory: FpeMsrDeviceFactory
+[2019-08-17 00:00:15] Registering driver factory: RamMsrDeviceFactory
+[2019-08-17 00:00:15] Registering driver factory: SimpleMsrDeviceFactory
+[2019-08-17 00:00:15] Registering enumerator HidDeviceEnumerator (any lane)
+[2019-08-17 00:00:15] Registering enumerator LibUsbDeviceEnumerator (any lane)
+[2019-08-17 00:00:15] Creating lane 0
+[2019-08-17 00:00:15] [Lane 0] [PAL Manager] Initializing (profile manifest location = 'C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat')
+[2019-08-17 00:00:15] [Lane 0] [PAL Manager] Will check for updates every 5 minute(s)
+[2019-08-17 00:00:15] Lane 0 created.
+[2019-08-17 00:00:15] Enabling compatibility mode for legacy config setting useIPDevices = false
+[2019-08-17 00:00:15] Enabling compatibility mode for legacy config setting useBluetoothDevices = false
+[2019-08-17 00:00:15] LaneConfig.xml compatibility flags: IgnoreAllNetworkDevices, IgnoreAllBluetoothDevices
+[2019-08-17 00:00:15] Listening for direct-to-POI commands on 0.0.0.0:8090
+[2019-08-17 00:00:15] Setting up default connection to front-end service
+[2019-08-17 00:00:15] NetworkConnectionFactory: NetworkConnectionFactory: server 127.0.0.1:3391
+[2019-08-17 00:00:15] NetworkConnectionFactory: Beginning connection to 127.0.0.1:3391
+[2019-08-17 00:00:15] NetworkConnectionFactory: Connection to 127.0.0.1:3391 succeeded!
+[2019-08-17 00:00:15] AttachToReader: LibUsbRegistryWrapper(0b00:0060 (Freedompay - iPP320/iPP350 (RBA))) - \\?\USB#VID_0B00&PID_0060#81079446#{a5dcbf10-6530-11d2-901f-00c04fb951ed}
+[2019-08-17 00:00:15] SusannaDataChannel: Linked data channel opened (SocketDataChannel)
+[2019-08-17 00:00:15] Trying to attach to RBA device: \\?\USB#VID_0B00&PID_0060#81079446#{a5dcbf10-6530-11d2-901f-00c04fb951ed}
+[2019-08-17 00:00:15] Tx: 00.0000
+[2019-08-17 00:00:15] Got ACK
+[2019-08-17 00:00:15] Tx: 11.
+[2019-08-17 00:00:15] Got ACK
+[2019-08-17 00:00:15] Starting SusannaCore.SusannaAgentServiceManager
+[2019-08-17 00:00:15] BinMap file will be refreshed every 24 hours (next check: 2019-08-17 01:59:59)
+[2019-08-17 00:00:15] [DMP] Notifying DMP of application event 'SusannaStarted'
+[2019-08-17 00:00:15] [DMP] Failed to initialize DMP registration: System.Exception: Missing registration data
+[2019-08-17 00:00:15] Rx: 11.00Lane Closed[FS]
+[2019-08-17 00:00:15] Tx: ACK
+[2019-08-17 00:00:16] Tx: 07.
+[2019-08-17 00:00:16] Got ACK
+[2019-08-17 00:00:16] Rx: 07.SC25US[FS]iPP350[FS]02214297PT010892[FS]33554[FS]134217[FS]0000[FS]0401[FS]4612[FS]190A[FS]0207[FS]0207[FS]N/A[FS]N/A[FS]81079446[FS]0467[FS]0488[FS]0101[FS]0308[FS]NONE[FS]0373[FS]0026[FS]0205[FS]0103[FS]YES
+[2019-08-17 00:00:16] Tx: ACK
+[2019-08-17 00:00:16] [Lane 0] Performing main initialization of RBA device; laneOpen = True
+[2019-08-17 00:00:16] [Lane 0] Tx: 28.90000201000016
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:16] [Lane 0] Tx: 28.90000202081719
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:16] [Lane 0] RBA version: 190A Compat flags: Suppress1401, OnlineWithoutResponse, ContactlessTrack2MayHave9F6E, ClessEmvMissingEncryptionIndicator, CannotResetContactlessWithCustomFormActive
+[2019-08-17 00:00:16] [Lane 0] Tx: 61.0007[GS]0002
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:16] [Lane 0] Rx: 61.27[GS]2[GS]1
+[2019-08-17 00:00:16] [Lane 0] Tx: ACK
+[2019-08-17 00:00:16] [Lane 0] Tx: 28.900004091
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:16] [Lane 0] Tx: 28.900004101
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:16] [Lane 0] Tx: 08.0
+[2019-08-17 00:00:16] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 08.152766[FS]1792[FS]4673[FS]1768[FS]0000[FS]0679[FS]iPP350[FS]02214297PT010892[FS]4612[FS]190A[FS]0401[FS]1431[FS]0207[FS]0207[FS]12722[FS]109873[FS]2014-10-24[FS]9[FS]UNSUPPORTED_DEVICE[FS]Retail Base[FS]INGNAR[FS]0000[FS]81079446
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Tx: 29.00000810
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 29.20000810KSN_4=FFFF629949027149BB03[LF]
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Get Variable request for var 000810 returned status 2
+[2019-08-17 00:00:17] [Lane 0] SMID status: KSN_4=FFFF629949027149BB03
+
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0009[GS]0006
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.29[GS]6[GS]1
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Save state on 20.x: 1 (True)
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0007[GS]0022
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.27[GS]22[GS]1
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0007[GS]0015
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.27[GS]15[GS]1
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Alternate on-demand mode: 1 (True)
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0007[GS]00023
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.27[GS]23[GS]2
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Post-transaction behavior: 2 (WaitForReset)
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0005[GS]0002
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.25[GS]2[GS]1
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Spin-The-BIN mode: 1 (Enabled = True)
+[2019-08-17 00:00:17] [Lane 0] Tx: 60.0013[GS]0014[GS]1
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 60.2
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Write Configuration request for 0013_0014 = '1' returned status 1
+[2019-08-17 00:00:17] [Lane 0] Tx: 60.0007[GS]0009[GS]1
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 60.2
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Write Configuration request for 0007_0009 = '1' returned status 1
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0014[GS]0003
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.214[GS]3[GS]2
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] Initialize(): Enabled kludges: ManualEntryHack
+[2019-08-17 00:00:17] [Lane 0] Tx: 61.0091[GS]0015
+[2019-08-17 00:00:17] [Lane 0] Got ACK
+[2019-08-17 00:00:17] [Lane 0] Rx: 61.291[GS]15[GS]12345678901
+[2019-08-17 00:00:17] [Lane 0] Tx: ACK
+[2019-08-17 00:00:17] [Lane 0] key ID is 12345678901
+[2019-08-17 00:00:17] [Lane 0] Tx: 22.
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 22.Retail Base[FS]19.0A
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] Application ID: Name=Retail Base Version=19.0A
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.0008[GS]0001
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 61.28[GS]1[GS]9
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.0007[GS]0044
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 61.27[GS]44[GS]0
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.0019[GS]0001
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 61.219[GS]1[GS]1
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] EMV transactions supported: 1
+[2019-08-17 00:00:18] [Lane 0] Tx: 01.00000000
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 01.02070207
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] Tx: 30.
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] SetStateIdle()
+[2019-08-17 00:00:18] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 00:00:18] [Lane 0] Tx: 30.
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.0014[GS]0004
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 61.214[GS]4[GS]XXXXXX2XX-;XXXXXX6XX-
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] LoadConfigSettings(): Card type map: XXXXXX2XX-;XXXXXX6XX-
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.11[GS]1[FS]11[GS]2[FS]11[GS]3[FS]11[GS]4[FS]11[GS]5[FS]11[GS]6[FS]11[GS]7[FS]11[GS]8
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:18] [Lane 0] Rx: 61.211[GS]1[GS]1 0 2  0  14     0 1 1 0 0      0 130 0 1 0 D 0 0 882 1[FS]11[GS]2[GS]1 0 4  0   0     0 1 1 0 1      0 131 0 1 0 D 1 1 c8e 0[FS]11[GS]3[GS]0 0 4  0  14 10000 1 1 1 0      0 132 0 1 0 D 0 0 c06 0[FS]11[GS]4[GS]0 0 4  0  14     0 1 1 1 0      0 133 0 1 0 D 0 0 c06 0[FS]11[GS]5[GS]0 0 4  0   0     0 1 1 1 0      0 134 0 1 0 D 0 0 c06 0[FS]11[GS]6[GS]0 1 4  0   0     0 1 1 1 0      0 135 0 1 0 D 1 1 c06 0[FS]11[GS]7[GS]1 0 5  0  31     0 1 1 1 0      0 136 0 1 0 D 0 0 c02 0[FS]11[GS]8[GS]0 0 4  0   0     0 1 1 1 0      0   0 0 1 0 D 1 1 c06 0
+[2019-08-17 00:00:18] [Lane 0] Tx: ACK
+[2019-08-17 00:00:18] [Lane 0] Non-credit card type enabled? False
+[2019-08-17 00:00:18] [Lane 0] GC enabled? False
+[2019-08-17 00:00:18] [Lane 0] Amex alternate PIN enabled? False
+[2019-08-17 00:00:18] [Lane 0] Tx: 61.0014[GS]0005
+[2019-08-17 00:00:18] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Rx: 61.214[GS]5[GS] 
+[2019-08-17 00:00:19] [Lane 0] Tx: ACK
+[2019-08-17 00:00:19] [Lane 0] LoadConfigSettings(): EMV Online PIN as Debit = False
+[2019-08-17 00:00:19] [Lane 0] Tx: 61.0014[GS]0006
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Rx: 61.214[GS]6[GS]A0000000032010;A0000000042203;A0000000043060;A0000000980840;A0000001524010;A0000002771010;A0000006200620
+[2019-08-17 00:00:19] [Lane 0] Tx: ACK
+[2019-08-17 00:00:19] [Lane 0] LoadConfigSettings(): Debit-type AIDs = A0000000032010;A0000000042203;A0000000043060;A0000000980840;A0000001524010;A0000002771010;A0000006200620
+[2019-08-17 00:00:19] [Lane 0] Tx: 61.0014[GS]0007
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Rx: 61.214[GS]7[GS]*
+[2019-08-17 00:00:19] [Lane 0] Tx: ACK
+[2019-08-17 00:00:19] [Lane 0] LoadConfigSettings(): QuickChip-allowed AIDs = *
+[2019-08-17 00:00:19] [Lane 0] Tx: 61.0019[GS]0020
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Rx: 61.3
+[2019-08-17 00:00:19] [Lane 0] Tx: ACK
+[2019-08-17 00:00:19] [Lane 0] Get Configuration request for 0019_0020 returned status 3
+[2019-08-17 00:00:19] [Lane 0] Error reading AllowExternalAidSelection setting (0019_0020), using ''
+[2019-08-17 00:00:19] [Lane 0] External AID selection is not enabled
+[2019-08-17 00:00:19] [Lane 0] Attempting to enable P2PE
+[2019-08-17 00:00:19] [Lane 0] Tx: 83.2BD4
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Rx: 83.0
+[2019-08-17 00:00:19] [Lane 0] Tx: ACK
+[2019-08-17 00:00:19] [Lane 0] Successfully enabled P2PE
+[2019-08-17 00:00:19] [Lane 0] Tx: 28.900004129
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] Tx: 70.TPROMPT311,311
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:19] [Lane 0] SetStateIdle()
+[2019-08-17 00:00:19] [Lane 0] Device attached
+[2019-08-17 00:00:19] [Lane 0] RBA device, setting dr_4620_check_needed = true
+[2019-08-17 00:00:19] [Lane 0] [TransFlow] Initialized MsrLib Transaction Flow Manager
+[2019-08-17 00:00:19] [Lane 0] Tx: 08.0
+[2019-08-17 00:00:19] [Lane 0] Got ACK
+[2019-08-17 00:00:20] [Lane 0] Rx: 08.152766[FS]1792[FS]4673[FS]1768[FS]0000[FS]0679[FS]iPP350[FS]02214297PT010892[FS]4612[FS]190A[FS]0401[FS]1431[FS]0207[FS]0207[FS]12722[FS]109873[FS]2014-10-24[FS]9[FS]UNSUPPORTED_DEVICE[FS]Retail Base[FS]INGNAR[FS]0000[FS]81079446
+[2019-08-17 00:00:20] [Lane 0] Tx: ACK
+[2019-08-17 00:00:20] [Lane 0] Tx: 29.00000254
+[2019-08-17 00:00:20] [Lane 0] Got ACK
+[2019-08-17 00:00:20] [Lane 0] Rx: 29.2000025419.0.10.0003
+[2019-08-17 00:00:20] [Lane 0] Tx: ACK
+[2019-08-17 00:00:20] [Lane 0] Get Variable request for var 000254 returned status 2
+[2019-08-17 00:00:20] [Lane 0] [DMP] Ignoring DMP event 'DeviceConnected' raised while we don't have valid credentials
+[2019-08-17 00:00:20] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:00:25] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:00:28] DCC Prompting Checkbox checked - card not present DCC prompted for
+[2019-08-17 00:00:28] WCF InitiateConnection - Will show DCC prompt for batches
+[2019-08-17 00:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:05:25] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:10:25] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:15:25] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:20:25] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:50:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 00:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 00:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:50:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 01:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 01:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:50:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 02:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 02:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 03:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 03:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:50:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 04:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 04:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:09:08] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 05:09:08] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 05:09:08] MessageLengthReceived: Length = 0x0000026e
+[2019-08-17 05:09:08] Received 622 bytes from 127.0.0.1:3391
+[2019-08-17 05:09:08] Receive of 622 bytes complete, invoking _rxcallback
+[2019-08-17 05:09:08] StandardMessageReceived
+[2019-08-17 05:09:08] Queuing call to MessageDispatcher
+[2019-08-17 05:09:08] Waiting for next message
+[2019-08-17 05:09:08] Q: [000000000                02 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001415[FS]invoiceNumber=3269[FS]posSequenceNumber=3269[FS]chargeAmount=2.15[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=2.15[FS]transactionTime=8/17/2019 5:09:07 AM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 05:09:08] [Lane 0] Beginning transaction
+[2019-08-17 05:09:08] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 05:09:08] [Lane 0] Got ACK
+[2019-08-17 05:09:08] [Lane 0] Rx: 33.01.0000[FS]--R--------------------------------
+[2019-08-17 05:09:08] [Lane 0] Tx: ACK
+[2019-08-17 05:09:08] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 05:09:08] [Lane 0] Tx: 10.1
+[2019-08-17 05:09:08] [Lane 0] Got ACK
+[2019-08-17 05:09:08] [Lane 0] Tx: 13.215
+[2019-08-17 05:09:08] [Lane 0] Got ACK
+[2019-08-17 05:09:08] [Lane 0] Tx: 28.90000111Amount Due:      $2.15
+[2019-08-17 05:09:08] [Lane 0] Rx: 10.
+[2019-08-17 05:09:08] [Lane 0] Tx: ACK
+[2019-08-17 05:09:08] [Lane 0] Got ACK
+[2019-08-17 05:09:08] [Lane 0] SetStateBusy()
+[2019-08-17 05:09:08] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 05:09:08] [Lane 0] Tx: 11.
+[2019-08-17 05:09:08] [Lane 0] Got ACK
+[2019-08-17 05:09:10] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 05:09:10] [Lane 0] Tx: ACK
+[2019-08-17 05:09:38] [Lane 0] Rx: 10.
+[2019-08-17 05:09:38] [Lane 0] Tx: ACK
+[2019-08-17 05:09:38] [Lane 0] Got HARD RESET (10.x), action is TransactionEnd_UserCancel
+[2019-08-17 05:09:38] [Lane 0] 10.x: User cancel
+[2019-08-17 05:09:38] [Lane 0] Reversal reason code for UserCancel is 'error'
+[2019-08-17 05:09:38] [Lane 0] Unspecified error, aborting transaction
+[2019-08-17 05:09:38] [Lane 0] Queueing payment abort command
+[2019-08-17 05:09:38] [Lane 0] Queued payment abort command executing
+[2019-08-17 05:09:38] [Lane 0] Tx: 30.
+[2019-08-17 05:09:38] [Lane 0] Input(OperationFailed)
+[2019-08-17 05:09:38] [Lane 0] Got ACK
+[2019-08-17 05:09:38] [Lane 0] SetStateIdle()
+[2019-08-17 05:09:38] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 05:09:38] [Lane 0] Tx: 30.
+[2019-08-17 05:09:38] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 05:09:38] [Lane 0] Got ACK
+[2019-08-17 05:09:38] [Lane 0] Input(DeviceIdle)
+[2019-08-17 05:09:38] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 05:09:38] [Lane 0] Run() returned Complete
+[2019-08-17 05:09:38] A: [000000000                02 [STX]POITRANS_RSP[FS]amount=0[FS]cardType=0[FS]useDcc=N[FS]authAndCaptureOnly=N[FS]sigCaptured=N[FS]pinVerified=N[FS]decision=R[FS]errorCode=3133[FS]message=UserCancel[FS]]
+[2019-08-17 05:09:46] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 05:09:46] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 05:09:46] MessageLengthReceived: Length = 0x0000026e
+[2019-08-17 05:09:46] Received 622 bytes from 127.0.0.1:3391
+[2019-08-17 05:09:46] Receive of 622 bytes complete, invoking _rxcallback
+[2019-08-17 05:09:46] StandardMessageReceived
+[2019-08-17 05:09:46] Queuing call to MessageDispatcher
+[2019-08-17 05:09:46] Q: [000000000                03 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001416[FS]invoiceNumber=3269[FS]posSequenceNumber=3269[FS]chargeAmount=2.15[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=2.15[FS]transactionTime=8/17/2019 5:09:46 AM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 05:09:46] [Lane 0] Beginning transaction
+[2019-08-17 05:09:46] Waiting for next message
+[2019-08-17 05:09:46] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 05:09:46] [Lane 0] Got ACK
+[2019-08-17 05:09:46] [Lane 0] Rx: 33.01.0000[FS]--R--------------------------------
+[2019-08-17 05:09:46] [Lane 0] Tx: ACK
+[2019-08-17 05:09:46] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 05:09:46] [Lane 0] Tx: 10.1
+[2019-08-17 05:09:46] [Lane 0] Got ACK
+[2019-08-17 05:09:46] [Lane 0] Tx: 13.215
+[2019-08-17 05:09:46] [Lane 0] Got ACK
+[2019-08-17 05:09:46] [Lane 0] Tx: 28.90000111Amount Due:      $2.15
+[2019-08-17 05:09:46] [Lane 0] Rx: 10.
+[2019-08-17 05:09:46] [Lane 0] Tx: ACK
+[2019-08-17 05:09:46] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 05:09:46] [Lane 0] Got ACK
+[2019-08-17 05:09:46] [Lane 0] SetStateBusy()
+[2019-08-17 05:09:46] [Lane 0] Tx: 11.
+[2019-08-17 05:09:46] [Lane 0] Got ACK
+[2019-08-17 05:09:48] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 05:09:48] [Lane 0] Tx: ACK
+[2019-08-17 05:09:51] [Lane 0] Rx: 33.02.0000[FS]T50:0A:aMASTERCARD[FS]T57:13:h517604******8219D2209201**************[FS]T5A:08:h517604******8219[FS]T84:07:hA0000000041010[FS]T5F24:03:h220930[FS]T5F2D:02:aen[FS]T5F34:01:h00[FS]T9F07:02:hFF00[FS]T9F1A:02:h0840[FS]T9F1B:04:h00000000[FS]T9F1E:08:aPT010892[FS]T9F6E:07:h08400000323100[FS]D1002:01:a0[FS]D101B:01:a0[FS]D101C:01:a1[FS]D101D:01:a0[FS]DFF1D:10:a5176040000008219[FS]DFF1F:DD:a517604821916122092010001BFFFF629949027149BB050114376465250818808038=16095548777227377115326EDBDBA052D238FC4B57943C3FC1B6F196C64CAC77DE7C9AB1BBD4CDDFA1704DEAF58DDEFFA90176B0CE4E80BBFE096D200016F88CD254E1043597528117B78D540[FS]
+[2019-08-17 05:09:51] [Lane 0] Tx: ACK
+[2019-08-17 05:09:51] [Lane 0] Got chip message: First=True, Last=True, Seq=0 (ExpectedSeq=0)
+[2019-08-17 05:09:51] [Lane 0] EMV message is missing D9001, assuming contactless = True
+[2019-08-17 05:09:51] [Lane 0] Tx: 29.00000414
+[2019-08-17 05:09:51] [Lane 0] Got ACK
+[2019-08-17 05:09:51] [Lane 0] Rx: 29.200004142
+[2019-08-17 05:09:51] [Lane 0] Tx: ACK
+[2019-08-17 05:09:51] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 05:09:51] [Lane 0] Language is now null
+[2019-08-17 05:09:51] [Lane 0] Input(CardRead)
+[2019-08-17 05:09:51] [Lane 0] CardRead event processing completed with state = Complete
+[2019-08-17 05:09:51] [Lane 0] Applying new payment options...
+[2019-08-17 05:09:51] [Lane 0] Tx: 04.0B215
+[2019-08-17 05:09:51] [Lane 0] Got ACK
+[2019-08-17 05:09:51] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.CardReadEventCallbacks, pendingEvent = null
+[2019-08-17 05:09:51] [Lane 0] Rx: 04.0B215
+[2019-08-17 05:09:51] [Lane 0] Tx: ACK
+[2019-08-17 05:09:51] [Lane 0] Tx: 13.215
+[2019-08-17 05:09:51] [Lane 0] Got ACK
+[2019-08-17 05:09:53] [Lane 0] Rx: 33.03.0000[FS]T50:0A:aMASTERCARD[FS]T57:13:h517604******8219D2209201**************[FS]T5A:08:h517604******8219[FS]T82:02:h1B80[FS]T84:07:hA0000000041010[FS]T95:05:h0000008000[FS]T9A:03:h190817[FS]T9C:01:h00[FS]T5F2A:02:h0840[FS]T5F34:01:h00[FS]T9F02:06:h000000000215[FS]T9F03:06:h000000000000[FS]T9F09:02:h0002[FS]T9F10:12:h0114A14003020000000000000000000000FF[FS]T9F1A:02:h0840[FS]T9F1B:04:h00000000[FS]T9F1E:08:aPT010892[FS]T9F21:03:h050946[FS]T9F26:08:h6318DF16C67A7FF9[FS]T9F27:01:h80[FS]T9F33:03:hE008C8[FS]T9F34:03:h3F0002[FS]T9F35:01:h22[FS]T9F36:02:h0001[FS]T9F37:04:hC9388ABA[FS]T9F39:01:h07[FS]T9F40:05:h6000F0B001[FS]T9F41:04:h00000003[FS]T9F6E:07:h08400000323100[FS]D1002:01:a0[FS]D1005:02:a00[FS]D1012:02:a03[FS]D101B:01:a0[FS]D101C:01:a1[FS]D101D:01:a0[FS]D9000:01:aB[FS]D9001:01:aD[FS]DFF1D:10:a5176040000008219[FS]DFF1F:DD:a517604821916122092010001BFFFF629949027149BB060114377724116829662760=1754428849837982587532BBC17E5CC3E86C552EA44A32ECFFC73596C64CAC77DE7C9AB1BBD4CDDFA1704DEAF58DDEFFA90176B0CE4E80BBFE096D200016F88CD254E1043597528117B78D540[FS]
+[2019-08-17 05:09:53] [Lane 0] Tx: ACK
+[2019-08-17 05:09:53] [Lane 0] Got chip message: First=True, Last=True, Seq=0 (ExpectedSeq=0)
+[2019-08-17 05:09:53] [Lane 0] Tx: 29.00000414
+[2019-08-17 05:09:53] [Lane 0] Got ACK
+[2019-08-17 05:09:53] [Lane 0] Rx: 29.200004142
+[2019-08-17 05:09:53] [Lane 0] Tx: ACK
+[2019-08-17 05:09:53] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 05:09:53] [Lane 0] Language is now null
+[2019-08-17 05:09:53] [Lane 0] Input(Authorize)
+[2019-08-17 05:09:53] [Lane 0] FW Q: <RequestMessage xmlns="http://freeway.freedompay.com/"><storeId>**********</storeId><terminalId>**********</terminalId><billTo /><card /><ccAuthService run="true"><allowPartial>N</allowPartial><returnBalance>Y</returnBalance><enableAVS>N</enableAVS><offline>N</offline></ccAuthService><ccCaptureService run="true" /><clerkId>33608</clerkId><clientMetadata><applicationName>FreeWayClientService</applicationName><applicationVersion>4.1.4.34</applicationVersion><poiDeviceIdentifier>rba-iPP350:81079446</poiDeviceIdentifier></clientMetadata><comments>SAP POS 2.3 SP11</comments><hotelData /><invoiceHeader><invoiceNumber>3269</invoiceNumber><invoiceDate>2019-08-17 05:09:53Z</invoiceDate></invoiceHeader><merchantReferenceCode>00136201000001416</merchantReferenceCode><pos><registerNumber>1</registerNumber><entryMode>ricc</entryMode><trackKsn>FFFF629949027149BB060114</trackKsn><sequenceNumber>3269</sequenceNumber><cardPresent>Y</cardPresent><track2e>*************************************</track2e><encMode>onguard</encMode><msrType>ingenico</msrType><chipData>AKWCAhuAhAegAAAABBAQlQUAAACAAJoDGQgXnAEAXyoCCEBfNAEAnwIGAAAAAAIVnwMGAAAAAAAAnwkCAAKfEBIBFKFAAwIAAAAAAAAAAAAAAP+fGgIIQJ8eCFBUMDEwODkynyYIYxjfFsZ6f/mfJwGAnzMD4AjInzQDPwACnzUBIp82AgABnzcEyTiKup9ABWAA8LABn0EEAAAAA59uBwhAAAAyMQA=</chipData></pos><purchaseTotals><taxTotal>0.00</taxTotal><cashBackAmount>0.00</cashBackAmount><chargeAmount>2.15</chargeAmount></purchaseTotals></RequestMessage>
+[2019-08-17 05:09:58] [Lane 0] FW A: <ReplyMessage xmlns="http://freeway.freedompay.com/"><ccAuthReply><authorizationCode>78104Z</authorizationCode><authorizedDateTime>2019-08-17T10:09:55.8973269Z</authorizedDateTime><chipData>AASKAjAw</chipData><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>2.15</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 78104Z</processorResponseMessage><processorTransactionID>0817MWE1HGFNW  </processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922910602220</reconciliationID><requestDateTime>2019-08-17T10:09:54.9911616Z</requestDateTime></ccAuthReply><ccCaptureReply><purchasingLevel3Enabled>N</purchasingLevel3Enabled><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>2.15</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 78104Z</processorResponseMessage><processorTransactionID>0817MWE1HGFNW  </processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922910602220</reconciliationID><requestDateTime>2019-08-17T10:09:54.9911616Z</requestDateTime></ccCaptureReply><decision>ACCEPT</decision><merchantReferenceCode>00136201000001416</merchantReferenceCode><networkData><network>MC</network><aci>A</aci><vcode>    </vcode><authSource> </authSource></networkData><reasonCode>100</reasonCode><requestID>01Z6HGG2FI00P754U028H6GOVH5R8967</requestID></ReplyMessage>
+[2019-08-17 05:09:58] [Lane 0] Tx: 33.04.0000[FS]T8A:02:h3030[FS]
+[2019-08-17 05:09:58] [Lane 0] Got ACK
+[2019-08-17 05:09:58] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.AuthorizeEventCallbacks, pendingEvent = null
+[2019-08-17 05:10:00] [Lane 0] Rx: 33.05.0000[FS]T50:0A:aMASTERCARD[FS]T57:13:h517604******8219D2209201**************[FS]T5A:08:h517604******8219[FS]T82:02:h1B80[FS]T84:07:hA0000000041010[FS]T8A:02:a00[FS]T95:05:h0000008000[FS]T9A:03:h190817[FS]T9C:01:h00[FS]T5F2A:02:h0840[FS]T5F34:01:h00[FS]T9F02:06:h000000000215[FS]T9F03:06:h000000000000[FS]T9F07:02:hFF00[FS]T9F08:02:h0002[FS]T9F09:02:h0002[FS]T9F0D:05:hB450840000[FS]T9F0E:05:h0000000000[FS]T9F0F:05:hB470848000[FS]T9F10:12:h0114A14003020000000000000000000000FF[FS]T9F1A:02:h0840[FS]T9F1B:04:h00000000[FS]T9F1E:08:aPT010892[FS]T9F21:03:h050946[FS]T9F26:08:h6318DF16C67A7FF9[FS]T9F27:01:h80[FS]T9F33:03:hE008C8[FS]T9F34:03:h3F0002[FS]T9F35:01:h22[FS]T9F36:02:h0001[FS]T9F37:04:hC9388ABA[FS]T9F39:01:h07[FS]T9F40:05:h6000F0B001[FS]T9F41:04:h00000003[FS]T9F6E:07:h08400000323100[FS]D1002:01:a0[FS]D1003:01:aA[FS]D1005:02:a00[FS]D1012:02:a02[FS]D1013:01:aE[FS]D101B:01:a0[FS]D101C:01:a1[FS]D101D:01:a0[FS]D9000:01:aB[FS]D9001:01:aD[FS]DFF1D:10:a5176040000008219[FS]DFF1F:DD:a517604821916122092010001BFFFF629949027149BB080114378531590104744223=61470975631293457117326FE7C3B406C6BCC3DC45D0C60B1D416A96C64CAC77DE7C9AB1BBD4CDDFA1704DEAF58DDEFFA90176B0CE4E80BBFE096D200016F88CD254E1043597528117B78D540[FS]
+[2019-08-17 05:10:00] [Lane 0] Tx: ACK
+[2019-08-17 05:10:00] [Lane 0] Got chip message: First=True, Last=True, Seq=0 (ExpectedSeq=0)
+[2019-08-17 05:10:00] [Lane 0] Tx: 29.00000414
+[2019-08-17 05:10:00] [Lane 0] Got ACK
+[2019-08-17 05:10:00] [Lane 0] Rx: 29.200004142
+[2019-08-17 05:10:00] [Lane 0] Tx: ACK
+[2019-08-17 05:10:00] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 05:10:00] [Lane 0] Language is now null
+[2019-08-17 05:10:00] [Lane 0] Input(PaymentComplete)
+[2019-08-17 05:10:00] [Lane 0] Chip card removed action=EndTransaction
+[2019-08-17 05:10:00] [Lane 0] Tx: 30.
+[2019-08-17 05:10:00] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 05:10:00] [Lane 0] Got ACK
+[2019-08-17 05:10:00] [Lane 0] SetStateIdle()
+[2019-08-17 05:10:00] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 05:10:00] [Lane 0] Tx: 30.
+[2019-08-17 05:10:00] [Lane 0] Got ACK
+[2019-08-17 05:10:00] [Lane 0] Input(DeviceIdle)
+[2019-08-17 05:10:00] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 05:10:00] [Lane 0] Run() returned Complete
+[2019-08-17 05:10:00] A: [000000000                03 [STX]POITRANS_RSP[FS]requestId=01Z6HGG2FI00P754U028H6GOVH5R8967[FS]amount=2.15[FS]maskedCard=517604XXXXXX8219[FS]authCode=78104Z[FS]cardType=0[FS]cardExp=0922[FS]useDcc=N[FS]authAndCaptureOnly=Y[FS]sigCaptured=N[FS]entryMode=ricc[FS]originalchipData=AKWCAhuAhAegAAAABBAQlQUAAACAAJoDGQgXnAEAXyoCCEBfNAEAnwIGAAAAAAIVnwMGAAAAAAAAnwkCAAKfEBIBFKFAAwIAAAAAAAAAAAAAAP+fGgIIQJ8eCFBUMDEwODkynyYIYxjfFsZ6f/mfJwGAnzMD4AjInzQDPwACnzUBIp82AgABnzcEyTiKup9ABWAA8LABn0EEAAAAA59uBwhAAAAyMQA=[FS]chipData=AK6CAhuAhAegAAAABBAQigIwMJUFAAAAgACaAxkIF5wBAF8qAghAXzQBAJ8CBgAAAAACFZ8DBgAAAAAAAJ8HAv8AnwkCAAKfEBIBFKFAAwIAAAAAAAAAAAAAAP+fGgIIQJ8eCFBUMDEwODkynyYIYxjfFsZ6f/mfJwGAnzMD4AjInzQDPwACnzUBIp82AgABnzcEyTiKup9ABWAA8LABn0EEAAAAA59uBwhAAAAyMQA=[FS]requestType=Purchase[FS]receiptChipData=AEpQCk1BU1RFUkNBUkSEB6AAAAAEEBCKAjAwlQUAAACAAF80AQCfEBIBFKFAAwIAAAAAAAAAAAAAAP+fJghjGN8Wxnp/+Z80Az8AAg==[FS]cardData=V=2|CT=credit|ET=onguard|MT=ingenico|EM=ricc|E2=7724116829662760=17544288498379825875|EK=FFFF629949027149BB060114[FS]sigRequired=N[FS]cashBackAmount=0[FS]decision=A[FS]errorCode=100[FS]message=APPROVAL 78104Z[FS]]
+[2019-08-17 05:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:25:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:30:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:35:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:40:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:45:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:50:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 05:54:29] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 05:54:29] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 05:54:29] MessageLengthReceived: Length = 0x0000026e
+[2019-08-17 05:54:29] Received 622 bytes from 127.0.0.1:3391
+[2019-08-17 05:54:29] Receive of 622 bytes complete, invoking _rxcallback
+[2019-08-17 05:54:29] StandardMessageReceived
+[2019-08-17 05:54:29] Queuing call to MessageDispatcher
+[2019-08-17 05:54:29] Waiting for next message
+[2019-08-17 05:54:29] Q: [000000000                04 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001417[FS]invoiceNumber=3273[FS]posSequenceNumber=3273[FS]chargeAmount=4.89[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=4.89[FS]transactionTime=8/17/2019 5:54:29 AM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 05:54:29] [Lane 0] Beginning transaction
+[2019-08-17 05:54:29] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 05:54:29] [Lane 0] Got ACK
+[2019-08-17 05:54:29] [Lane 0] Rx: 33.01.0000[FS]--R-A---------SRS------------f---0-
+[2019-08-17 05:54:29] [Lane 0] Tx: ACK
+[2019-08-17 05:54:29] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 05:54:29] [Lane 0] Tx: 10.1
+[2019-08-17 05:54:29] [Lane 0] Got ACK
+[2019-08-17 05:54:29] [Lane 0] Tx: 13.489
+[2019-08-17 05:54:29] [Lane 0] Got ACK
+[2019-08-17 05:54:29] [Lane 0] Tx: 28.90000111Amount Due:      $4.89
+[2019-08-17 05:54:29] [Lane 0] Rx: 10.
+[2019-08-17 05:54:29] [Lane 0] Tx: ACK
+[2019-08-17 05:54:29] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 05:54:29] [Lane 0] Got ACK
+[2019-08-17 05:54:29] [Lane 0] SetStateBusy()
+[2019-08-17 05:54:29] [Lane 0] Tx: 11.
+[2019-08-17 05:54:29] [Lane 0] Got ACK
+[2019-08-17 05:54:31] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 05:54:31] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Rx: 19.T01000025491700000007390
+[2019-08-17 05:55:03] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Tx: 29.00000413
+[2019-08-17 05:55:03] [Lane 0] Got ACK
+[2019-08-17 05:55:03] [Lane 0] Rx: 29.60000413
+[2019-08-17 05:55:03] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Get Variable request for var 000413 returned status 6
+[2019-08-17 05:55:03] [Lane 0] Forcing manual-entry or MSD contactless transaction to be 'credit'
+[2019-08-17 05:55:03] [Lane 0] Tx: 29.00000410
+[2019-08-17 05:55:03] [Lane 0] Got ACK
+[2019-08-17 05:55:03] [Lane 0] Rx: 29.200004101
+[2019-08-17 05:55:03] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Get Variable request for var 000410 returned status 2
+[2019-08-17 05:55:03] [Lane 0] Current language is en
+[2019-08-17 05:55:03] [Lane 0] Tx: 29.00000414
+[2019-08-17 05:55:03] [Lane 0] Got ACK
+[2019-08-17 05:55:03] [Lane 0] Rx: 29.200004142
+[2019-08-17 05:55:03] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 05:55:03] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 05:55:03] [Lane 0] Tx: 29.00000407
+[2019-08-17 05:55:03] [Lane 0] Got ACK
+[2019-08-17 05:55:03] [Lane 0] Rx: 29.200004075491707390161221200001BFFFF629949027149BB09011425M8465752631306302=311172132918EDE9B5BF04C42DACB603457006634640F6EF68965C8089A26F1C39983D269F63B3B60D167E0493730E905CEDB692BDB0
+[2019-08-17 05:55:03] [Lane 0] Tx: ACK
+[2019-08-17 05:55:03] [Lane 0] Get Variable request for var 000407 returned status 2
+[2019-08-17 05:55:03] [Lane 0] Input(CardRead)
+[2019-08-17 05:55:03] [Lane 0] CardRead event processing completed with state = Complete
+[2019-08-17 05:55:03] [Lane 0] Applying new payment options...
+[2019-08-17 05:55:03] [Lane 0] Tx: 19.B00025491700000007390
+[2019-08-17 05:55:03] [Lane 0] Got ACK
+[2019-08-17 05:55:03] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.CardReadEventCallbacks, pendingEvent = null
+[2019-08-17 05:55:05] [Lane 0] Rx: 50.12345678901234567890123456789012345678900208107944600002@T5491707390161221200001BFFFF629949027149BB09011425M8465752631306302=311172132918EDE9B5BF04C42DACB603457006634640F6EF68965C8089A26F1C39983D269F63B3B60D167E0493730E905CEDB692BDB0[FS]1@[FS]489[FS][FS]
+[2019-08-17 05:55:05] [Lane 0] Tx: ACK
+[2019-08-17 05:55:05] [Lane 0] Got Authorization Request (50.x)
+[2019-08-17 05:55:05] [Lane 0] 50.x PIN Pad Serial Number = [81079446] Transaction Number = [0002]
+[2019-08-17 05:55:05] [Lane 0] Entry mode code = T
+[2019-08-17 05:55:05] [Lane 0] Tx: 29.00000305
+[2019-08-17 05:55:06] [Lane 0] Got ACK
+[2019-08-17 05:55:06] [Lane 0] Rx: 29.200003050
+[2019-08-17 05:55:06] [Lane 0] Tx: ACK
+[2019-08-17 05:55:06] [Lane 0] Get Variable request for var 000305 returned status 2
+[2019-08-17 05:55:06] [Lane 0] Tx: 29.00000404
+[2019-08-17 05:55:06] [Lane 0] Got ACK
+[2019-08-17 05:55:06] [Lane 0] Rx: 29.20000404B
+[2019-08-17 05:55:06] [Lane 0] Tx: ACK
+[2019-08-17 05:55:06] [Lane 0] Get Variable request for var 000404 returned status 2
+[2019-08-17 05:55:06] [Lane 0] Mapped payment type ID 'B' to Freeway card type 'credit'
+[2019-08-17 05:55:06] [Lane 0] Tx: 29.00000414
+[2019-08-17 05:55:06] [Lane 0] Got ACK
+[2019-08-17 05:55:06] [Lane 0] Rx: 29.200004142
+[2019-08-17 05:55:06] [Lane 0] Tx: ACK
+[2019-08-17 05:55:06] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 05:55:06] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 05:55:06] [Lane 0] Input(Authorize)
+[2019-08-17 05:55:06] [Lane 0] FW Q: <RequestMessage xmlns="http://freeway.freedompay.com/"><storeId>**********</storeId><terminalId>**********</terminalId><billTo /><card><cardType>credit</cardType></card><ccAuthService run="true"><allowPartial>N</allowPartial><returnBalance>Y</returnBalance><enableAVS>N</enableAVS><offline>N</offline></ccAuthService><ccCaptureService run="true" /><clerkId>33608</clerkId><clientMetadata><applicationName>FreeWayClientService</applicationName><applicationVersion>4.1.4.34</applicationVersion><poiDeviceIdentifier>rba-iPP350:81079446</poiDeviceIdentifier></clientMetadata><comments>SAP POS 2.3 SP11</comments><hotelData /><invoiceHeader><invoiceNumber>3273</invoiceNumber><invoiceDate>2019-08-17 05:55:06Z</invoiceDate></invoiceHeader><language>en</language><merchantReferenceCode>00136201000001417</merchantReferenceCode><pos><registerNumber>1</registerNumber><entryMode>keyed</entryMode><trackKsn>FFFF629949027149BB090114</trackKsn><sequenceNumber>3273</sequenceNumber><cardPresent>Y</cardPresent><track2e>*************************</track2e><encMode>onguard</encMode><msrType>ingenico</msrType></pos><purchaseTotals><taxTotal>0.00</taxTotal><cashBackAmount>0.00</cashBackAmount><chargeAmount>4.89</chargeAmount></purchaseTotals></RequestMessage>
+[2019-08-17 05:55:07] [Lane 0] FW A: <ReplyMessage xmlns="http://freeway.freedompay.com/"><ccAuthReply><authorizationCode>165853</authorizationCode><authorizedDateTime>2019-08-17T10:55:04.6375701Z</authorizedDateTime><cvCode>M</cvCode><cvCodeRaw>M</cvCodeRaw><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>4.89</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 165853</processorResponseMessage><processorTransactionID>0817MDJ1LB8NW  </processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922910600683</reconciliationID><requestDateTime>2019-08-17T10:55:03.8718785Z</requestDateTime></ccAuthReply><ccCaptureReply><purchasingLevel3Enabled>N</purchasingLevel3Enabled><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>4.89</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 165853</processorResponseMessage><processorTransactionID>0817MDJ1LB8NW  </processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922910600683</reconciliationID><requestDateTime>2019-08-17T10:55:03.8718785Z</requestDateTime></ccCaptureReply><decision>ACCEPT</decision><merchantReferenceCode>00136201000001417</merchantReferenceCode><networkData><network>MC</network><aci>A</aci><vcode>    </vcode><authSource> </authSource></networkData><reasonCode>100</reasonCode><requestID>01Z6HGG54700P754U357QRPDJJHB1LI8</requestID></ReplyMessage>
+[2019-08-17 05:55:07] [Lane 0] Tx: 28.900000254.89
+[2019-08-17 05:55:07] [Lane 0] Got ACK
+[2019-08-17 05:55:07] [Lane 0] Tx: 50.8107944600002AP165853190817APPROVAL 165853[FS]
+[2019-08-17 05:55:07] [Lane 0] Got ACK
+[2019-08-17 05:55:07] [Lane 0] PostTransactionBehavior is WaitForReset, immediately exiting transaction state
+[2019-08-17 05:55:07] [Lane 0] Tx: 30.
+[2019-08-17 05:55:07] [Lane 0] Got ACK
+[2019-08-17 05:55:07] [Lane 0] SetStateIdle()
+[2019-08-17 05:55:07] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 05:55:07] [Lane 0] Tx: 30.
+[2019-08-17 05:55:07] [Lane 0] Got ACK
+[2019-08-17 05:55:07] [Lane 0] Attempting to merge new event DeviceIdle onto pending event PaymentComplete
+[2019-08-17 05:55:07] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.AuthorizeEventCallbacks, pendingEvent = PaymentComplete
+[2019-08-17 05:55:07] [Lane 0] Input(PaymentComplete)
+[2019-08-17 05:55:07] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 05:55:07] [Lane 0] Run() returned Complete
+[2019-08-17 05:55:07] A: [000000000                04 [STX]POITRANS_RSP[FS]requestId=01Z6HGG54700P754U357QRPDJJHB1LI8[FS]amount=4.89[FS]maskedCard=549170XXXXXX7390[FS]authCode=165853[FS]cardType=0[FS]cardExp=1222[FS]useDcc=N[FS]authAndCaptureOnly=Y[FS]sigCaptured=N[FS]entryMode=keyed[FS]requestType=Purchase[FS]cardData=V=2|CT=credit|ET=onguard|MT=ingenico|EM=keyed|E2=M8465752631306302=3111721|EK=FFFF629949027149BB090114|LC=en[FS]cvCode=M[FS]cvCodeRaw=M[FS]pinVerified=N[FS]sigRequired=N[FS]cashBackAmount=0.00[FS]decision=A[FS]errorCode=100[FS]message=APPROVAL 165853[FS]]
+[2019-08-17 05:55:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 05:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:00:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:05:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:10:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:15:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:20:15] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:21:24] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 06:21:24] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 06:21:24] MessageLengthReceived: Length = 0x0000026e
+[2019-08-17 06:21:24] Received 622 bytes from 127.0.0.1:3391
+[2019-08-17 06:21:24] Receive of 622 bytes complete, invoking _rxcallback
+[2019-08-17 06:21:24] StandardMessageReceived
+[2019-08-17 06:21:24] Queuing call to MessageDispatcher
+[2019-08-17 06:21:24] Waiting for next message
+[2019-08-17 06:21:24] Q: [000000000                05 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001418[FS]invoiceNumber=3276[FS]posSequenceNumber=3276[FS]chargeAmount=2.15[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=2.15[FS]transactionTime=8/17/2019 6:21:24 AM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 06:21:24] [Lane 0] Beginning transaction
+[2019-08-17 06:21:24] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 06:21:24] [Lane 0] Got ACK
+[2019-08-17 06:21:24] [Lane 0] Rx: 33.01.0000[FS]--R--------------------------------
+[2019-08-17 06:21:24] [Lane 0] Tx: ACK
+[2019-08-17 06:21:24] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 06:21:24] [Lane 0] Tx: 10.1
+[2019-08-17 06:21:24] [Lane 0] Got ACK
+[2019-08-17 06:21:24] [Lane 0] Tx: 13.215
+[2019-08-17 06:21:24] [Lane 0] Got ACK
+[2019-08-17 06:21:24] [Lane 0] Tx: 28.90000111Amount Due:      $2.15
+[2019-08-17 06:21:24] [Lane 0] Rx: 10.
+[2019-08-17 06:21:24] [Lane 0] Tx: ACK
+[2019-08-17 06:21:24] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 06:21:24] [Lane 0] Got ACK
+[2019-08-17 06:21:24] [Lane 0] SetStateBusy()
+[2019-08-17 06:21:24] [Lane 0] Tx: 11.
+[2019-08-17 06:21:24] [Lane 0] Got ACK
+[2019-08-17 06:21:26] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 06:21:26] [Lane 0] Tx: ACK
+[2019-08-17 06:22:54] [Lane 0] Input(OperationFailed)
+[2019-08-17 06:22:54] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 06:22:54] [Lane 0] Queueing payment abort command
+[2019-08-17 06:22:54] [Lane 0] [v2.1] No event in progress, aborting via RequestAbort()
+[2019-08-17 06:22:54] [Lane 0] FAILSAFE TRIGGERED: CancelPayment: Abort already requested, ignoring
+[2019-08-17 06:22:54] [Lane 0] Queued payment abort command executing
+[2019-08-17 06:22:54] [Lane 0] Tx: 30.
+[2019-08-17 06:22:54] [Lane 0] Unable to raise timeout form Cannot begin a new operation while a previous operation is still in progress.
+[2019-08-17 06:22:54] [Lane 0] Got ACK
+[2019-08-17 06:22:54] [Lane 0] SetStateIdle()
+[2019-08-17 06:22:54] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 06:22:54] [Lane 0] Tx: 30.
+[2019-08-17 06:22:54] [Lane 0] Got ACK
+[2019-08-17 06:22:54] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 06:22:54] [Lane 0] Fixing status of 'DeviceIdle' event raised after abort
+[2019-08-17 06:22:54] [Lane 0] Input(DeviceIdle)
+[2019-08-17 06:22:54] [Lane 0] Run() returned Complete
+[2019-08-17 06:22:54] A: [000000000                05 [STX]POITRANS_RSP[FS]amount=0[FS]cardType=0[FS]useDcc=N[FS]authAndCaptureOnly=N[FS]sigCaptured=N[FS]pinVerified=N[FS]decision=R[FS]errorCode=3030[FS]message=Lane Timeout[FS]]
+[2019-08-17 06:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:26:44] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 06:26:44] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 06:26:44] MessageLengthReceived: Length = 0x00000270
+[2019-08-17 06:26:44] Received 624 bytes from 127.0.0.1:3391
+[2019-08-17 06:26:44] Receive of 624 bytes complete, invoking _rxcallback
+[2019-08-17 06:26:44] StandardMessageReceived
+[2019-08-17 06:26:44] Queuing call to MessageDispatcher
+[2019-08-17 06:26:44] Waiting for next message
+[2019-08-17 06:26:44] Q: [000000000                06 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001419[FS]invoiceNumber=3276[FS]posSequenceNumber=3276[FS]chargeAmount=23.80[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=23.80[FS]transactionTime=8/17/2019 6:26:44 AM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 06:26:44] [Lane 0] Beginning transaction
+[2019-08-17 06:26:44] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 06:26:44] [Lane 0] Got ACK
+[2019-08-17 06:26:44] [Lane 0] Rx: 33.01.0000[FS]--R--------------------------------
+[2019-08-17 06:26:44] [Lane 0] Tx: ACK
+[2019-08-17 06:26:44] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 06:26:44] [Lane 0] Tx: 10.1
+[2019-08-17 06:26:44] [Lane 0] Got ACK
+[2019-08-17 06:26:44] [Lane 0] Tx: 13.2380
+[2019-08-17 06:26:44] [Lane 0] Got ACK
+[2019-08-17 06:26:44] [Lane 0] Tx: 28.90000111Amount Due:     $23.80
+[2019-08-17 06:26:44] [Lane 0] Rx: 10.
+[2019-08-17 06:26:44] [Lane 0] Tx: ACK
+[2019-08-17 06:26:44] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 06:26:44] [Lane 0] Got ACK
+[2019-08-17 06:26:44] [Lane 0] SetStateBusy()
+[2019-08-17 06:26:44] [Lane 0] Tx: 11.
+[2019-08-17 06:26:44] [Lane 0] Got ACK
+[2019-08-17 06:26:46] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 06:26:46] [Lane 0] Tx: ACK
+[2019-08-17 06:27:14] [Lane 0] Rx: 19.T0100003372718000006001
+[2019-08-17 06:27:14] [Lane 0] Tx: ACK
+[2019-08-17 06:27:14] [Lane 0] Tx: 29.00000413
+[2019-08-17 06:27:15] [Lane 0] Got ACK
+[2019-08-17 06:27:15] [Lane 0] Rx: 29.60000413
+[2019-08-17 06:27:15] [Lane 0] Tx: ACK
+[2019-08-17 06:27:15] [Lane 0] Get Variable request for var 000413 returned status 6
+[2019-08-17 06:27:15] [Lane 0] Forcing manual-entry or MSD contactless transaction to be 'credit'
+[2019-08-17 06:27:15] [Lane 0] Tx: 29.00000410
+[2019-08-17 06:27:15] [Lane 0] Got ACK
+[2019-08-17 06:27:15] [Lane 0] Rx: 29.200004101
+[2019-08-17 06:27:15] [Lane 0] Tx: ACK
+[2019-08-17 06:27:15] [Lane 0] Get Variable request for var 000410 returned status 2
+[2019-08-17 06:27:15] [Lane 0] Current language is en
+[2019-08-17 06:27:15] [Lane 0] Tx: 29.00000414
+[2019-08-17 06:27:15] [Lane 0] Got ACK
+[2019-08-17 06:27:15] [Lane 0] Rx: 29.200004142
+[2019-08-17 06:27:15] [Lane 0] Tx: ACK
+[2019-08-17 06:27:15] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 06:27:15] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 06:27:15] [Lane 0] Tx: 29.00000407
+[2019-08-17 06:27:15] [Lane 0] Got ACK
+[2019-08-17 06:27:15] [Lane 0] Rx: 29.200004073727186001151240400001BFFFF629949027149BB0A011425M806987836191696=1992596632B7F891AA6C5BB9F256FB0E96A76F406564E0373566815CCF22071F740599E572295E329FF24EF8033F4E11CB36440DD7460
+[2019-08-17 06:27:15] [Lane 0] Tx: ACK
+[2019-08-17 06:27:15] [Lane 0] Get Variable request for var 000407 returned status 2
+[2019-08-17 06:27:15] [Lane 0] Input(CardRead)
+[2019-08-17 06:27:15] [Lane 0] CardRead event processing completed with state = Complete
+[2019-08-17 06:27:15] [Lane 0] Applying new payment options...
+[2019-08-17 06:27:15] [Lane 0] Tx: 19.B0003372718000006001
+[2019-08-17 06:27:15] [Lane 0] Got ACK
+[2019-08-17 06:27:15] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.CardReadEventCallbacks, pendingEvent = null
+[2019-08-17 06:27:17] [Lane 0] Rx: 50.12345678901234567890123456789012345678900208107944600003@T3727186001151240400001BFFFF629949027149BB0A011425M806987836191696=1992596632B7F891AA6C5BB9F256FB0E96A76F406564E0373566815CCF22071F740599E572295E329FF24EF8033F4E11CB36440DD7460[FS]1@[FS]2380[FS][FS]
+[2019-08-17 06:27:17] [Lane 0] Tx: ACK
+[2019-08-17 06:27:17] [Lane 0] Got Authorization Request (50.x)
+[2019-08-17 06:27:17] [Lane 0] 50.x PIN Pad Serial Number = [81079446] Transaction Number = [0003]
+[2019-08-17 06:27:17] [Lane 0] Entry mode code = T
+[2019-08-17 06:27:17] [Lane 0] Tx: 29.00000305
+[2019-08-17 06:27:17] [Lane 0] Got ACK
+[2019-08-17 06:27:17] [Lane 0] Rx: 29.200003050
+[2019-08-17 06:27:17] [Lane 0] Tx: ACK
+[2019-08-17 06:27:17] [Lane 0] Get Variable request for var 000305 returned status 2
+[2019-08-17 06:27:17] [Lane 0] Tx: 29.00000404
+[2019-08-17 06:27:17] [Lane 0] Got ACK
+[2019-08-17 06:27:17] [Lane 0] Rx: 29.20000404B
+[2019-08-17 06:27:17] [Lane 0] Tx: ACK
+[2019-08-17 06:27:17] [Lane 0] Get Variable request for var 000404 returned status 2
+[2019-08-17 06:27:17] [Lane 0] Mapped payment type ID 'B' to Freeway card type 'credit'
+[2019-08-17 06:27:17] [Lane 0] Tx: 29.00000414
+[2019-08-17 06:27:17] [Lane 0] Got ACK
+[2019-08-17 06:27:17] [Lane 0] Rx: 29.200004142
+[2019-08-17 06:27:17] [Lane 0] Tx: ACK
+[2019-08-17 06:27:17] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 06:27:17] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 06:27:17] [Lane 0] Input(Authorize)
+[2019-08-17 06:27:17] [Lane 0] FW Q: <RequestMessage xmlns="http://freeway.freedompay.com/"><storeId>**********</storeId><terminalId>**********</terminalId><billTo /><card><cardType>credit</cardType></card><ccAuthService run="true"><allowPartial>N</allowPartial><returnBalance>Y</returnBalance><enableAVS>N</enableAVS><offline>N</offline></ccAuthService><ccCaptureService run="true" /><clerkId>33608</clerkId><clientMetadata><applicationName>FreeWayClientService</applicationName><applicationVersion>4.1.4.34</applicationVersion><poiDeviceIdentifier>rba-iPP350:81079446</poiDeviceIdentifier></clientMetadata><comments>SAP POS 2.3 SP11</comments><hotelData /><invoiceHeader><invoiceNumber>3276</invoiceNumber><invoiceDate>2019-08-17 06:27:17Z</invoiceDate></invoiceHeader><language>en</language><merchantReferenceCode>00136201000001419</merchantReferenceCode><pos><registerNumber>1</registerNumber><entryMode>keyed</entryMode><trackKsn>FFFF629949027149BB0A0114</trackKsn><sequenceNumber>3276</sequenceNumber><cardPresent>Y</cardPresent><track2e>*************************</track2e><encMode>onguard</encMode><msrType>ingenico</msrType></pos><purchaseTotals><taxTotal>0.00</taxTotal><cashBackAmount>0.00</cashBackAmount><chargeAmount>23.80</chargeAmount></purchaseTotals></RequestMessage>
+[2019-08-17 06:27:19] [Lane 0] FW A: <ReplyMessage xmlns="http://freeway.freedompay.com/"><ccAuthReply><authorizationCode>260779</authorizationCode><authorizedDateTime>2019-08-17T11:27:16.2218862Z</authorizedDateTime><cvCode>M</cvCode><cvCodeRaw>M</cvCodeRaw><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>23.80</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 260779</processorResponseMessage><processorTransactionID>007120005841878</processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922911602651</reconciliationID><requestDateTime>2019-08-17T11:27:15.4874489Z</requestDateTime></ccAuthReply><ccCaptureReply><purchasingLevel3Enabled>N</purchasingLevel3Enabled><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>23.80</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 260779</processorResponseMessage><processorTransactionID>007120005841878</processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922911602651</reconciliationID><requestDateTime>2019-08-17T11:27:15.4874489Z</requestDateTime></ccCaptureReply><decision>ACCEPT</decision><merchantReferenceCode>00136201000001419</merchantReferenceCode><networkData><network>AMEX</network><aci /><vcode>NV1 </vcode><authSource> </authSource></networkData><reasonCode>100</reasonCode><requestID>01Z6HGG70J00P754U5NMERRQ0ACKUO72</requestID></ReplyMessage>
+[2019-08-17 06:27:19] [Lane 0] Tx: 28.9000002523.80
+[2019-08-17 06:27:19] [Lane 0] Got ACK
+[2019-08-17 06:27:19] [Lane 0] Tx: 50.8107944600003AP260779190817APPROVAL 260779[FS]
+[2019-08-17 06:27:19] [Lane 0] Got ACK
+[2019-08-17 06:27:19] [Lane 0] PostTransactionBehavior is WaitForReset, immediately exiting transaction state
+[2019-08-17 06:27:19] [Lane 0] Tx: 30.
+[2019-08-17 06:27:19] [Lane 0] Got ACK
+[2019-08-17 06:27:19] [Lane 0] SetStateIdle()
+[2019-08-17 06:27:19] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 06:27:19] [Lane 0] Tx: 30.
+[2019-08-17 06:27:19] [Lane 0] Got ACK
+[2019-08-17 06:27:19] [Lane 0] Attempting to merge new event DeviceIdle onto pending event PaymentComplete
+[2019-08-17 06:27:19] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.AuthorizeEventCallbacks, pendingEvent = PaymentComplete
+[2019-08-17 06:27:19] [Lane 0] Input(PaymentComplete)
+[2019-08-17 06:27:19] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 06:27:19] [Lane 0] Run() returned Complete
+[2019-08-17 06:27:19] A: [000000000                06 [STX]POITRANS_RSP[FS]requestId=01Z6HGG70J00P754U5NMERRQ0ACKUO72[FS]amount=23.80[FS]maskedCard=372718XXXXX6001[FS]authCode=260779[FS]cardType=0[FS]cardExp=0424[FS]useDcc=N[FS]authAndCaptureOnly=Y[FS]sigCaptured=N[FS]entryMode=keyed[FS]requestType=Purchase[FS]cardData=V=2|CT=credit|ET=onguard|MT=ingenico|EM=keyed|E2=M806987836191696=19925966|EK=FFFF629949027149BB0A0114|LC=en[FS]cvCode=M[FS]cvCodeRaw=M[FS]pinVerified=N[FS]sigRequired=N[FS]cashBackAmount=0.00[FS]decision=A[FS]errorCode=100[FS]message=APPROVAL 260779[FS]]
+[2019-08-17 06:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 06:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 06:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 07:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 07:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 08:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 08:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:05:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:10:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:15:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:20:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:25:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:30:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:35:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:40:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:45:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:50:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 09:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 09:55:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:00:26] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:05:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:10:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:15:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:20:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:25:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:30:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:35:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:40:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:45:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:50:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 10:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 10:55:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:00:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:05:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:10:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:15:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:20:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:25:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:30:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:35:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:40:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:45:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:50:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 11:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 11:55:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:00:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:05:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:10:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:15:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:20:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:25:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:25:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:30:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:30:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:35:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:35:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:36:52] Received 4 bytes from 127.0.0.1:3391
+[2019-08-17 12:36:52] Receive of 4 bytes complete, invoking _rxcallback
+[2019-08-17 12:36:52] MessageLengthReceived: Length = 0x0000026f
+[2019-08-17 12:36:52] Received 623 bytes from 127.0.0.1:3391
+[2019-08-17 12:36:52] Receive of 623 bytes complete, invoking _rxcallback
+[2019-08-17 12:36:52] StandardMessageReceived
+[2019-08-17 12:36:52] Queuing call to MessageDispatcher
+[2019-08-17 12:36:52] Q: [000000000                07 [STX]POITRANS_REQ[FS]storeId=1511013000[FS]terminalId=2513996006[FS]clerkId=33608[FS]merchantReferenceCode=00136201000001420[FS]invoiceNumber=3298[FS]posSequenceNumber=3298[FS]chargeAmount=2.29[FS]allowPartial=N[FS]taxAmount=0[FS]registerNumber=1[FS]transType=P[FS]cardSource=C[FS]transMode=S[FS]dCCInquiryOnly=N[FS]clientApplication=FreewayServerService[FS]clientApplicationVersion=4.1.4.34[FS]clientEnvironment=SAP POS 2.3 SP11[FS]createTokenOnly=N[FS]orginalAmount=2.29[FS]transactionTime=8/17/2019 12:36:52 PM[FS]isRefund=N[FS]forceOffline=N[FS]updateToken=N[FS]floorLimit=75.00[FS]offline=N[FS]getSignature=N[FS]forceDeviceUpdate=N[FS]cardRead=N[FS]abort=N[FS]isToken=N[FS]forcedKeyed=N[FS]]
+[2019-08-17 12:36:52] [Lane 0] Beginning transaction
+[2019-08-17 12:36:52] Waiting for next message
+[2019-08-17 12:36:52] [Lane 0] Tx: 33.01.0000[FS][FS][FS][FS]
+[2019-08-17 12:36:52] [Lane 0] Got ACK
+[2019-08-17 12:36:52] [Lane 0] Rx: 33.01.0000[FS]--R--------------------------------
+[2019-08-17 12:36:52] [Lane 0] Tx: ACK
+[2019-08-17 12:36:52] [Lane 0] Setting _ignoreOneReset = true
+[2019-08-17 12:36:52] [Lane 0] Tx: 10.1
+[2019-08-17 12:36:52] [Lane 0] Got ACK
+[2019-08-17 12:36:52] [Lane 0] Tx: 13.229
+[2019-08-17 12:36:52] [Lane 0] Got ACK
+[2019-08-17 12:36:52] [Lane 0] Tx: 28.90000111Amount Due:      $2.29
+[2019-08-17 12:36:52] [Lane 0] Rx: 10.
+[2019-08-17 12:36:52] [Lane 0] Tx: ACK
+[2019-08-17 12:36:52] [Lane 0] Got ACK
+[2019-08-17 12:36:52] [Lane 0] Got HARD RESET (10.x), action is ignore once
+[2019-08-17 12:36:52] [Lane 0] SetStateBusy()
+[2019-08-17 12:36:52] [Lane 0] Tx: 11.
+[2019-08-17 12:36:52] [Lane 0] Got ACK
+[2019-08-17 12:36:54] [Lane 0] Rx: 11.01Slide Card[FS]
+[2019-08-17 12:36:54] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Rx: 19.T0100004375150000006736
+[2019-08-17 12:37:27] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Tx: 29.00000413
+[2019-08-17 12:37:27] [Lane 0] Got ACK
+[2019-08-17 12:37:27] [Lane 0] Rx: 29.60000413
+[2019-08-17 12:37:27] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Get Variable request for var 000413 returned status 6
+[2019-08-17 12:37:27] [Lane 0] Forcing manual-entry or MSD contactless transaction to be 'credit'
+[2019-08-17 12:37:27] [Lane 0] Tx: 29.00000410
+[2019-08-17 12:37:27] [Lane 0] Got ACK
+[2019-08-17 12:37:27] [Lane 0] Rx: 29.200004101
+[2019-08-17 12:37:27] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Get Variable request for var 000410 returned status 2
+[2019-08-17 12:37:27] [Lane 0] Current language is en
+[2019-08-17 12:37:27] [Lane 0] Tx: 29.00000414
+[2019-08-17 12:37:27] [Lane 0] Got ACK
+[2019-08-17 12:37:27] [Lane 0] Rx: 29.200004142
+[2019-08-17 12:37:27] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 12:37:27] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 12:37:27] [Lane 0] Tx: 29.00000407
+[2019-08-17 12:37:27] [Lane 0] Got ACK
+[2019-08-17 12:37:27] [Lane 0] Rx: 29.200004073751506736151221200001BFFFF629949027149BB0C011425M153587907534540=6134230232ECD1C702C88F63F7DE3A62725666A9E564AF3647FB245C68F881207137B228AD5CC2511DDDA94C94B9C5E515D3817DF1630
+[2019-08-17 12:37:27] [Lane 0] Tx: ACK
+[2019-08-17 12:37:27] [Lane 0] Get Variable request for var 000407 returned status 2
+[2019-08-17 12:37:27] [Lane 0] Input(CardRead)
+[2019-08-17 12:37:27] [Lane 0] CardRead event processing completed with state = Complete
+[2019-08-17 12:37:27] [Lane 0] Applying new payment options...
+[2019-08-17 12:37:27] [Lane 0] Tx: 19.B0004375150000006736
+[2019-08-17 12:37:27] [Lane 0] Got ACK
+[2019-08-17 12:37:27] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.CardReadEventCallbacks, pendingEvent = null
+[2019-08-17 12:37:30] [Lane 0] Rx: 50.12345678901234567890123456789012345678900208107944600004@T3751506736151221200001BFFFF629949027149BB0C011425M153587907534540=6134230232ECD1C702C88F63F7DE3A62725666A9E564AF3647FB245C68F881207137B228AD5CC2511DDDA94C94B9C5E515D3817DF1630[FS]1@[FS]229[FS][FS]
+[2019-08-17 12:37:30] [Lane 0] Tx: ACK
+[2019-08-17 12:37:30] [Lane 0] Got Authorization Request (50.x)
+[2019-08-17 12:37:30] [Lane 0] 50.x PIN Pad Serial Number = [81079446] Transaction Number = [0004]
+[2019-08-17 12:37:30] [Lane 0] Entry mode code = T
+[2019-08-17 12:37:30] [Lane 0] Tx: 29.00000305
+[2019-08-17 12:37:30] [Lane 0] Got ACK
+[2019-08-17 12:37:30] [Lane 0] Rx: 29.200003050
+[2019-08-17 12:37:30] [Lane 0] Tx: ACK
+[2019-08-17 12:37:30] [Lane 0] Get Variable request for var 000305 returned status 2
+[2019-08-17 12:37:30] [Lane 0] Tx: 29.00000404
+[2019-08-17 12:37:30] [Lane 0] Got ACK
+[2019-08-17 12:37:30] [Lane 0] Rx: 29.20000404B
+[2019-08-17 12:37:30] [Lane 0] Tx: ACK
+[2019-08-17 12:37:30] [Lane 0] Get Variable request for var 000404 returned status 2
+[2019-08-17 12:37:30] [Lane 0] Mapped payment type ID 'B' to Freeway card type 'credit'
+[2019-08-17 12:37:30] [Lane 0] Tx: 29.00000414
+[2019-08-17 12:37:30] [Lane 0] Got ACK
+[2019-08-17 12:37:30] [Lane 0] Rx: 29.200004142
+[2019-08-17 12:37:30] [Lane 0] Tx: ACK
+[2019-08-17 12:37:30] [Lane 0] Get Variable request for var 000414 returned status 2
+[2019-08-17 12:37:30] [Lane 0] Encryption mode is 2 (OnGuard)
+[2019-08-17 12:37:30] [Lane 0] Input(Authorize)
+[2019-08-17 12:37:30] [Lane 0] FW Q: <RequestMessage xmlns="http://freeway.freedompay.com/"><storeId>**********</storeId><terminalId>**********</terminalId><billTo /><card><cardType>credit</cardType></card><ccAuthService run="true"><allowPartial>N</allowPartial><returnBalance>Y</returnBalance><enableAVS>N</enableAVS><offline>N</offline></ccAuthService><ccCaptureService run="true" /><clerkId>33608</clerkId><clientMetadata><applicationName>FreeWayClientService</applicationName><applicationVersion>4.1.4.34</applicationVersion><poiDeviceIdentifier>rba-iPP350:81079446</poiDeviceIdentifier></clientMetadata><comments>SAP POS 2.3 SP11</comments><hotelData /><invoiceHeader><invoiceNumber>3298</invoiceNumber><invoiceDate>2019-08-17 12:37:30Z</invoiceDate></invoiceHeader><language>en</language><merchantReferenceCode>00136201000001420</merchantReferenceCode><pos><registerNumber>1</registerNumber><entryMode>keyed</entryMode><trackKsn>FFFF629949027149BB0C0114</trackKsn><sequenceNumber>3298</sequenceNumber><cardPresent>Y</cardPresent><track2e>*************************</track2e><encMode>onguard</encMode><msrType>ingenico</msrType></pos><purchaseTotals><taxTotal>0.00</taxTotal><cashBackAmount>0.00</cashBackAmount><chargeAmount>2.29</chargeAmount></purchaseTotals></RequestMessage>
+[2019-08-17 12:37:32] [Lane 0] FW A: <ReplyMessage xmlns="http://freeway.freedompay.com/"><ccAuthReply><authorizationCode>140312</authorizationCode><authorizedDateTime>2019-08-17T17:37:29.1519805Z</authorizedDateTime><cvCode>M</cvCode><cvCodeRaw>M</cvCodeRaw><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>2.29</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 140312</processorResponseMessage><processorTransactionID>007258666003972</processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922917000861</reconciliationID><requestDateTime>2019-08-17T17:37:27.7457111Z</requestDateTime></ccAuthReply><ccCaptureReply><purchasingLevel3Enabled>N</purchasingLevel3Enabled><enhancedDataEnabled>N</enhancedDataEnabled><partialAmount>N</partialAmount><amount>2.29</amount><processorResponseCode>00</processorResponseCode><processorResponseMessage>APPROVAL 140312</processorResponseMessage><processorTransactionID>007258666003972</processorTransactionID><reasonCode>100</reasonCode><reconciliationID>922917000861</reconciliationID><requestDateTime>2019-08-17T17:37:27.7457111Z</requestDateTime></ccCaptureReply><decision>ACCEPT</decision><merchantReferenceCode>00136201000001420</merchantReferenceCode><networkData><network>AMEX</network><aci /><vcode>NV1 </vcode><authSource> </authSource></networkData><reasonCode>100</reasonCode><requestID>01Z6HGGSMN00P754VJOTAB0U15DIU05D</requestID></ReplyMessage>
+[2019-08-17 12:37:32] [Lane 0] Tx: 28.900000252.29
+[2019-08-17 12:37:32] [Lane 0] Got ACK
+[2019-08-17 12:37:32] [Lane 0] Tx: 50.8107944600004AP140312190817APPROVAL 140312[FS]
+[2019-08-17 12:37:32] [Lane 0] Got ACK
+[2019-08-17 12:37:32] [Lane 0] PostTransactionBehavior is WaitForReset, immediately exiting transaction state
+[2019-08-17 12:37:32] [Lane 0] Tx: 30.
+[2019-08-17 12:37:32] [Lane 0] Got ACK
+[2019-08-17 12:37:32] [Lane 0] SetStateIdle()
+[2019-08-17 12:37:32] [Lane 0] OnEndTransaction(): Entering advertising mode
+[2019-08-17 12:37:32] [Lane 0] Tx: 30.
+[2019-08-17 12:37:32] [Lane 0] Got ACK
+[2019-08-17 12:37:32] [Lane 0] Attempting to merge new event DeviceIdle onto pending event PaymentComplete
+[2019-08-17 12:37:32] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.AuthorizeEventCallbacks, pendingEvent = PaymentComplete
+[2019-08-17 12:37:32] [Lane 0] Input(PaymentComplete)
+[2019-08-17 12:37:32] [Lane 0] [v2.1] SetResponseReceived(): currentEvent = MsrLib.MsrEventInternalCallbacks, pendingEvent = null
+[2019-08-17 12:37:32] [Lane 0] Run() returned Complete
+[2019-08-17 12:37:32] A: [000000000                07 [STX]POITRANS_RSP[FS]requestId=01Z6HGGSMN00P754VJOTAB0U15DIU05D[FS]amount=2.29[FS]maskedCard=375150XXXXX6736[FS]authCode=140312[FS]cardType=0[FS]cardExp=1222[FS]useDcc=N[FS]authAndCaptureOnly=Y[FS]sigCaptured=N[FS]entryMode=keyed[FS]requestType=Purchase[FS]cardData=V=2|CT=credit|ET=onguard|MT=ingenico|EM=keyed|E2=M153587907534540=61342302|EK=FFFF629949027149BB0C0114|LC=en[FS]cvCode=M[FS]cvCodeRaw=M[FS]pinVerified=N[FS]sigRequired=N[FS]cashBackAmount=0.00[FS]decision=A[FS]errorCode=100[FS]message=APPROVAL 140312[FS]]
+[2019-08-17 12:40:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:40:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:45:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:45:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:50:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:50:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 12:55:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 12:55:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 13:00:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 13:00:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 13:05:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 13:05:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 13:10:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 13:10:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 13:15:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 13:15:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
+[2019-08-17 13:20:16] [Lane 0] [PAL Manager] Profile manifest C:\ProgramData\FreedomPay\Freeway Commerce Connect\pal\profile.dat is 26 bytes
+[2019-08-17 13:20:27] [DMP] Ignoring DMP event 'CheckForUpdates' raised while we don't have valid credentials
