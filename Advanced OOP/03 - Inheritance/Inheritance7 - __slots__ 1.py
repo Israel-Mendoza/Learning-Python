@@ -9,7 +9,7 @@ from __future__ import annotations
 
 
 class Person:
-    __slots__: tuple[str] = ("name",)
+    __slots__: tuple[str] = "name",
 
     def __init__(self: Person, name: str) -> None:
         self.name: str = name
