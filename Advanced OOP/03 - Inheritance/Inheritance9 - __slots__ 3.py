@@ -1,15 +1,14 @@
 from __future__ import annotations
+from typing import Any
 
 """Inheritance and __slots__"""
 
 # When an object is created from a class that inherited slots,
-# but doesn't implements them itself, the object will have a __dict__.
+# but doesn't implement them itself, the instance object will have a __dict__.
 # When an object is created from a class that did NOT inherit slots,
-# but the class itself implements them, the object will have a __dict__.
+# but the class itself implements them, the instance object will have a __dict__.
 #
 # In short, the final object will try to inherit the __dict__ when it can.
-
-from typing import Any
 
 
 def display_obj_namespace(an_object: Any) -> None:
@@ -26,14 +25,14 @@ def display_obj_namespace(an_object: Any) -> None:
 
 
 class Person:
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name: str = name
 
 
 class Student(Person):
-    __slots__: tuple[str, str] = ("school", "student_number")
+    __slots__: tuple[str, str] = "school", "student_number"
 
-    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
+    def __init__(self, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
         self.school: str = school
         self.student_number: str = student_number
@@ -43,7 +42,7 @@ class Student(Person):
 # but inherits from a class that doesn't,
 # Student will have an instance dictionary as well
 
-s = Student("James Bond", "MI6 Prep School", "007")
+s: Student = Student("James Bond", "MI6 Prep School", "007")
 
 # __dict__ and __weakref__ available:
 display_obj_namespace(Person)
@@ -74,14 +73,14 @@ display_obj_namespace(s)
 
 
 class Person:
-    __slots__: tuple[str] = ("name",)
+    __slots__: tuple[str] = "name",
 
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name: str = name
 
 
 class Student(Person):
-    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
+    def __init__(self, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
         self.school: str = school
         self.student_number: str = student_number

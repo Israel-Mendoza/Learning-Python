@@ -11,7 +11,7 @@ from __future__ import annotations
 class Person:
     __slots__: tuple[str] = "name",
 
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name: str = name
 
 
@@ -46,7 +46,7 @@ print(s.major)
 
 # Printing the Student instance's namespace:
 print(f"{s.__dict__ = }")
-# s.__dict__ = {'major': 'Computer Science'}
+# s.__dict__ = {'major': 'Computer Science'}  # 'name' is stored in the super class' slots
 print(f"Person class namespace: \n\t{vars(Person)}")
 # Person class namespace: {'__module__': '__main__', 
 #                           '__annotations__': {'__slots__': 'tuple[str]'}, 

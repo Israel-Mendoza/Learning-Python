@@ -7,10 +7,8 @@ from __future__ import annotations
 # Needless to say, the instance won't have a __dict__.
 
 
-from typing import Any
-
-
-def display_obj_namespace(an_object: Any) -> None:
+def display_obj_namespace(an_object: type) -> None:
+    """Displays the namespace in a given class"""
     print(f"{an_object.__name__.upper()}'S NAMESPACE:")
     for k, v in vars(an_object).items():
         if "__slots__" in vars(an_object) and k in vars(an_object)["__slots__"]:
@@ -20,17 +18,17 @@ def display_obj_namespace(an_object: Any) -> None:
 
 
 class Person:
-    __slots__: tuple[str] = ("name",)
+    __slots__: tuple[str] = "name",
 
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         self.name: str = name
 
 
 class Student(Person):
 
-    __slots__: tuple[str, str] = ("school", "student_number")
+    __slots__: tuple[str, str] = "school", "student_number"
 
-    def __init__(self: Student, name: str, school: str, student_number: str) -> None:
+    def __init__(self, name: str, school: str, student_number: str) -> None:
         super().__init__(name)
         self.school: str = school
         self.student_number: str = student_number
