@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 
 
 class Countdown:
@@ -8,7 +9,7 @@ class Countdown:
         self.start: int = start + 1
         self.current_value: int = self.start
 
-    def __get__(self, instance: any, owner: type):
+    def __get__(self, instance: Any, owner: type) -> Countdown | int:
         """
         Returns the descriptor instance if called from a class. 
         Otherwise, will decrease the self.start value 
@@ -24,12 +25,14 @@ class Countdown:
             self.current_value = self.start - 1
         return self.current_value
 
+    def __repr__(self) -> str:
+        return f"UTCTimeDescriptor object @ {hex(id(self)).upper()}"
+
 
 class Rocket:
     """A rocket class, holding a down counter as attribute"""
-    # The countdown class attribute will be shared
-    # amont all instances
-    countdown = Countdown(10)
+    # The countdown class attribute will be shared among all instances
+    countdown: Countdown = Countdown(10)
 
 
 # Creating two instances of Rocket.
@@ -40,24 +43,27 @@ r3: Rocket = Rocket()
 
 # Notice how the Countdown instance is shared among all Rocket instances:
 print(f"{r1.countdown = }") # r1.countdown = 10
-print(f"{r2.countdown = }") # r2.countdown = 9
-print(f"{r3.countdown = }") # r3.countdown = 8
-print(f"{r1.countdown = }") # r1.countdown = 7
-print(f"{r2.countdown = }") # r2.countdown = 6
-print(f"{r3.countdown = }") # r3.countdown = 5
-print(f"{r1.countdown = }") # r1.countdown = 4
-print(f"{r2.countdown = }") # r2.countdown = 3
-print(f"{r3.countdown = }") # r3.countdown = 2
-print(f"{r1.countdown = }") # r1.countdown = 1
-print(f"{r2.countdown = }") # r2.countdown = 0
-print(f"{r3.countdown = }") # r3.countdown = 10
-print(f"{r1.countdown = }") # r1.countdown = 9
-print(f"{r2.countdown = }") # r2.countdown = 8
-print(f"{r3.countdown = }") # r3.countdown = 7
-print(f"{r1.countdown = }") # r1.countdown = 6
-print(f"{r2.countdown = }") # r2.countdown = 5
-print(f"{r3.countdown = }") # r3.countdown = 4
-print(f"{r1.countdown = }") # r1.countdown = 3
-print(f"{r2.countdown = }") # r2.countdown = 2
-print(f"{r3.countdown = }") # r3.countdown = 1
-print(f"{r1.countdown = }") # r1.countdown = 0
+print(f"{r2.countdown = }")  # r2.countdown = 9
+print(f"{r3.countdown = }")  # r3.countdown = 8
+print(f"{r1.countdown = }")  # r1.countdown = 7
+print(f"{r2.countdown = }")  # r2.countdown = 6
+print(f"{r3.countdown = }")  # r3.countdown = 5
+print(f"{r1.countdown = }")  # r1.countdown = 4
+print(f"{r2.countdown = }")  # r2.countdown = 3
+print(f"{r3.countdown = }")  # r3.countdown = 2
+print(f"{r1.countdown = }")  # r1.countdown = 1
+print(f"{r2.countdown = }")  # r2.countdown = 0
+print(f"{r3.countdown = }")  # r3.countdown = 10
+print(f"{r1.countdown = }")  # r1.countdown = 9
+print(f"{r2.countdown = }")  # r2.countdown = 8
+print(f"{r3.countdown = }")  # r3.countdown = 7
+print(f"{r1.countdown = }")  # r1.countdown = 6
+print(f"{r2.countdown = }")  # r2.countdown = 5
+print(f"{r3.countdown = }")  # r3.countdown = 4
+print(f"{r1.countdown = }")  # r1.countdown = 3
+print(f"{r2.countdown = }")  # r2.countdown = 2
+print(f"{r3.countdown = }")  # r3.countdown = 1
+print(f"{r1.countdown = }")  # r1.countdown = 0
+
+print(f"{Rocket.countdown = }")
+# Rocket.countdown = UTCTimeDescriptor object @ 0X1012029C0

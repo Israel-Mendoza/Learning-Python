@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import Any
 from random import choice
 
 
@@ -7,14 +8,14 @@ from random import choice
 
 class RandomItemGetter:
 
-    def __init__(self, *args: list[any]) -> None:
+    def __init__(self, *args: str) -> None:
         """
         Storing the sequence from which the __get__ method will randomly return an item
         """
-        print(f"Creating a Choice non-data descriptor with the following sequence: {args}")
-        self.sequence: list[any] = args
+        print(f"Creating a Choice non-data descriptor with the following sequence: \n\t{args}")
+        self.sequence: tuple[[str], ...] = args
 
-    def __get__(self, instance, owner) -> any:
+    def __get__(self, instance: Any, owner: type) -> any:
         """Returning a random item from the self.sequence"""
         return choice(self.sequence)
 
@@ -24,8 +25,8 @@ class Deck:
     """A class to represent a simple card deck"""
 
     # Non-Data Descriptor instances:
-    suits: str = RandomItemGetter("Spades", "Hearts", "Diamonds", "Clubs")
-    card: str = RandomItemGetter(*tuple("23456789AKJQ"), "10")
+    suits: RandomItemGetter = RandomItemGetter("Spades", "Hearts", "Diamonds", "Clubs")
+    card: RandomItemGetter = RandomItemGetter(*tuple("23456789AKJQ"), "10")
 
     def __init__(self, deck_name: str) -> None:
         """Initialized the deck with a name"""
@@ -39,11 +40,13 @@ class Deck:
         return f"{self.card:2} of {self.suits}"
 
 
-# Creating a RandomItemGetter non-data descriptor with the following sequence: ('Spades', 'Hearts', 'Diamonds', 'Clubs')
-# Creating a RandomItemGetter non-data descriptor with the following sequence: ('2', '3', '4', '5', '6', '7', '8', '9', 'A', 'K', 'J', 'Q', '10')
+# Creating a Choice non-data descriptor with the following sequence:
+# 	('Spades', 'Hearts', 'Diamonds', 'Clubs')
+# Creating a Choice non-data descriptor with the following sequence:
+# 	('2', '3', '4', '5', '6', '7', '8', '9', 'A', 'K', 'J', 'Q', '10')
 
 
-# Instanciating a Deck
+# Instantiating a Deck
 my_deck: Deck = Deck("My English Deck")
 
 # Calling the get_card() method, which accesses both 
