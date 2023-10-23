@@ -1,40 +1,25 @@
 from __future__ import annotations
+from typing import Any
+from utils.utility_functions import get_ref_count
+
 
 """Using data descriptor's __set__ to store data"""
 
-# WHAT'S NOT SUPPOSED TO BE DONE
 
-# Using a dictionary in the descriptor to store 
-# the instance's attributes.
-# The instance is the key, the value, the value.
-# 
-# Why is this a bad idea?
-# 1. Because the storing dictionary may keep containing
-#       references to objects that may stop existing in the main
-#       scope of the program, which will prevent the Garbage Collector
-#       from claiming that object's memory.
-# 2. This can be memory expensive, and may return the wrong value
-#       if Python decides to reuse the same memory address.
-# 3. The key in the dictionary (the passed instance) must be a hashable object.
-
-
-def get_ref_count(address: int) -> int:
-    """
-    A simple function that returns the number of 
-    references to a given object in memory.
-    Args:
-        address [int]: The address in memory.
-    Returns:
-        Integer representing the amount of references.
-    """
-    import ctypes
-    return ctypes.c_long.from_address(address).value
-
-
-def print_obj_namespace(an_obj: any) -> None:
-    """A simple function that prints the namespace of any passed object"""
-    print(f"{an_obj}'s NAMESPACE:")
-    print(f"{an_obj.__dict__}\n")
+"""
+    WHAT'S NOT SUPPOSED TO BE DONE
+    
+    Using a dictionary in the descriptor to store the instance's attributes.
+    The instance is the key, the value, the value.
+    
+    Why is this a bad idea?
+      1. Because the storing dictionary may keep containing references to objects 
+            that may stop existing in the main scope of the program, which will 
+            prevent the Garbage Collector from claiming that object's memory.
+      2. This can be memory expensive, and may return the wrong value
+            if Python decides to reuse the same memory address.
+      3. The key in the dictionary (the passed instance) must be a hashable object.
+"""
 
 
 class IntegerValue:
@@ -48,9 +33,9 @@ class IntegerValue:
         This can prevent the Garbage Collector from releasing the instance 
         memory.
         """
-        self.values: dict[any] = {}
+        self.values: dict[Any, Any] = {}
 
-    def __set__(self, instance: any, value: int) -> None:
+    def __set__(self, instance: Any, value: int) -> None:
         """
         Adds/updates an entry to the self.values dictionary
         where the key is the instance, and the value, the passed value.
@@ -58,7 +43,7 @@ class IntegerValue:
         print(f"Adding/Updating instance's value in descriptor.")
         self.values[instance] = value
 
-    def __get__(self, instance: any, owner: type) -> IntegerValue | int:
+    def __get__(self, instance: Any, owner: type) -> IntegerValue | int:
         """
         Returns the value of the instance, in
         case the entry exists in the self.values dictionary. 
@@ -76,7 +61,7 @@ class Point1D:
 
     # Feel free to use slots, since the x property won't 
     # be using the instance's namespace to store any data.
-    __slots__: tuple[str] = ("name",)
+    __slots__: tuple[str] = "name",
 
     def __init__(self, name: str) -> None:
         self.name: str = name
@@ -87,6 +72,9 @@ class Point1D:
         # since it will use this object (self) as the key.
         return hash(self.name)
 
+    def __repr__(self) -> str:
+        return f"(Point1D object @ {hex(id(self))})"
+
     def show_x_descriptor(self) -> None:
         """
         Prints the contents of the "values" dictionary
@@ -94,9 +82,6 @@ class Point1D:
         """
         for k, v in self.__class__.x.values.items():
             print(f"{k} -> {v}")
-
-    def __repr__(self) -> str:
-        return f"(Point1D object @ {hex(id(self))})"
 
 
 # Creating two instances of Point1D
@@ -118,15 +103,13 @@ p1.x
 p2.x
 # Getting instance's value from descriptor
 
-# Repeated info, because the descriptor holds the data for
-# all of the instances that have used it:
+# Repeated info, because the descriptor holds the data for all the instances that have used it:
 p1.show_x_descriptor()
 # (Point1D object @ 0x7f7bef379180) -> 10 // (p1)
 # (Point1D object @ 0x7f7bef379240) -> 20 // (p2)
 p2.show_x_descriptor()
 # (Point1D object @ 0x7f7bef379180) -> 10 -> 10 // (p1)
 # (Point1D object @ 0x7f7bef379240) -> 20 -> 20 // (p2)
-print()
 
 """Memory caveats. Possible memory leaks."""
 
@@ -134,13 +117,13 @@ print(f"{hex(p1_address).upper() = }")
 # hex(p1_address).upper() = '0X7F7BEF379180'
 print(f"{get_ref_count(p1_address) = }")
 # get_ref_count(p1_address) = 2
-print(f"{'p1' in globals() = }") # Does "p1" exist in the global scope?
+print(f"{'p1' in globals() = }")  # Does "p1" exist in the global scope?
 # 'p1' in globals() = True
 
 # Deleting p1 from global scope
 del p1
 
-print(f"{'p1' in globals() = }") # Does "p1" exist in the global scope?
+print(f"{'p1' in globals() = }")  # Does "p1" exist in the global scope?
 # 'p1' in globals() = False
 print(f"p1 reference count: {get_ref_count(p1_address)}")
 # p1 reference count: 1
