@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 """Using the __set_name__ method"""
 
 
@@ -7,7 +9,7 @@ class ValidString:
     def __init__(self, min_length: int = 0, max_length: int = 25) -> None:
         """
         Defines the minimum and maximum length
-        of the string we wanto to validate.
+        of the string we want to validate.
         """
         self.min_length: int = min_length
         self.max_length: int = max_length
@@ -15,11 +17,11 @@ class ValidString:
     def __set_name__(self, owner_class: type, property_name: str) -> None:
         """
         Set name descriptor method.
-        Stores the class attribute name in self.property_name.
+        Stores the class attribute name in self.property_name
         """
-        self.property_name = property_name
+        self.property_name: str = property_name
 
-    def __get__(self, instance, owner) -> str | ValidString:
+    def __get__(self, instance: Any, owner: type) -> str | ValidString:
         """
         Descriptor getter method.
         Returns the descriptor if called from the class.
@@ -32,7 +34,7 @@ class ValidString:
             return self
         return instance.__dict__.get(self.property_name, None)
 
-    def __set__(self, instance: object, value: str) -> None:
+    def __set__(self, instance: Any, value: str) -> None:
         """
         Descriptor setter method.
         Checks if the value is a valid string, as defined by the
@@ -59,14 +61,14 @@ class ValidString:
 
 class Person:
     # Descriptors are instantiated at compile time
-    first_name = ValidString()
-    last_name = ValidString()
+    first_name: ValidString = ValidString()
+    last_name: ValidString = ValidString()
 
-    def __init__(self, age):
-        self.__age = age
+    def __init__(self, age: int) -> None:
+        self.__age: int = age
 
 
-p = Person(28)
+p: Person = Person(28)
 print(f"{hex(id(p)).upper() = }")
 # hex(id(p)).upper() = '0X7FD3885BB190'
 

@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+from typing import Any
+
 """Using the __set_name__ method"""
 
 # The __set_name__ is run just after __init__ and allows us
-# to keep track of the class and the attribute name it's
-# assigned to.
+# to keep track of the class and the attribute name it's assigned to.
+# The passed value to this method are the class it was defined in,
+# and the actual name of the variable the descriptor is assigned to.
 # This is useful when using the __set__ method in order
 # to use the instance itself to store the value.
 
@@ -13,7 +16,7 @@ class ValidString:
     def __init__(self, min_length: int = 0, max_length: int = 25) -> None:
         """
         Defines the minimum and maximum length
-        of the string we wanto to validate.
+        of the string we want to validate.
         """
         self.min_length: int = min_length
         self.max_length: int = max_length
@@ -29,7 +32,7 @@ class ValidString:
         self.property_name: str = property_name
         self.instance_attribute_name: str = f"_{owner.__name__}__{property_name}"
 
-    def __get__(self, instance: object, owner: type):
+    def __get__(self, instance: Any, owner: type):
         """
         Returns the descriptor if called from the class,
         or the value assigned to the instance attribute,
@@ -39,7 +42,7 @@ class ValidString:
             return self
         return getattr(instance, self.instance_attribute_name)
 
-    def __set__(self, instance: object, value: str):
+    def __set__(self, instance: Any, value: str):
         """
         Checks if the value is a valid string, as defined by the
         self.check_valid_string method.
@@ -63,18 +66,18 @@ class ValidString:
 
 class Person:
     # Descriptors are instantiated at compile time
-    first_name = ValidString()
-    last_name = ValidString()
+    first_name: ValidString = ValidString()
+    last_name: ValidString = ValidString()
 
-    def __init__(self, age):
-        self.__age = age
+    def __init__(self, age: int) -> None:
+        self.__age: int = age
 
 
 # __set_name__(owner = <class '__main__.Person'>, property_name = 'first_name')
 # __set_name__(owner = <class '__main__.Person'>, property_name = 'last_name')
 
 
-p = Person(28)
+p: Person = Person(28)
 print(f"{hex(id(p)).upper() = }")
 # hex(id(p)).upper() = '0X10477F490'
 
