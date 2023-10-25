@@ -1,4 +1,7 @@
 from __future__ import annotations
+from types import MethodType
+from typing import Any
+from collections.abc import Callable
 
 """Creating a method the descriptor way"""
 
@@ -10,32 +13,30 @@ from __future__ import annotations
 # 1. The function when called from the class
 # 2. The function converted into a Method bound to the calling instance.
 
-from types import FunctionType, MethodType
 
-
-# Creating a simple function
-def say_hello(this: object, message: str) -> None:
+# Creating a simple function that will serve as a method:
+def say_hello(this: Any, message: str) -> None:
     print(f"{this.name} says '{message}'")
 
 
 class CallableDescriptor:
-    def __init__(self, a_func: FunctionType) -> None:
-        self.a_func: FunctionType = a_func
+    def __init__(self, a_func: Callable[[Any, str], None]) -> None:
+        self.a_func: Callable[[Any, str], None] = a_func
 
-    def __get__(self, obj: object, cls: type) -> FunctionType | MethodType:
+    def __get__(self, obj: Any, cls: type) -> Callable[[Any, str], None] | MethodType:
         """
         Returns the self.a_func function when called from the class, and the
         Returns the MethodType version of self.a_func if called from the instance.
         """
         if obj is None:
             return self.a_func
-        return MethodType(self.a_func, obj)
+        return MethodType(self.a_func, obj)  # Bounding the function to the passed instance
 
 
 class Person:
-    # A function if called from Person.
-    # A method if called from a Person instance.
-    say_somethig: CallableDescriptor = CallableDescriptor(say_hello)
+    # A function, if called from Person.
+    # A method, if called from a Person instance.
+    say_something: CallableDescriptor = CallableDescriptor(say_hello)
 
     def __init__(self, name: str) -> None:
         self.name: str = name
@@ -51,13 +52,13 @@ print(f"{type(p.__init__) = }")
 # type(p.__init__) = <class 'method'>
 
 # Analyzing the 'say_something' attribute, which is our CallableDescriptor descriptor:
-print(f"{type(Person.say_somethig) = }")
-# type(Person.say_somethig) = <class 'function'>
-print(f"{type(p.say_somethig) = }")
-# type(p.say_somethig) = <class 'method'>
+print(f"{type(Person.say_something) = }")
+# type(Person.say_something) = <class 'function'>
+print(f"{type(p.say_something) = }")
+# type(p.say_something) = <class 'method'>
 
 # Calling the function, passing the instance as the first argument:
-Person.say_somethig(p, "¡Buenos días!")
+Person.say_something(p, "¡Buenos días!")
 # Israel says '¡Buenos días!'
-p.say_somethig("Bonjour!")
+p.say_something("Bonjour!")
 # Israel says 'Bonjour!'

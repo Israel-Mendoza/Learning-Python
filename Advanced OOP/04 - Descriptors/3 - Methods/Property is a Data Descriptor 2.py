@@ -1,18 +1,18 @@
 from __future__ import annotations
-
-"""Simulating how the property class works"""
-
 from numbers import Integral
 from types import FunctionType
-from typing import Any, Callable, Optional
+from typing import Any, Callable
+
+
+"""Simulating how the property class works"""
 
 
 class Property:
     def __init__(
         self,
-        f_get: Optional[Callable[..., Any]] = None,
-        f_set: Optional[Callable[..., Any]] = None,
-        f_del: Optional[Callable[..., Any]] = None,
+        f_get: Callable[..., Any] | None = None,
+        f_set: Callable[..., Any] | None = None,
+        f_del: Callable[..., Any] | None = None,
     ) -> None:
         self.get = f_get
         self.set = f_set
@@ -56,14 +56,14 @@ class Property:
                 f"{obj.__class__.__name__} has not implemented a deleter for '{self.property_name}'"
             )
 
-    def setter(self, f_set: Optional[Callable[..., Any]] = None) -> Property:
+    def setter(self, f_set: Callable[..., Any] | None = None) -> Property:
         """Implements the self.set method to be called by the setter"""
         if isinstance(f_set, FunctionType):
             self.set = f_set
             self.property_name = f_set.__name__
         return self
 
-    def deleter(self, f_del: Optional[Callable[..., Any]] = None) -> Property:
+    def deleter(self, f_del: Callable[..., Any] | None = None) -> Property:
         """Implements the self.delete method to be called by the delete method"""
         if isinstance(f_del, FunctionType):
             self.delete = f_del
@@ -82,7 +82,7 @@ class Person:
 
     @name.setter
     def name(self, value: Any) -> None:
-        if isinstance(value, str) and len(value) > 1:
+        if isinstance(value, str) and len(value.strip()) > 1:
             setattr(self, "_name", value)
         else:
             raise ValueError("name must be a non-empty string")
@@ -96,7 +96,7 @@ class Person:
         return getattr(self, "_age")
 
     @age.setter
-    def age(self, value: int):
+    def age(self, value: int) -> None:
         if isinstance(value, Integral) and value > 0:
             setattr(self, "_age", value)
         else:
@@ -108,22 +108,21 @@ class Person:
 
 
 class Point:
-    def __init__(self, x: int):
-        self._x: int
+    def __init__(self, x: int) -> None:
         self.x = x
+
+    def __repr__(self) -> str:
+        return f"Point({self._x})"
 
     x = Property()
 
     @x.setter
-    def x(self, value: int):
+    def x(self, value: int) -> None:
         print("Calling the x setter!")
         if isinstance(value, Integral):
             setattr(self, "_x", value)
         else:
             raise ValueError("Point's x value must be a valid integer")
-
-    def __repr__(self):
-        return f"Point({self._x})"
 
 
 person = Person("Israel", 28)

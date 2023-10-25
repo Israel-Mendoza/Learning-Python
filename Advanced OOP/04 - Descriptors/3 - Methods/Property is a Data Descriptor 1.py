@@ -63,12 +63,12 @@ except ValueError as error:
 
 
 print(f"{Person2.age = }")
-# Person.age = <property object at 0x7f11fababea0>
+# Person2.age = <property object at 0x1043bbd80>
 print(f"{hasattr(Person2.age, '__get__') = }")
-# hasattr(Person.age, '__get__') = True
+# hasattr(Person2.age, '__get__') = True
 print(f"{hasattr(Person2.age, '__set__') = }")
-# hasattr(Person.age, '__set__') = True
+# hasattr(Person2.age, '__set__') = True
 print(f"{hasattr(Person2.age, '__del__') = }")
-# hasattr(Person.age, '__del__') = False
+# hasattr(Person2.age, '__del__') = False
 print(f"{hasattr(Person2.age, '__set_name__') = }")
-# hasattr(Person.age, '__set_name__') = False
+# hasattr(Person2.age, '__set_name__') = True

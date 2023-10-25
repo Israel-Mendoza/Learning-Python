@@ -1,17 +1,16 @@
 from __future__ import annotations
-
-"""Descriptors replicating class and static methods"""
-
-
 from typing import Any
 from types import FunctionType
+
+
+"""Descriptors replicating class and static methods"""
 
 
 class MyClassMethod:
     def __init__(self, a_func: FunctionType) -> None:
         self.wrapped_function: FunctionType = a_func
 
-    def __get__(self, instance: object, owner: type) -> Any:
+    def __get__(self, instance: Any, owner: type) -> Any:
         """
         Returns self.__call__ not before making sure
         we're setting self.owner as the actual class,
@@ -23,20 +22,20 @@ class MyClassMethod:
             self.owner: type = instance.__class__
         return self.__call__
 
-    def __call__(self, *args: Any, **kwds: Any) -> Any:
+    def __call__(self, *args: Any, **kwargs: Any) -> Any:
         """
         Runs the self.wrapped_function, passing self.owner
-        as the first argument, and then args and wkargs.
+        as the first argument, and then args and kwargs.
         Returns the result of the called function.
         """
-        return self.wrapped_function(self.owner, *args, **kwds)
+        return self.wrapped_function(self.owner, *args, **kwargs)
 
 
 class MyStaticMethod:
     def __init__(self, a_func: FunctionType) -> None:
         self.wrapped_function: FunctionType = a_func
 
-    def __get__(self, instance: object, owner: type) -> Any:
+    def __get__(self, instance: Any, owner: type) -> Any:
         """
         A static method doesn't care about the caller,
         that's why neither 'instance' nor 'owner' are used.
@@ -54,7 +53,7 @@ class MyStaticMethod:
 
 class Person:
     def __init__(self, name: str) -> None:
-        self.name = name
+        self.name: str = name
 
     @MyClassMethod
     def say_hello(cls, name, times):
@@ -65,7 +64,7 @@ class Person:
         return f"I just wanna say hi!"
 
 
-class Student(Person):
+class Student(Person):  # Inheriting from Person
     pass
 
 
