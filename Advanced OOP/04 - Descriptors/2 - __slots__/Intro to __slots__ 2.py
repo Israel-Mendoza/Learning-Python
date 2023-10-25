@@ -1,9 +1,11 @@
 from __future__ import annotations
+from utils.utility_functions import display_obj_namespace_with_class
 
-
-def display_obj_namespace(an_object: any) -> None:
-    for k, v in vars(an_object).items():
-        print(f"Class attribute '{k}': {v} ({type(v)})")
+"""
+    When we add "__dict__" to the slots in the class, 
+    we're allowing the instance to have a namespace and store
+    attributes not specified in the class' slots.
+"""
 
 
 class Person:
@@ -14,7 +16,7 @@ class Person:
         self.age: int = age
 
 
-display_obj_namespace(Person)
+display_obj_namespace_with_class(Person)
 # Class attribute '__module__': __main__ (<class 'str'>)
 # Class attribute '__slots__': ('name', '__dict__') (<class 'tuple'>)
 # Class attribute '__init__': <function Person.__init__ at 0x7f96ee02daf0> (<class 'function'>)
@@ -28,8 +30,9 @@ p = Person("Israel", 28)
 print(f"p's namespace: {vars(p)}")
 # p's namespace: {'age': 28}
 
-# Having a __dict__ won't prevent us from addinng new instance attributes:
+# Having a __dict__ won't prevent us from adding new instance attributes:
 p.email = "email@email.com"
 
+# We see the items in __dict__, except for the slotted "name"
 print(f"p's namespace: {vars(p)}")
 # p's namespace: {'age': 28, 'email': 'email@email.com'}

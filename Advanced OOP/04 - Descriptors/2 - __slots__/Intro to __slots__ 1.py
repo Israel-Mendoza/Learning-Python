@@ -1,4 +1,5 @@
 from __future__ import annotations
+from utils.utility_functions import display_obj_namespace_with_class
 
 """Slotted attributes are data descriptors in the class instance"""
 
@@ -9,19 +10,14 @@ from __future__ import annotations
 # This is an optimization technique primarily used to save space
 # when there will be MANY instances of a class.
 #
-# When we creating a class with slots, the slotted attributes
+# When we create a class with slots, the slotted attributes
 # will be special class attributes, which type is member_descriptor.
 # Being a data descriptor, these class attributes will  store the
 # corresponding instance's values accordingly.
 #
 # Because the instance won't be storing its values, __slots__ will
 # prevent the instance to have a namespace (no __dict__ attribute).
-# The class won't have __dict__ nor __weakref__ either.
-
-
-def display_obj_namespace(an_object: any) -> None:
-    for k, v in vars(an_object).items():
-        print(f"Class attribute '{k}': {v} ({type(v)})")
+# The class won't have neither __dict__ nor __weakref__ either.
 
 
 class Person:
@@ -44,7 +40,8 @@ class Person:
 
 p = Person("Israel", 28)
 
-display_obj_namespace(Person)
+
+display_obj_namespace_with_class(Person)
 # Class attribute '__module__': __main__ (<class 'str'>)
 # Class attribute '__slots__': ('_name', 'age') (<class 'tuple'>)
 # Class attribute '__init__': <function Person.__init__ at 0x7f5653f7bca0> (<class 'function'>)
@@ -67,7 +64,7 @@ print(f"{hasattr(Person.name, '__get__') = }")
 """Analyzing Person.age (slotted attribute)"""
 
 print(f"{type(Person.age)}: {Person.age}")
-# type(Person.age) = <class 'member_descriptor'>
+# <class 'member_descriptor'>: <member 'age' of 'Person' objects>
 
 # Slotted attributes are data descriptors.
 print(f"{hasattr(Person.age, '__set__') = }")

@@ -22,6 +22,11 @@ def print_obj_simple_namespace(an_obj: any) -> None:
     print(f"{an_obj.__dict__}\n")
 
 
+def display_obj_namespace_with_class(an_object: any) -> None:
+    for k, v in vars(an_object).items():
+        print(f"Class attribute '{k}': {v} ({type(v)})")
+
+
 def get_ref_count(address: int) -> int:
     """
     A simple function that returns the number of
