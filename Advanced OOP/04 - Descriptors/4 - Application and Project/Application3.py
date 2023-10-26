@@ -1,6 +1,7 @@
 from __future__ import annotations
-from _collections_abc import Sequence
-
+from collections.abc import Sequence
+from typing import Any
+#
 
 class Integer:
     """
@@ -10,24 +11,22 @@ class Integer:
     def __init__(self, min_value: int = None, max_value: int = None) -> None:
         """
         __init__ method.
-        Initializes the minimum and the maximum values an Integer
-        object can contain.
+        Initializes the minimum and the maximum values an Integer object may contain.
         """
         self.min_value: int = min_value
         self.max_value: int = max_value
 
     def __set_name__(self, cls: type, name: str) -> None:
         """
-        __set_name__ method saves the class attribute name in
-        the descriptor's instance namespace.
+        __set_name__ method saves the class attribute name in the descriptor's instance namespace.
         """
         self.name: str = name
 
-    def __set__(self, obj: object, value: int) -> None:
+    def __set__(self, obj: Any, value: int) -> None:
         """
-        Stores a valid integer between the ranges defined in
-        self.min and self.max in the obj's __dict__
-        Raises ValueError if the passed value doesn't meet this criteria.
+        Stores a valid integer in the obj's __dict__, if the number
+        is between the ranges defined in self.min and self. max
+        Raises ValueError if the passed value doesn't meet this condition.
         """
         if not isinstance(value, int):
             raise ValueError(f"'{self.name}' must be a valid integer")
@@ -38,10 +37,9 @@ class Integer:
         # Setting attribute using the instance's __dict__ (otherwise we fall into recursion)
         obj.__dict__[self.name] = value
 
-    def __get__(self, obj: object, cls: type) -> int | Integer:
+    def __get__(self, obj: Any, cls: type) -> int | Integer:
         """
-        Returns the value stored in the obj's __dict__
-        or None if this has not been set yet.
+        Returns the value stored in the obj's __dict__ or None if this has not been set yet.
         """
         if obj is None:
             return self
@@ -76,7 +74,7 @@ class Integer:
         return f"Integer(min_value={self.min_value}, max_value={self.max_value})"
 
     @staticmethod
-    def _valid_integer(a_number: object) -> int | None:
+    def _valid_integer(a_number: Any) -> int | None:
         """
         For descriptor's internal use only, used to validate passed values.
         Returns a valid int representation of the passed argument.
@@ -97,8 +95,8 @@ class Integer:
 
 
 class Point2D:
-    x: Integer = Integer(0, 100)
-    y: Integer = Integer(0, 100)
+    x = Integer(0, 100)
+    y = Integer(0, 100)
 
     def __init__(self, x: int, y: int) -> None:
         """
@@ -114,7 +112,7 @@ class Point2D:
         else:
             return NotImplemented
 
-    def __hash__(self):
+    def __hash__(self) -> int:
         return hash((self.x, self.y))
 
     def __repr__(self) -> str:
@@ -129,7 +127,7 @@ class Point2DSequence:
     def __set_name__(self, cls: type, name: str) -> None:
         self.name: str = name
 
-    def __set__(self, obj: object, value: int) -> None:
+    def __set__(self, obj: Any, value: int) -> None:
         if not isinstance(value, Sequence):
             raise TypeError(f"{self.name} must be a sequence type.")
         if self.min_length is not None and len(value) < self.min_length:
@@ -150,7 +148,7 @@ class Point2DSequence:
                 )
         obj.__dict__[self.name] = value
 
-    def __get__(self, obj: object, cls: type) -> Point2DSequence | int:
+    def __get__(self, obj: Any, cls: type) -> Point2DSequence | int | None:
         if obj is None:
             return self
         return obj.__dict__.get(self.name)
@@ -181,22 +179,22 @@ class Point2DSequence:
 
 
 class Polygon:
-    vertices: Point2DSequence = Point2DSequence(3)
+    vertices = Point2DSequence(3)
 
-    def __init__(self, *vertices):
+    def __init__(self, *vertices) -> None:
         self.vertices = list(vertices)
 
-    def __contains__(self, point):
+    def __contains__(self, point: Point2D) -> bool:
         return point in self.vertices
 
-    def __getitem__(self, index):
+    def __getitem__(self, index: int) -> tuple[..., Point2D]:
         if not isinstance(index, int):
             raise TypeError("Polygon indices must be integers")
         return self.vertices[index]
 
-    def append(self, point: Point2D):
+    def append(self, point: Point2D) -> None:
         if not isinstance(point, Point2D):
-            raise TypeError(f"appended vertice must be of type Point2D")
+            raise TypeError(f"appended vertex must be of type Point2D")
         if self.__class__.vertices.max_length is not None:
             if self.__class__.vertices.max_length > len(self.vertices):
                 self.vertices.append(point)
@@ -206,7 +204,7 @@ class Polygon:
                 )
         self.vertices.append(point)
 
-    def pop(self):
+    def pop(self) -> Point2D:
         if self.__class__.vertices.min_length is not None:
             if self.__class__.vertices.min_length < len(self.vertices):
                 return self.vertices.pop()
@@ -223,7 +221,7 @@ class Polygon:
             else:
                 return self.vertices.pop()
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         points = ", ".join([repr(point) for point in self.vertices])
         return f"Polygon({points})"
 
@@ -240,8 +238,9 @@ try:
     t = Triangle(Point2D(10, 0), Point2D(20, 0), Point2D(15, 20))
     t.append(Point2D(1, 1))
 except IndexError as ex:
-    print(ex)
+    print(type(ex))
 except ValueError as ex:
     print(ex)
 except TypeError as ex:
     print(ex)
+# Triangle can't accept any more points.
