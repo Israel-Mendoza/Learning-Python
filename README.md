@@ -1,8 +1,15 @@
-# Learning Python 🐍
+# Learning Python :snake:
 
-> This repository will hold most of the code I write while studying.
-> I will try to add all of my notes and output of the code as comments for future reference.
+> Repository containing examples, tasks, challenges and general code that gets written as I follow different Python courses online.
+## Main courses I'm following to populate this repository
+* [Python 3: Deep Dive (OOP) - Udemy](https://www.udemy.com/course/python-3-deep-dive-part-4/)
+* [Python 3: Deep Dive (Functional) - Udemy](https://www.udemy.com/course/python-3-deep-dive-part-1/)
+* [Python 3: Deep Dive (Iteration - Generators) - Udemy](https://www.udemy.com/course/python-3-deep-dive-part-2/)
+* [Python 3 Path - Pluralsight](https://www.pluralsight.com/paths/python-3)
+---
+The content in the Pluralsight directory will be more scarce,
+since I am only using that content to do some revision on what I have learned while going through the Udemy courses.
 
-The contents of the repository will be mainly advanced concepts, specially OOP and functional paradigms in Python.
-
-However, there may be other folders with specifics I may feel it's relevant to study, so there may be a lot of unrelated, random topics.
+The code contains way more comments than necessary.
+And this is because I tend to organize my repositories in such a way that the code is not only code, but also study material:
+I just want to **grab my iPad, open the GitHub application and start reading the repo** as if was *refresher material*.
