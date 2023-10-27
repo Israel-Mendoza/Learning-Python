@@ -1,4 +1,5 @@
 from __future__ import annotations
+from typing import override, Any
 
 
 class BaseValidator:
@@ -13,9 +14,9 @@ class BaseValidator:
         """
         __set_name__ method. Stores the descriptor's instance name.
         """
-        self.attr_name = attr_name
+        self.attr_name: str = attr_name
 
-    def __set__(self, obj: object, value: object) -> None:
+    def __set__(self, obj: Any, value: Any) -> None:
         """
         __set__ method. Stores the value in the passed object's __dict__
         only if the value is within the valid ranges defined at the
@@ -24,7 +25,7 @@ class BaseValidator:
         if self._validator(value):
             obj.__dict__[self.attr_name] = value
 
-    def __get__(self, obj: object, _: type) -> object:
+    def __get__(self, obj: Any, _: type) -> object:
         """
         __get__ method. Returns the value stored by the __set__ method in
         the object's __dict__. None if the __set__ has not been used.
@@ -34,17 +35,17 @@ class BaseValidator:
             return self
         return obj.__dict__.get(self.attr_name, None)
 
-    @staticmethod
-    def _init_validator(value_1: int, value_2: int):
+    def _validator(self, value: Any) -> bool:
         """
-        Validates the initial min and max values.
+        Validates that the passed value matches the min and max values.
         To be overriden by subclasses.
         """
         return True
 
-    def _validator(self, value) -> bool:
+    @staticmethod
+    def _init_validator(value_1: int, value_2: int):
         """
-        Validates that the passed value matches the min and max values.
+        Validates the initial min and max values.
         To be overriden by subclasses.
         """
         return True
@@ -57,6 +58,7 @@ class IntegerField(BaseValidator):
             isinstance(value_1, int) and isinstance(value_2, int) and value_1 <= value_2
         )
 
+    @override
     def _validator(self, value) -> bool:
         if not isinstance(value, int):
             raise ValueError(f"'{self.attr_name}' must be of type int")
@@ -71,12 +73,12 @@ class CharField(BaseValidator):
     @staticmethod
     def _init_validator(value_1: int, value_2: int) -> bool:
         return (
-            isinstance(value_1, int)
-            and isinstance(value_2, int)
-            and value_1 <= value_2
-            and value_1 > 0
+                isinstance(value_1, int)
+                and isinstance(value_2, int)
+                and value_2 >= value_1 > 0
         )
 
+    @override
     def _validator(self, value) -> bool:
         if not isinstance(value, str):
             raise ValueError(f"'{self.attr_name}' must be of type str")
@@ -95,7 +97,7 @@ class Person:
     age = IntegerField(12, 42)
     name = CharField(3, 25)
 
-    def __init__(self, name, age):
+    def __init__(self, name: str, age: int) -> None:
         self.name = name
         self.age = age
 

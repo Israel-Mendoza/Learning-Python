@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+from typing import Any
+
 
 class Integer:
 
@@ -22,7 +24,7 @@ class Integer:
         # write to and read from the instance's namespace.
         self.attr_name: str = attr_name
 
-    def __set__(self, instance: object, new_value: int) -> None:
+    def __set__(self, instance: Any, new_value: int) -> None:
         """
         Makes sure the value is an integer in between the previously set range.
         """
@@ -35,7 +37,7 @@ class Integer:
                 f"'{self.attr_name}' must be >= {self.min_value} and <= {self.max_value}"
             )
 
-    def __get__(self, instance: object, _: type) -> Integer | int:
+    def __get__(self, instance: Any, _: type) -> Integer | int:
         """
         Returns the Integer instance if called from a class.
         Returns a valid integer in between the ranges previously set,
@@ -68,7 +70,7 @@ class String:
         self.class_name: str = owner.__name__
         self.attr_name: str = attr_name
 
-    def __set__(self, instance: object, new_value: str) -> None:
+    def __set__(self, instance: Any, new_value: str) -> None:
         """
         Makes sure the value is an integer in between the previously set range.
         """
@@ -76,7 +78,7 @@ class String:
             isinstance(new_value, str)
             and self.min_length <= len(new_value.strip()) <= self.max_length
         ):
-            instance.__dict__[self.attr_name] = new_value.strip()
+            instance.__dict__[self.attr_name] = new_value.strip()  # Avoiding recursive calls
         else:
             raise ValueError(
                 f"'{self.attr_name}' must be a string between {self.min_length} and {self.max_length} characters long."
@@ -91,7 +93,7 @@ class String:
         """
         if instance is None:
             return self
-        value_to_return: str | None = instance.__dict__.get(self.attr_name, None)
+        value_to_return: str | None = instance.__dict__.get(self.attr_name, None)  # Avoiding recursive calls
         if value_to_return is None:
             raise AttributeError(f"'{self.attr_name}' has not been set yet.")
         return value_to_return
@@ -104,53 +106,45 @@ class String:
         Returns True if the previous conditions apply, otherwise returns False.
         """
         if isinstance(num_1, int) and isinstance(num_2, int):
-            return num_1 < num_2 and num_1 >= 0
+            return num_2 > num_1 >= 0
         return False
 
 
 try:
-
     class Person:
         name: String = String(-2, 10)
         age: Integer = Integer(18, 19)
-
 except ValueError as ex:
     print(ex)
 # String must be delimited by positive numbers, one smaller than the other.
 
 try:
-
     class Person:
         name: String = String(0, "10")
         age: Integer = Integer(18, 19)
-
 except ValueError as ex:
     print(ex)
 # String must be delimited by positive numbers, one smaller than the other.
 
 try:
-
     class Person:
         name: String = String(0, 10)
         age: Integer = Integer("18", 19)
-
 except ValueError as ex:
     print(ex)
 # String descriptor instance successfully created.
 # Integer limits are two ints, one smaller than the other
 
-try:
 
-    class Person:
-        name: String = String(2, 10)
-        age: Integer = Integer(18, 19)
+class Person:
+    name: String = String(2, 10)
+    age: Integer = Integer(18, 19)
 
-except ValueError as ex:
-    print(ex)
+
 # String descriptor instance successfully created.
 # Integer descriptor instance successfully created.
 
-p: Person = Person()
+p = Person()
 
 try:
     print(p.name)
