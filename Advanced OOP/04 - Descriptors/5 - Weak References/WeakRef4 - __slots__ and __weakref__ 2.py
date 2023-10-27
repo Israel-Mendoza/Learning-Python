@@ -1,14 +1,19 @@
+import weakref
+
 """Using __weakref__ and __slots__"""
 
-# Slots will store the instance attributes some-
-# where else than the usual __dict__ dictionary.
-# The specified attribute names will now live in
-# the class namespace.
-#
-# No __weakref__ and no __dict__ in the class and instance!
-
-
-import weakref
+"""
+    When using __slots__, where are the instance attributes stored?
+    
+    They will be stored somewhere else than the usual instance's __dict__ dictionary.
+    The specified attribute names will now live in the class namespace.
+    
+    When using __slots__, the instance won't have a namespace of its own. 
+    This means that the instance won't have a __dict__ dictionary. 
+    
+    But not only that! 
+    The instance won't have a __weakref__ attribute either!!! 
+"""
 
 
 class Location:
@@ -33,11 +38,11 @@ class Location:
         print(f"{self} can't speak!")
 
 
-location: Location = Location("My house", 101.33332, -92.33335)
+location = Location("My house", 101.33332, -92.33335)
 
 # Printing the Location class' namespace (no __dict__ and no __weakref__).
 # '_latitude', '_longitude' and 'name' are now class attributes!
-for k, v in Location.__dict__.items():
+for k, v in Location.__dict__.items():  # This is the actual class' namespace!!!
     if "__slots__" in dir(Location) and k in Location.__dict__["__slots__"]:
         print(f"Slotted instance attribute: '{k}': {type(v)}/{v}")
     else:

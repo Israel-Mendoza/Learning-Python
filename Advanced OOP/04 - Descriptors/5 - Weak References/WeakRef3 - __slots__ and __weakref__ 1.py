@@ -1,32 +1,32 @@
+import weakref
+
 """Using __weakref__ and __slots__"""
 
-
-# When we create a weak reference to an object,
-# the weak reference is also stored in the instance's
-# namespace under the attribute "__weakref__".
-#
-# If we're using __slots__ in the class, we must know that:
-#   1. Creating a weak reference to an object means the reference
-#      will be added to the original object's namespace under
-#      the __weakref__ attribute. This means that '__weakref__'
-#      must be included in __slots__, otherwise Python won't
-#      allow us to create the weak reference.
-
-
-import weakref
+"""
+    When we instantiate a weak reference that points to an object,
+    that weak reference instance will also be stored in the object's
+    namespace, under the "__weakref__" attribute.
+    
+    Think of this as if it was a "double reference". 
+    
+    If we want to use __slots__, we must make sure to include __weakref__
+    so the instance is able to store the weak references we create for it.
+    If we fail to do this, Python won't allow us to create weak references
+    to a slotted object.
+"""
 
 
 class Person:
     # We are not including '__weakref__' in __slots__
-    __slots__: tuple[str] = ("fname",)
+    __slots__: tuple[str] = "fname",
 
     def __init__(self, full_name: str) -> None:
         self.fname: str = full_name
 
 
-p1: Person = Person("Israel Mendoza")
+p1 = Person("Israel Mendoza")
 
-# What happens if we try to add an unslotted attribute?
+# What happens if we try to add an un-slotted attribute?
 try:
     p1.email_address = "im@email.com"
 except Exception as error:
@@ -47,7 +47,7 @@ except Exception as error:
 
 class Person:
     # Including '__weakref__' in __slots__
-    __slots__ = ("fname", "__weakref__")
+    __slots__ = "fname", "__weakref__"
 
     def __init__(self, full_name: str) -> None:
         self.fname: str = full_name
@@ -60,8 +60,10 @@ wr1: weakref.ref[Person] = weakref.ref(p1)
 wr2: weakref.ref[Person] = weakref.ref(p1)
 
 
-# Python doesn't create more than one
-# weak reference to the same object:ce
+"""We can only have ONE weak reference to a given object"""
+
+
+# Python doesn't create more than one weak reference to the same object:
 print(f"{wr1 = }")
 # wr1 = <weakref at 0x7ff622bceea0; to 'Person' at 0x7ff622bc9d00>
 print(f"{wr2 = }")
