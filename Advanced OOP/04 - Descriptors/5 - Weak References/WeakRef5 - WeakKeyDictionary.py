@@ -1,37 +1,32 @@
-"""WeakKeyDictionary in data descriptors"""
-
-# Using WeakKeyDictionary in a data descriptor to store
-# the instance as the key, and the value as the value.
-#
-# See file ../Descriptors9\ -\ Soring\ data\ 3.py
-#
-# The keys are only weak references.
-# Pros:
-#     The WeakKeyDictionary doesn't create a direct reference
-#     to the instance, which prevents memory leaks.
-#     Once the instance is destroyed, so is the weak reference key.
-# Cons:
-#     Instance must be hashable to be used as a key for the dictionary.
-
-
+from __future__ import annotations
 import ctypes
 import weakref
-from typing import Any, Optional
+from typing import Any
+from utils.utility_functions import get_ref_count
 
+"""WeakKeyDictionary in data descriptors"""
 
-def get_ref_count(address: int) -> int:
-    """
-    A simple function that returns the number or references to a
-    given object in memory, which address is the passed integer.
-    """
-    return ctypes.c_long.from_address(address).value
+"""
+    Using WeakKeyDictionary in a data descriptor to store
+    the instance as the key, and the value as the value.
+    
+    See file ../Descriptors9\ -\ Storing\ data\ 3.py
+    
+    The keys are only weak references.
+    Pros:
+        The WeakKeyDictionary doesn't create a direct reference
+        to the instance, which prevents memory leaks.
+        Once the instance is destroyed, so is the weak reference key.
+    Cons:
+        Instance must be hashable to be used as a key for the dictionary.
+"""
 
 
 class IntegerValue:
     def __init__(self) -> None:
         """
-        Initializing an empty WeakKeyDictionary intance
-        where the intances will be keys, and the values, the values.
+        Initializing an empty WeakKeyDictionary instance
+        where the instances will be keys, and the values, the values.
         Instances used as keys must be HASHABLE.
         """
         # Creating an empty WeakKeyDictionary to store
@@ -46,7 +41,7 @@ class IntegerValue:
         """
         self.values[instance] = value
 
-    def __get__(self, instance: Any, _: type) -> Optional[Any]:
+    def __get__(self, instance: Any, _: type) -> Any | None:
         """
         Returns the instance's corresponding value from the
         self.values WeakKeyReference dictionary.
@@ -60,7 +55,7 @@ class Point1D:
     x = IntegerValue()
 
     @classmethod
-    def show_x_descriptor(cls):
+    def show_x_descriptor(cls) -> None:
         """
         A class method that will print a dictionary version
         of the WeakRefDictionary in the x property,
@@ -77,18 +72,17 @@ class Point1D:
 # Creating a couple of Point1D instances and
 # storing their address information.
 p1 = Point1D()
-p1_address = id(p1)
-p1_hex_address = hex(p1_address).upper()
+p1_address: int = id(p1)
+p1_hex_address: str = hex(p1_address).upper()
 
 p2 = Point1D()
-p2_address = id(p2)
-p2_hex_address = hex(p2_address).upper()
+p2_address: int = id(p2)
+p2_hex_address: str = hex(p2_address).upper()
 
 print(f"{p1_hex_address = }")
 # p1_hex_address = '0X7F411FA983A0'
 print(f"{get_ref_count(p1_address) = }")
 # get_ref_count(p1_address) = 1
-print()
 
 # Calling the __set__ method of the x descriptor,
 # thus creating two entries in the weakdict instance.
@@ -96,7 +90,6 @@ p1.x = 10
 p2.x = 20
 print(f"{p1.x = }")
 # p1.x = 10
-print()
 
 print(f"{get_ref_count(p1_address) = }")
 # get_ref_count(p1_address) = 1
@@ -107,16 +100,12 @@ Point1D.show_x_descriptor()
 # Object at 0x7f411fA983A0 has a value of 10
 # Object at 0x7F411fAA0880 has a value of 20
 
-print()
-
 print(f"Deleting p1")
 del p1
-print()
 
 Point1D.show_x_descriptor()
 # Point1D.x's values:
 # Object at 0x7f411fAA0880 has a value of 20
-print()
 
 del p2
 Point1D.show_x_descriptor()
