@@ -1,30 +1,43 @@
 from __future__ import annotations
+import weakref
 
 """Working with the weakref.ref's __callback__ attribute"""
 
-# We've seen how the weakref.ref object helps us get hold of an object
-# in memory without creating a strong reference to it, allowing the 
-# garbage collector reclaim an object's memory when the last strong 
-# reference is destroyed.
-# 
-# When creating a weakref.ref object, we can also pass a callback function
-# when instantiating the reference. 
-# This callback function will be stored in the weakref.ref's __callback__
-# class attribute, and will be called automatically once the object the weakref
-# points to is destroyed. 
-
-import weakref
+"""
+    We've seen how the weakref.ref object helps us get hold of an object
+    in memory without creating a strong reference to it, allowing the 
+    garbage collector reclaim an object's memory when the last strong 
+    reference is destroyed.
+    
+    When creating a weakref.ref object, we can also pass a callback function
+    when instantiating the reference. This is optional, of course. 
+    When called, this callback function will be passed the weak reference
+    instance it is bound to.
+    
+    The callback function will be stored in the weakref.ref's __callback__
+    class attribute, and will be called automatically once the object the weakref
+    points to is destroyed.
+    
+    Remember!!! 
+        The instance will keep a copy of the actual weak reference we create for it.
+        An instance can have ONLY ONE weak reference attached to it. 
+        So, if we create a weak reference like this:
+        
+        w1 = weakref.ref(o1)
+        w1 == o1.__weakref__ <--- TRUE!
+"""
 
 
 class Person:
     
-    def __init__(self: Person, name: str) -> None:
+    def __init__(self, name: str) -> None:
         # The following line doesn't really create a __weakref__ attr.
+        # It's already there, as part of the instance's namespace
         # Remember where the weakrefs will be stored (in the instance's namespace):
-        self.__weakref__: weakref.ref[Person] 
+        self.__weakref__: weakref.ref[Person]  # Just showing where the weakref's will be stored.
         self.name: str = name
 
-    def __repr__(self: Person) -> str:
+    def __repr__(self) -> str:
         return f"Person('{self.name}') @ {hex(id(self)).upper()}"
 
 
@@ -52,8 +65,8 @@ print(f"{p2 = }")
 print(f"{p3 = }")
 # p3 = Person('Arturo') @ 0X7F6D30A374D0 <<< (same as p2)
 
-# Creating two weakreferences to the two Person objects in memory
-# and passing the previouly created callback to the initializer. 
+# Creating two weak references to the two Person instances in memory
+# and passing the previously created callback to the initializer.
 wk1 = weakref.ref(p1, my_callback)
 wk2 = weakref.ref(p2, my_callback)
 
@@ -75,7 +88,7 @@ print(f"{wk2.__callback__ = }")
 print(f"{wk1.__callback__ is my_callback = }")
 # wk1.__callback__ is my_callback = True
 
-# We can call the weak reference's callback from the real object.
+# We can call the weak reference's callback from the actual instance.
 # Remember that the weakref is stored in the instance's __weakref__ attribute:
 p1.__weakref__.__callback__(p1.__weakref__)
 # What a lovely callback. The passed weakref is '<weakref at 0x7f6d30a2d940; to 'Person' at 0x7f6d30a35850>'.
@@ -93,24 +106,24 @@ print(f"{wk1() = }")
 # wk1() = None
 
 # Deleting p2
-# Notice how the callback in wk2 is not called,
-# because p3 is mantaining the Person at 0X7F6936843C70 alive:
+# Notice how the callback in wk2 is not called, because
+# variable p3 is maintaining the Person at 0X7F6936843C70 alive:
 del p2
 
 # Checking the weak reference to the recently deleted p2.
 # Notice how wk2 is still pointing to the Person('Arturo') at 0X7F6936843C70, 
-# because p3 is mantaining that object alive:
+# because p3 is maintaining that object alive:
 print(f"{wk2 = }")
 # wk2 = <weakref at 0x7f6d30a4e390; to 'Person' at 0x7f6d30a374d0>
 print(f"{wk2() = }")
 # wk2() = Person('Arturo') @ 0X7F6D30A374D0
 
 # Deleting p3
-# Notice how the callback in wk2 is called this time,because we're 
+# Notice how the callback in wk2 is called this time, because we're
 # deleting the last strong reference to the Person at 0X7F6936843C70 object:
 del p3
 # What a lovely callback. The passed weakref is '<weakref at 0x7f6d30a4e390; dead>'.
 
-# Checking the weakreference to the recently deleted p3 (and p2) instance:
+# Checking the weak reference to the recently deleted p3 (and p2) instance:
 print(f"{wk2() = }")
 # wk2() = None
