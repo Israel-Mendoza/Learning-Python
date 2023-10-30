@@ -1,25 +1,25 @@
 from __future__ import annotations
-from typing import Callable
-
+from typing import Callable, Any
 
 """Using simple class decorators"""
 
-
-# Creating a couple of class decorators.
-# These decorators won't be doing anything else
-# but to monkeypatch the class by adding new
-# class attributes.
+"""
+    In this file, we will be creating class decorators.
+    
+    These decorators won't be doing anything special.
+    They will only monkeypatch the class by adding new class attributes
+    and extra methods.
+"""
 
 
 def savings(cls: type) -> type:
     """
     Class decorator. It adds a class attribute called 'account type'.
     Args:
-        cls [type] = A type called "Account"
+        cls [type] = A class
     Returns:
-        cls [type] = A decorated type called "Account"
+        cls [type] = A class with an extra class attribute, which value is "savings"
     """
-    
     cls.account_type = "savings"
     return cls
 
@@ -28,15 +28,15 @@ def checking(cls: type) -> type:
     """
     Class decorator. It adds a class attribute called 'account type'.
     Args:
-        cls [type] = A type called "Account"
+        cls [type] = A class
     Returns:
-        cls [type] = A decorated type called "Account"
+        cls [type] = A class with an extra class attribute, which value is "checking"
     """
     cls.account_type = "checking"
     return cls
 
 
-# Decorating classes with these class decorators
+"""Decorating classes with these class decorators"""
 
 
 # Base class
@@ -70,8 +70,7 @@ class BankChecking02(Account):
 ###############################
 
 
-# The "account_type" attribute was injected to the
-# classes by the decorators 'savings' and 'checking':
+# The "account_type" attribute was injected to the classes by the decorators 'savings' and 'checking':
 
 print(vars(BankSavings01))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
@@ -86,14 +85,20 @@ print(vars(BankChecking02))
 
 """Recreating the same as above, but using a parameterized decorator"""
 
-# Creating a parameterized class decorator
+"""
+    In the example below, we will be creating a decorator factory.
+    In other works, a function that returns a class decorator. 
+    
+    Decorator factories will allow us to pass parameters we can use 
+    to decorate the final classes. 
+"""
 
 
-def account_type(acc_type: str) -> Callable[[type], type]:
+def account_type(acc_type: str) -> Callable[[type[Account]], type[Account]]:
     """
     Decorator factory.
     Args:
-        acc_type [str] = A string value represending the account type.
+        acc_type [str] = A string value representing the account type.
     Returns:
         class_decorator [Callable[type], type] = A class decorator.
     """
@@ -134,8 +139,8 @@ class BankChecking2(Account):
 
 ##############################
 
-# The "account_type" attribute was injected to the
-# classes by the decorators 'savings' and 'checking':
+# The "account_type" attribute was injected to the classes by the decorators 'savings' and 'checking':
+
 print(vars(BankSavings1))
 # {'__module__': '__main__', '__doc__': None, 'account_type': 'savings'}
 print(vars(BankSavings2))
@@ -151,10 +156,10 @@ print(vars(BankChecking2))
 
 
 def adding_greeting(cls: type) -> type:
-    def _adding_greeting(self) -> str:
-        return f"{self} says hello!"
+    def _adding_greeting(self: Any) -> str:
+        return f"'{self}' says hello!"
 
-    cls.say_hello = _adding_greeting
+    cls.say_hello: Callable[[Any], str] = _adding_greeting
 
     return cls
 
