@@ -36,6 +36,9 @@ class IntegerValue:
         """
         self.values: dict[int, tuple[weakref.ref[Point1D], int]] = {}
 
+    def __set_name__(self, _: type, name: str) -> None:
+        self._attribute_name: str = name
+
     def __get__(self, instance: Point1D, _: type) -> int | IntegerValue:
         """
         Returns the descriptor instance if called from a class.
@@ -44,8 +47,11 @@ class IntegerValue:
         if instance is None:
             return self
         # Returning the value assigned to the instance.
-        address: int = id(instance)
-        return self.values[address][1]  # Second element in the value tuple
+        address: int = id(instance)  # This should be the key we'll use to query the self.values dictionary
+        result = self.values.get(address)  # Getting the value from the self.values dictionary
+        if result:  # If the result exists (if it is not None)
+            return result[1]  # Second element in the value tuple
+        raise AttributeError(f"'{instance}' does not have attribute '{self._attribute_name}'...")
 
     def __set__(self, instance: Point1D, value: int) -> None:
         """
