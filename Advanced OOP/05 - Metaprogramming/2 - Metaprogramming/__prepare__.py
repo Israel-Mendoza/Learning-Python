@@ -1,3 +1,5 @@
+from typing import Any, Dict, Tuple, Type
+
 """The class dictionary gets created somewhere, right?"""
 
 
@@ -9,9 +11,6 @@
 # Once the dictionary is returned by the __prepare__ method,            #
 # Python injects whatever is necessary (module, qualname, namespace)    #
 #########################################################################
-
-
-from typing import Any, Dict, Tuple, Type
 
 
 # Confirming that the __prepare__ only returns a dict:
