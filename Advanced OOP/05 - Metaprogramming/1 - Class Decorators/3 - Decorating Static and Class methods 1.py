@@ -1,17 +1,29 @@
-"""Caveats of using class decorators to decorate static and class methods"""
-
-
 from functools import wraps
 from typing import Any, Callable
+
+
+"""Caveats of using class decorators to decorate static and class methods"""
+
+"""
+    Static methods used to be descriptors, not callables. 
+    This changed in Python 3.10
+    
+    Before Python 3.10, trying to decorate a static method would be in vain.
+    Line 33 would not see a static method as callable. 
+    
+    But since Python 3.10, line 33 would return True and the static method would
+    be decorated, since static methods are now callable. 
+"""
+
 
 AnyCallable = Callable[..., Any]
 
 
 def function_logger(fn: AnyCallable) -> AnyCallable:
     """A function decorator"""
-    @wraps(fn)
+    @wraps(fn)  # Using wraps to keep the function's annotations/docs. Don't overthink about it
     def inner(*args: Any, **kwargs: Any) -> Any:
-        result = fn(*args, **kwargs)
+        result: Any = fn(*args, **kwargs)
         print(f"\nFunction called: {fn.__qualname__}({args}, {kwargs})")
         print(f"Returned value: {result}\n")
         return result
@@ -20,10 +32,7 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
 
 
 def logger_to_class_callables(cls: type) -> type:
-    """
-    A class decorator that will take the 'function_logger' function 
-    decorator and will decorate all callables in that function with it.
-    """
+    """A class decorator that will decorate all callables in the class with the function_logger."""
     for attr_name, attr_value in vars(cls).items():
         if callable(attr_value):
             print(f"Decorating {cls.__name__}.{attr_name} with function_logger")
@@ -35,8 +44,8 @@ def logger_to_class_callables(cls: type) -> type:
 @logger_to_class_callables
 class Person1:
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: int = age
 
     def instance_method(self) -> None:
         print(f"{self} instance says hello!")
@@ -47,7 +56,7 @@ class Person1:
 
     @classmethod
     def class_method(cls) -> None:
-        print(f"{cls.__name__} says hello!")
+        print(f"The {cls.__name__} class says hello!")
 
 
 # Output:
@@ -60,8 +69,11 @@ p1 = Person1("Israel", 28)
 # Function called: Person1.__init__((<__main__.Person object at 0x0000027CC63A36A0>, 'Israel', 28), {})
 # Returned value: None
 
-p1.static_method()
-# static_method called!
+try:
+    p1.static_method()
+except TypeError as err:
+    print(f"{type(err).__name__}: {err}")
+# TypeError: Person1.static_method() takes 0 positional arguments but 1 was given
 p1.class_method()
 # Person says hello!
 
