@@ -1,8 +1,17 @@
-"""Implementing class decorator that will also decorate properties, and class and static methods"""
-
-
 from functools import wraps
 from typing import Any, Callable
+
+"""Implementing class decorator that will also decorate properties, and class and static methods"""
+
+"""
+    In this example, we'll make the class decorator to decorate properties, class and static methods. 
+    
+    Let's remember that these special objects keep a copy of the original function under the __func__
+    attribute. Properties keep these functions under the fget, fset, and fdel attributes. 
+    
+    We'll pull out this attribute, we'll wrap it with the function decorator, then wrap it again
+    with the original class (property, class method, or static method). 
+"""
 
 AnyCallable = Callable[..., Any]
 FunctionDecorator = Callable[[AnyCallable], AnyCallable]
@@ -13,7 +22,7 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
     def inner(*args: Any, **kwargs: Any) -> Any:
         # Runs the wrapped function first!
         # Then runs the logging print functions.
-        result = fn(*args, **kwargs)
+        result: Any = fn(*args, **kwargs)
         print(f"\nFunction called: {fn.__qualname__}({args}, {kwargs})")
         print(f"Returned value: {result}\n")
         return result
@@ -41,15 +50,15 @@ def class_decorator(wrapper_func: FunctionDecorator) -> Callable[[type], type]:
                 # then makes a class method out of the decorated function,
                 # and reassigns the class method to the original symbol.
                 print(f"Decorating the class method {attr_name}.")
-                new_classmethod: classmethod = classmethod(wrapper_func(value.__func__))
-                setattr(cls, name, new_classmethod)
+                new_class_method = classmethod(wrapper_func(value.__func__))
+                setattr(cls, name, new_class_method)
             elif isinstance(value, staticmethod):
                 # Attribute is a static method. Retrieves the function
                 # the class method wraps, wraps it with the wrapper_function,
                 # then makes a static  method out of the decorated function,
                 # and reassigns the static method to the original symbol.
                 print(f"Decorating the static method {attr_name}.")
-                new_static: staticmethod = staticmethod(wrapper_func(value.__func__))
+                new_static = staticmethod(wrapper_func(value.__func__))
                 setattr(cls, name, new_static)
             elif isinstance(value, property):
                 # Attribute is a property object.
@@ -59,6 +68,7 @@ def class_decorator(wrapper_func: FunctionDecorator) -> Callable[[type], type]:
                 # it back to the property's attribute.
                 # Finally, it'll assign the updated property to the original
                 # symbol.
+                _value: property | None = None
                 if value.fget:
                     print(f"Decorating the property {attr_name}'s fget method.")
                     _value: property = value.getter(wrapper_func(value.fget))
@@ -78,7 +88,7 @@ def class_decorator(wrapper_func: FunctionDecorator) -> Callable[[type], type]:
 @class_decorator(function_logger)
 class Person:
     def __init__(self, name: str) -> None:
-        self._name = name
+        self._name: str = name
 
     @property
     def name(self) -> str:
@@ -101,12 +111,12 @@ class Person:
 
     # If implemented, the program will fall into a recursive loop
     # because the wrapper function (from function_logger), will
-    # print the passed arguments to __init__, with in its turn
+    # print the arguments we passed to __init__, with in its turn
     # will call __repr__ on the passed instance, which will cause
     # the wrapper function to be called with __repr__ again and again:
     #
     # def __repr__(self) -> str:
-    #     f"Person('{self._name}')"
+    #     return f"Person('{self._name}')"
 
 
 # Output:

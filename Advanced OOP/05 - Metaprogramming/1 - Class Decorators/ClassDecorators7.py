@@ -1,12 +1,22 @@
+from functools import wraps
+from inspect import isroutine
+from typing import Any, Callable, Optional
+
+
 """Caveats of decorating any callable in a class"""
 
 
-from functools import wraps
-from inspect import isroutine
-from typing import Any, Callable, Optional, TypeVar
+"""
+    Now that we know that it is "routines" what we need to decorate, 
+    we'll tweak our parameterized class decorator to decorate the following:
+    
+    1. Class methods
+    2. Static methods
+    3. Properties
+    4. Routines (we'll use the isroutine function from the inspect module to identify these instances)
+"""
 
 
-T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 
 
@@ -24,8 +34,8 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
 
 # Class decorator that will decorate callables, properties, class and static
 # methods in the decorated class using the function_logger decorator.
-def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
-    def _func_decorator(cls: T) -> T:
+def class_decorator(wrapper_function: AnyCallable) -> Callable[[type], type]:
+    def _func_decorator(cls: type) -> type:
         for name, value in vars(cls).items():
             if isinstance(value, classmethod) or isinstance(value, staticmethod):
                 print(f"Decorating the '{name}' {type(value).__name__}")
@@ -40,7 +50,7 @@ def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
                         print(f"Decorating the '{name}' property {k} function!")
                         value = getattr(value, v)(wrapper_function(func))
                     setattr(cls, name, value)
-            elif isroutine(value):
+            elif isroutine(value):  # Decorating routines, not any callable!
                 print(f"Decorating the '{name}' instance method!")
                 setattr(cls, name, wrapper_function(value))
 
@@ -92,3 +102,6 @@ class MyClass:
 # Decorating the 'class_method' classmethod
 # Decorating the 'static_method' staticmethod
 # Decorating the '__add__' instance method!
+
+# Notice how we're decorating neither the MyClass.Other class,
+# nor the other_instance instance, even thought these are callables.

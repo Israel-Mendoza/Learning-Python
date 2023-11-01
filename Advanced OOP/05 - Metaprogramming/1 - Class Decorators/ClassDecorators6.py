@@ -1,7 +1,13 @@
+import inspect
+from types import FunctionType
+
+
 """Inspecting a class members to know what we need to decorate!"""
 
-
-import inspect
+"""
+    The inspect module provides us with functions that will detect the type of some "callables".
+    We'll use these functions to detect what is the actual type of callables we want to decorate. 
+"""
 
 
 class MyClass:
@@ -31,11 +37,11 @@ class MyClass:
         if isinstance(other, MyClass):
             return f"{self.name} + {other.name}"
 
-    class Other:
+    class Other:  # Other class is callable itself
         def __call__(self):
             print("Other instance called!")
 
-    other_instance = Other()
+    other_instance = Other()  # Callable Other instance
 
 
 # Attributes to analyse
@@ -59,8 +65,9 @@ inspect_funcs = (
     "ismethoddescriptor",
 )
 
-max_header = max(len(key) for key in keys)
-max_funcs_len = max(len(func) for func in inspect_funcs)
+# Grabbing the longest word in each tuple (keys and inspect_funcs) for formatting only.
+max_header: int = max(len(key) for key in keys)
+max_funcs_len: int = max(len(func) for func in inspect_funcs)
 
 # Printing header
 print(
@@ -70,11 +77,17 @@ print(
 
 # Inspecting each key with each function in inspect
 for inspect_func in inspect_funcs:
-    fn = getattr(inspect, inspect_func)
+    fn: FunctionType = getattr(inspect, inspect_func)
     inspect_results = (
         format(str(fn(MyClass.__dict__[key])), f"{max_header}s") for key in keys
     )
     print(format(inspect_func, f"{max_funcs_len}s"), "\t".join(inspect_results))
+#                    __init__    name    instance_method	class_method   	static_method  	__add__   Other   other_instance
+# isroutine          True        False   True           	True           	True           	True      False   False
+# ismethod           False       False   False          	False          	False          	False     False   False
+# isfunction         True        False   True           	False          	False          	True      False   False
+# isbuiltin          False       False   False          	False          	False          	False     False   False
+# ismethoddescriptor False       False   False          	True           	True           	False     False   False
 
 
 # WHAT WE WANT TO DECORATE ARE ROUTINES!!!

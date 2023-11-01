@@ -8,11 +8,12 @@ T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 FunctionDecorator = Callable[[AnyCallable], AnyCallable]
 
+
 # Simple logger function to decorate functions
 def function_logger(fn: AnyCallable) -> AnyCallable:
     @wraps(fn)
     def inner(*args: Any, **kwargs: Any) -> Any:
-        result = fn(*args, **kwargs)
+        result: Any = fn(*args, **kwargs)
         print(f"\nFunction called: {fn.__qualname__}({args}, {kwargs})")
         print(f"Returned value: {result}\n")
         return result
@@ -54,8 +55,8 @@ def class_decorator(wrapper_function: AnyCallable) -> Callable[[type], type]:
 
 @class_decorator(function_logger)
 class Person:
-    # ACallable class is a callable.
-    # It will be decorated!
+    # MyClass inner class is a callable. It will be decorated!
+    # (Classes are callable, otherwise we wouldn't be able to instantiate them)
     class MyClass:
         def __init__(self, callable_name: str) -> None:
             self._name = callable_name
@@ -63,7 +64,7 @@ class Person:
         def __call__(self) -> None:
             print(f"{self._name} says hello!")
 
-    # a_callable is callable! It will get decorated
+    # an_object is callable! It will get decorated
     an_object = MyClass("Pancho")
 
     def __init__(self, name: str) -> None:
@@ -71,8 +72,8 @@ class Person:
 
 
 # Output:
-# 'ACallable' is a callable... Decorating it!
-# 'a_callable' is a callable... Decorating it!
+# 'Person.MyClass' is a callable... Decorating it!
+# 'Person.an_object' is a callable... Decorating it!
 # '__init__' is a callable... Decorating it!
 
 
