@@ -1,10 +1,18 @@
-"""Caveats of decorating any callable in a class"""
-
 from __future__ import annotations
 from functools import wraps
-from typing import Any, Callable, TypeVar
+from typing import Any, Callable
 
-T = TypeVar("T")
+
+"""Caveats of decorating any callable in a class"""
+
+"""
+    When decorating just any callable in a class, 
+    we may be decorating objects we're not intending to. 
+    Like inner classes and instances of those inner class,
+    as shown in this example. 
+"""
+
+
 AnyCallable = Callable[..., Any]
 FunctionDecorator = Callable[[AnyCallable], AnyCallable]
 
