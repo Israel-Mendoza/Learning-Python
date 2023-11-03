@@ -43,7 +43,11 @@ p1 = Point(10, 10)
 # __init__ called! Initializing instance...
 
 
-"""__new__ in inheritance"""
+"""
+    __new__ in inheritance
+
+    Let's inherit from a built-in type and override the __new__ method.
+"""
 
 
 class Squared(int):
@@ -55,7 +59,10 @@ class Squared(int):
         # int.__init__ doesn't take arguments. The instance creation is
         # delegated to the __new__ method.
 
-        # Similar as writing: new_instance = int(x ** 2)
+        # The instance creation of a "Squared" object will be
+        # similar as writing: new_instance = int(3 ** 2)
+        # but passing only the expression we want:
+        # new_instance = Squared(3)
         new_instance: Squared = super().__new__(cls, x ** 2)
         return new_instance
 
@@ -76,7 +83,7 @@ print(isinstance(my_num1, int))  # True (Squared inherits from int)
 class Person:
     def __new__(cls, name: str) -> Person:
         print(f"Creating a {cls.__name__} instance...")
-        # Using object to create the instance.
+        # Using object to create the instance (not recommended, though)
         instance: Person = object.__new__(cls)
         print(f"Person instance created at address {hex(id(instance)).upper()}")
         return instance
@@ -89,7 +96,7 @@ class Person:
 class Student(Person):
     def __new__(cls, name: str, major: str) -> Student:
         print(f"Creating a {cls.__name__} instance...")
-        # Using object to create the instance again
+        # Using object to create the instance again (not recommended, though)
         instance: Student = object.__new__(cls)
         print(f"Student instance created at address {hex(id(instance)).upper()}")
         return instance
@@ -132,7 +139,8 @@ s1 = Student("Israel", "Music")
 class Student(Person):
     def __new__(cls, name: str, major: str) -> Student:
         print(f"Creating a {cls.__name__} instance...")
-        # Using object to create the instance again
+        # This time, I'm doing what needs to be done:
+        # use the super().__new__ method to instantiate the object
         instance: Student = super().__new__(cls, name)
         print(f"Student instance created at address {hex(id(instance)).upper()}")
         return instance
