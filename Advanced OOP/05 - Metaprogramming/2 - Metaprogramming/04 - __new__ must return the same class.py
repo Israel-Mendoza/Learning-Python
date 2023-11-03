@@ -23,6 +23,6 @@ print(f"{p1}: {type(p1)}")
 # Israel: <class 'str'>
 
 p1.__init__("Arturo")
-# No output because __init__ is taken from the str class, not Person
+# No output because __init__ is taken from the str class, not Person!!!
 print(p1)
 # Israel (No changes because a str object is initialized using __new__, not __init__)
