@@ -1,22 +1,19 @@
-"""Let's learn about class creation"""
-
-
 from math import pi
-from typing import Union
+
+"""Let's learn about class creation"""
 
 
 # Declaring a simple class
 class Circle:
-    def __init__(self, radius: Union[int, float]) -> None:
+    def __init__(self, radius: int | float) -> None:
         self.radius = radius
 
-    def area(self):
+    def area(self) -> float:
         return pi * self.radius ** 2
 
 
-# Circle is a symbol in this module
-# globals() -> dict[str, Any] containing
-# the current scope's global variables
+# Circle is a symbol in this module.
+# globals() is a dict[str, Any] containing the current scope's global variables
 print("Circle" in globals())
 # True
 

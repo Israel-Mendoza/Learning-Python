@@ -1,3 +1,7 @@
+from __future__ import annotations
+from typing import Any
+from math import pi
+
 """
 What does Python do when we declare a new class?
     1. The class body code is extracted.
@@ -10,9 +14,6 @@ What does Python do when we declare a new class?
        and the recently populated dictionary.
 """
 
-from typing import Union
-from math import pi
-
 ###################################################
 # How to run code in a given namespace dictionary #
 ###################################################
@@ -23,8 +24,8 @@ from math import pi
 # a given namespace, filling out the namespace dictionary.
 
 # Empty namespace dictionary
-namespace1 = {}
-namespace2 = {}
+namespace1: dict[str, Any] = {}
+namespace2: dict[str, Any] = {}
 
 # Executing code into the namespace1 dictionary
 exec(
@@ -67,7 +68,7 @@ print(namespace2)
 # 'sub': <function sub at 0x00000293DB103160>
 # }
 
-# All of the run code was encapsulated into its own namespace,
+# All the run code was encapsulated into its own namespace,
 # and it does not exist in the global scope:
 print("a" in globals())  # False
 print("b" in globals())  # False
@@ -87,18 +88,19 @@ print("sub" in globals())  # False
 """Creating the contents of our new class"""
 
 
-class_name = "Circle"
-class_bases = ()  # object will be inferred
-class_namespace = {}  # namespace to be populated
-class_body = """
-def __init__(self, radius: Union[int, float]) -> None:
+class_name: str = "Circle"
+class_bases: tuple = ()  # A tuple containing the classes we'll inherit from. "object" will be inferred
+class_namespace: dict[str, Any] = {}  # namespace to be populated
+class_body: str = """
+def __init__(self, radius: int | float) -> None:
         self.radius = radius
 
-def area(self):
+def area(self) -> float:
     return pi * self.radius ** 2
 """
 # Populating the new class namespace
 exec(class_body, globals(), class_namespace)
+
 # Confirming the namespace is populated now
 print(class_namespace)
 # {
@@ -108,19 +110,19 @@ print(class_namespace)
 
 """CREATING OUR OWN CLASS USING THE TYPE CLASS"""
 
-
-#########################################################################
-# When creating a new class using "type", type, being a type instance,  #
-# calls its __prepare__ static method to get the initial namespace      #
-# dictionary, which will then be populated with the code of the class   #
-# before being passed to the type.__call__ method.                      #
-# The type.__call__ implements two calls:                               #
-#   1. type.__new__                                                     #
-#   2. type.__init__                                                    #
-# The type.__call__ method will then return the recently created type   #
-# returned by the type.__new__ method.                                  #
-#########################################################################
-
+"""
+    When creating a new class using "type", type, being a type instance,  
+    calls its __prepare__ static method to get the initial namespace      
+    dictionary, which will then be populated with the code of the class   
+    before being passed to the type.__call__ method. 
+                         
+    The type.__call__ implements two calls:                               
+        1. type.__new__                                                     
+        2. type.__init__        
+                                                    
+    The type.__call__ method will then return the recently created type 
+    returned by the type.__new__ method.                                 
+"""
 
 Circle = type(class_name, class_bases, class_namespace)
 
@@ -132,13 +134,13 @@ help(Circle)
 # Help on class Circle in module __main__:
 
 # class Circle(builtins.object)
-#  |  Circle(radius: Union[int, float]) -> None
+#  |  Circle(radius: int | float) -> None
 #  |
 #  |  Methods defined here:
 #  |
 #  |  __init__(self, radius: Union[int, float]) -> None
 #  |
-#  |  area(self)
+#  |  area(self) -> float
 #  |
 #  |  ----------------------------------------------------------------------
 #  |  Data descriptors defined here:
