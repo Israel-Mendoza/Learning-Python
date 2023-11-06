@@ -1,17 +1,17 @@
+from __future__ import annotations
 from functools import wraps
 from inspect import isroutine
 from typing import Any, Callable, Dict, Tuple, TypeVar
 
-
-T = TypeVar("T")
 AnyCallable = Callable[..., Any]
 
 
 # Simple logger function to decorate functions
 def function_logger(fn: AnyCallable) -> AnyCallable:
+    """A simple function decorator, that logs the wrapped function's calls"""
     @wraps(fn)
     def inner(*args: Any, **kwargs: Any) -> Any:
-        result = fn(*args, **kwargs)
+        result: Any = fn(*args, **kwargs)
         print(f"\nFunction called: {fn.__qualname__}({args}, {kwargs})")
         print(f"Returned value: {result}\n")
         return result
@@ -19,13 +19,20 @@ def function_logger(fn: AnyCallable) -> AnyCallable:
     return inner
 
 
+###############################################################################
+###############################################################################
+
+
 """USING CLASS DECORATORS"""
 
 
-# Class decorator that will decorate callables, properties, class and static
-# methods in the decorated class using the function_logger decorator.
-def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
-    def _func_decorator(cls: T) -> T:
+def class_decorator(wrapper_function: AnyCallable) -> Callable[[type], type]:
+    """
+    Class decorator factory.
+    It will use the passed function decorator to decorate callables,
+    properties, class and static methods in the decorated class.
+    """
+    def _func_decorator(cls: type) -> type:
         for name, value in vars(cls).items():
             if isroutine(value):
                 print(f"Decorating the '{name}' instance method!")
@@ -38,8 +45,8 @@ def class_decorator(wrapper_function: AnyCallable) -> Callable[[T], T]:
 @class_decorator(function_logger)
 class Person1:
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: int = age
 
     def greet(self) -> None:
         print(f"{self.name} says hello!")
@@ -64,25 +71,24 @@ p1.greet()
 
 
 class LoggerType(type):
-    def __new__(
-        cls, name: str, bases: Tuple[type, ...], namespace: Dict[str, Any]
-    ) -> T:
-        new_namespace = {}
+    """A metaclass"""
+    def __new__(cls, name: str, bases: tuple[type, ...], namespace: dict[str, Any]) -> LoggerType:
+        new_namespace: dict[str, Any] = {}  # A namespace with decorated callables. To be populated.
         for k, v in namespace.items():
             if callable(v):
                 print(f"Decorating the '{k}' instance method!")
-                v = function_logger(v)
+                v = function_logger(v)  # Function wrapper is hardcoded.
                 new_namespace[k] = v
             else:
                 new_namespace[k] = v
-        new_class = super().__new__(cls, name, bases, new_namespace)
+        new_class: LoggerType = super().__new__(cls, name, bases, new_namespace)
         return new_class
 
 
 class Person2(metaclass=LoggerType):
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: int = age
 
     def greet(self) -> None:
         print(f"{self.name} says hello!")
@@ -103,24 +109,21 @@ p1.greet()
 # Returned value: None
 
 
-"""WORKING WITH INHERITANCE"""
+"""WORKING WITH INHERITANCE AND DECORATED CLASSES"""
 
 #####################################################################################
 # When inheriting from a class that was decorated, the subclass won't be decorated. #
-# We will only see the decoration when calling super() methods.                     #
-# With metaclasses, the subclass will also be created using the same metaclass      #
-# as the parent class, meaning that, if there was any tweaking at class creation,   #
-# the subclass will also be created the same way. THE METACLASS IS ALSO INHERITED!  #
-# The problem may be multiple inheritance!                                          #
+# We will only see the decoration when we call super() methods directly or by call- #
+# ing inherited method in a subclass.                                               #
 #####################################################################################
 
 
-class Student1(Person1):
+class Student1(Person1):  # Person1 was decorated using a parameterized class decorator
     def __init__(self, name: str, age: int, student_id: int) -> None:
-        super().__init__(name, age)
-        self.student_id = student_id
+        super().__init__(name, age)  # Calling the method in super() will call a decorated function.
+        self.student_id: int = student_id
 
-    def study(self):
+    def study(self) -> None:
         print(f"{self.name} is studying now!")
 
 
@@ -129,19 +132,25 @@ s1 = Student1("Israel", 28, 28292000)
 # Function called: Person1.__init__((<__main__.Student1 object at 0x000002D6D655C610>, 'Israel', 28), {})
 # Returned value: None
 
-s1.greet()
+s1.greet()  # This method was inherited
 # Israel says hello!
 # Function called: Person1.greet((<__main__.Student1 object at 0x000002E2D0A8B6D0>,), {})
 # Returned value: None
 
-s1.study()
+s1.study()  # This method was not inherited. So, it was not decorated.
 # Israel is studying now!
 
 
-print("\n\nWORKING WITH INHERITANCE - 2\n\n")
+"""WORKING WITH INHERITANCE AND CLASSES CREATED WITH A METACLASS"""
+
+#####################################################################################
+# With metaclasses, the subclass will also be created using the same metaclass      #
+# as the parent class, meaning that, if there was any tweaking at class creation,   #
+# the subclass will also be created the same way. THE METACLASS IS ALSO INHERITED!  #
+#####################################################################################
 
 
-class Student2(Person2):
+class Student2(Person2):  # Person2 was created with a metaclass, which decorated all callables upon class creation
     def __init__(self, name: str, age: int, student_id: int) -> None:
         super().__init__(name, age)
         self.student_id = student_id

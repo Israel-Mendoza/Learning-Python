@@ -1,9 +1,22 @@
-"""Using metaclass parameters"""
-
-
+from __future__ import annotations
 from functools import wraps
 from inspect import isroutine
-from typing import Any, Callable, Dict, Tuple
+from typing import Any, Callable
+
+
+"""Using metaclass parameters"""
+
+"""
+    In this example, we'll create a metaclass.
+    The metaclass will be in charge of tweaking the class creation
+    by decorating all the routines in the class without having 
+    to hardcode the function decorator. 
+    
+    We'll learn how to pass arguments to the metaclass, to help
+    us tweaking the class we create with it. 
+    
+    We pass extra arguments to a metaclass by using keyword-only arguments.
+"""
 
 
 AnyCallable = Callable[..., Any]
@@ -25,17 +38,16 @@ class LoggerType(type):
     def __new__(
         cls,
         name: str,
-        bases: Tuple[Any, ...],
-        namespace: Dict[str, Any],
-        decorator: Callable[[AnyCallable], AnyCallable],
-    ) -> type:
+        bases: tuple[Any, ...],
+        namespace: dict[str, Any],
+        decorator: Callable[[AnyCallable], AnyCallable],  # The metaclass will accept an extra argument
+    ) -> LoggerType:
+        new_attr_value: property
         for attr_name, attr_value in namespace.items():
-            if isinstance(attr_value, staticmethod) or isinstance(
-                attr_value, classmethod
-            ):
+            if isinstance(attr_value, staticmethod) or isinstance(attr_value, classmethod):
                 print(f"Decorating {attr_name} {type(attr_value).__name__} method!")
-                func_descriptor = type(attr_value)
-                new_method = func_descriptor(decorator(attr_value.__func__))
+                func_descriptor: staticmethod | classmethod = type(attr_value)
+                new_method: staticmethod | classmethod = func_descriptor(decorator(attr_value.__func__))
                 namespace[attr_name] = new_method
             elif isinstance(attr_value, property):
                 property_methods = {
@@ -43,26 +55,25 @@ class LoggerType(type):
                     "fset": "setter",
                     "fdel": "deleter",
                 }
+                new_attr_value: property = property()
                 for prop_attr, prop_method in property_methods.items():
                     if original_function := getattr(attr_value, prop_attr):
-                        print(
-                            f"Decorating the {attr_name} property{prop_attr} function"
-                        )
-                        decorated = decorator(original_function)
-                        attr_value = getattr(attr_value, prop_method)(decorated)
-                namespace[attr_name] = attr_value
+                        print(f"Decorating the {attr_name} property{prop_attr} function")
+                        decorated: AnyCallable = decorator(original_function)
+                        new_attr_value: property = getattr(attr_value, prop_method)(decorated)
+                namespace[attr_name] = new_attr_value
             elif isroutine(attr_value):
                 print(f"Decorating {attr_name} instance method!")
                 namespace[attr_name] = decorator(attr_value)
 
-        new_type = super().__new__(cls, name, bases, namespace)
+        new_type: LoggerType = super().__new__(cls, name, bases, namespace)
         return new_type
 
 
-# The extra parameters are passed as keyword-only arguments
+# The extra parameters are passed as keyword-only arguments:
 class Person(metaclass=LoggerType, decorator=function_logger):
     def __init__(self, name: str) -> None:
-        self.name = name
+        self.name: str = name
 
     @property
     def name(self) -> str:
