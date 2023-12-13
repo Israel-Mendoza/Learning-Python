@@ -1,5 +1,5 @@
 import unittest
-from name_function import get_formatted_name
+from src.name_function import get_formatted_name
 
 
 class NamesTestCase(unittest.TestCase):
@@ -14,3 +14,7 @@ class NamesTestCase(unittest.TestCase):
         """Do names like 'Wolfgang Amadeus Mozart' work?"""
         formatted_name: str = get_formatted_name("wolfgang", "mozart", "amadeus")
         self.assertEqual("Wolfgang Amadeus Mozart", formatted_name)
+
+
+if __name__ == "__main__":
+    unittest.main()
