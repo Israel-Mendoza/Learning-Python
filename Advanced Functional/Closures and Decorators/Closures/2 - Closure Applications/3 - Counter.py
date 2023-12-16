@@ -1,14 +1,15 @@
-# Counter
+from typing import Callable
 
 
-def counter(initial_value: int):
+"""CREATING A COUNTER USING A CLOSURE"""
+
+
+def counter(initial_value: int) -> Callable[[int], int]:
     """
     Returns a closure function that,
     when called, will return a integer,
     which will increment each time the closure is called
     """
-    print("Creating a closure function...")
-
     def inner(increment: int = 1):
         # Telling Python initial_value is to be braught into this scope from the enclosing scope.
         # Otherwise, line 16 would through an error saying that initial_value hasn't been declared:
@@ -19,7 +20,7 @@ def counter(initial_value: int):
     return inner
 
 
-c1 = counter(0)  # Creating a closure function...
+c1 = counter(0)
 
 print(c1.__closure__)
 # (<cell at 0x000001F39E762FD0: int object at 0x000001F39E4A6910>,)

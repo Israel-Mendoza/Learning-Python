@@ -1,15 +1,16 @@
 from time import perf_counter, sleep
+from typing import Callable
 
-# Timer with classes
+"""USING A CLASS"""
 
 
 class Timer:
-    def __init__(self):
+    def __init__(self) -> None:
         # Initializing self._start as the current time
         # returned by time.perf_counter()
-        self._start = perf_counter()
+        self._start: float = perf_counter()
 
-    def __call__(self):
+    def __call__(self) -> float:
         # When the instance is called, it'll return the difference
         # in seconds between the self._start timestamp and the
         # time when the instance is called
@@ -25,15 +26,15 @@ print(t1())  # 2.0116509
 ###############################################################################
 ###############################################################################
 
-# Timer using closures
+"""USING A CLOSURE"""
 
 
-def timer():
+def timer() -> Callable[[], float]:
     # Initializing the free variable "start"
     # with the current time returned by time.perf_counter()
-    start = perf_counter()
+    start: float = perf_counter()
 
-    def inner():
+    def inner() -> float:
         # When the closure is called, it'll return the difference
         # in seconds between the free variable "start" timestamp
         # and the time when the closure is called

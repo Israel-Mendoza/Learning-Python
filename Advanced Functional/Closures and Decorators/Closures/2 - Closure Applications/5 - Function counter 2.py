@@ -1,19 +1,20 @@
+import random
+from typing import Any, Callable
+
+type Number = int | float
+
 """Function counter to dictionary"""
 
-from random import choice, randint
-from collections.abc import Callable, Mapping
-from typing import Any
 
-
-def counter(fn: Callable[..., Any], count_dict: Mapping):
+def counter(fn: Callable[..., Any], count_dict: dict[str, int]) -> Callable[..., Any]:
     """
     Returns a closure function that will keep count
     of the times the passed function is called.
-    Stores the records in the passed GOBAL dictionary
+    Stores the records in the passed GLOBAL dictionary
     """
-    count = 0
+    count: int = 0
 
-    def inner(*args, **kwargs):
+    def inner(*args, **kwargs) -> Any:
         nonlocal count
         count += 1
         count_dict[fn.__name__] = count  # No assigment, but mutability of the object
@@ -22,38 +23,38 @@ def counter(fn: Callable[..., Any], count_dict: Mapping):
     return inner
 
 
-def add(x: int, y: int) -> int:
+def add(x: Number, y: Number) -> Number:
     return x + y
 
 
-def substract(x: int, y: int) -> int:
+def subtract(x: Number, y: Number) -> Number:
     return x - y
 
 
-def multiply(x: int, y: int) -> int:
+def multiply(x: Number, y: Number) -> Number:
     return x * y
 
 
-def divide(x: int, y: int) -> float:
+def divide(x: Number, y: Number) -> float:
     return x / y
 
 
 # Creating dictionaries where we will be recording our logs
-fn_count_dict = dict()
-fn_count_dict_2 = dict()
+fn_count_dict: dict[str, int] = {}
+fn_count_dict_2: dict[str, int] = {}
 
 # Pulling out the closures:
-add1 = counter(add, fn_count_dict)
-sub1 = counter(substract, fn_count_dict)
-mul1 = counter(multiply, fn_count_dict)
-div1 = counter(divide, fn_count_dict)
+add_closure: Callable[..., Any] = counter(add, fn_count_dict)
+sub_closure: Callable[..., Any] = counter(subtract, fn_count_dict)
+mul_closure: Callable[..., Any] = counter(multiply, fn_count_dict)
+div_closure: Callable[..., Any] = counter(divide, fn_count_dict)
 
 # Appending the closures to a list:
-my_functions = [add1, sub1, mul1, div1]
+my_functions: list[Callable[..., Any]] = [add_closure, sub_closure, mul_closure, div_closure]
 
 # Iterating 100 times and calling random functions from the "my_functions" list
 for i in range(100):
-    choice(my_functions)(randint(1, 20), randint(1, 20))
+    random.choice(my_functions)(random.randint(1, 20), random.randint(1, 20))
 
 # Inspecting our record by iterating though the first dictionary and printing its logs:
 for k in fn_count_dict.keys():
@@ -61,29 +62,29 @@ for k in fn_count_dict.keys():
 print()
 # Function "multiply" was called 29 times
 # Function "divide" was called 27 times
-# Function "substract" was called 23 times
+# Function "subtract" was called 23 times
 # Function "add" was called 21 times
 
 ###############################################################################
 ###############################################################################
 
 # Doing the same as above, but this time,
-# we're overriding the original variable with the returned closures:
+# we're overriding the original variable with the returned closure:
 add = counter(add, fn_count_dict_2)
-substract = counter(substract, fn_count_dict_2)
+subtract = counter(subtract, fn_count_dict_2)
 multiply = counter(multiply, fn_count_dict_2)
 divide = counter(divide, fn_count_dict_2)
 
-my_functions_2 = [add, substract, multiply, divide]
+my_functions = [add, subtract, multiply, divide]  # Re-using the variable to store the new closures
 
 # Iterating 100 times and calling random functions from the "my_functions2" list
 for i in range(100):
-    choice(my_functions_2)(randint(1, 20), randint(1, 20))
+    random.choice(my_functions)(random.randint(1, 20), random.randint(1, 20))
 
 # Inspecting our record by iterating though the first dictionary and printing its logs:
 for k in fn_count_dict.keys():
     print(f'Function "{k}" was called {fn_count_dict_2[k]} times')
 # Function "multiply" was called 29 times
 # Function "divide" was called 21 times
-# Function "substract" was called 29 times
+# Function "subtract" was called 29 times
 # Function "add" was called 21 times

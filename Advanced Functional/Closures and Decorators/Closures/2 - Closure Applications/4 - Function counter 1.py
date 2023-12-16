@@ -1,7 +1,8 @@
-"""Function counter"""
+from typing import Any, Callable
 
-from typing import Any
-from collections.abc import Callable
+type Number = int | float
+
+"""Function counter"""
 
 
 def counter(fn: Callable[..., Any]) -> Callable[..., Any]:
@@ -10,7 +11,7 @@ def counter(fn: Callable[..., Any]) -> Callable[..., Any]:
     of the times the passed function is called and prints
     a message with the count information.
     """
-    count = 0
+    count: int = 0
 
     def inner(*args, **kwargs) -> Any:
         nonlocal count
@@ -21,16 +22,24 @@ def counter(fn: Callable[..., Any]) -> Callable[..., Any]:
     return inner
 
 
-def add(x: int, y: int):
+def add(x: Number, y: Number) -> Number:
     return x + y
 
 
 add1 = counter(add)
 
+
+# ANALYSING THE CLOSURE
+
 print(add1.__code__.co_freevars)
 # ('count', 'fn')
 print(add1.__closure__)
-# (<cell at 0x0000029E0C803FD0: int object at 0x0000029E0C546910>, <cell at 0x0000029E0C803FA0: function object at 0x0000029E0C807040>)
+# (<cell at 0x0000029E0C803FD0: int object at 0x0000029E0C546910>,
+# <cell at 0x0000029E0C803FA0: function object at 0x0000029E0C807040>)
+
+
+# USING THE CLOSURE
+
 print(add1(1, 11))
 # add has been called 1 times
 # 12
