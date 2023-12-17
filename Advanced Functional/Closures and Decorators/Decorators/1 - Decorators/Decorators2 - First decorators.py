@@ -1,8 +1,9 @@
-"""Attempt not to lose the original funtion's metadata"""
+from typing import Any, Callable
+
+type Number = int | float
 
 
-from typing import Any
-from collections.abc import Callable
+"""Attempt not to lose the original function's metadata"""
 
 
 # Defining the decorator function
@@ -11,7 +12,7 @@ def counter(a_func: Callable[..., Any]) -> Callable[..., Any]:
     Decorator function where the closure will print
     the count of times the passed function has been called.
     """
-    count = 0
+    count: int = 0
 
     def inner(*args, **kwargs) -> Any:
         nonlocal count  # Free variable from outer scope
@@ -28,22 +29,26 @@ def counter(a_func: Callable[..., Any]) -> Callable[..., Any]:
 
 
 @counter # Syntatic sugar for 'add = counter(add)'
-def add(x: int, y: int) -> int:
+def add(x: Number, y: Number) -> Number:
     """Returns the sum of the passed integers"""
     return x + y
 
+
+# INSPECTING OUR FUNCTION:
 
 print(add.__name__)  
 # add
 print(add.__code__.co_freevars)  
 # ('a_func', 'count')
 print(add.__closure__)  
-# <cell at 0x7f93f01dde20: function object at 0x7f93f01e5ca0>, <cell at 0x7f93f01dddf0: int object at 0x7f93f002e910>)
+# <cell at 0x7f93f01dde20: function object at 0x7f93f01e5ca0>,
+# <cell at 0x7f93f01dddf0: int object at 0x7f93f002e910>)
 print(add.__annotations__)  
-# {'x': <class 'int'>, 'y': <class 'int'>, 'return': <class 'int'>}
-help(add)   # Correct name and documentation. WRONG function signature:
-# Help on function add in module __main__:
+# {'x': Number, 'y': Number, 'return': Number}
 
+# Correct name and documentation. WRONG function signature:
+help(add)
+# Help on function add in module __main__:
+#
 # add(*args, **kwargs) -> int
 #     Returns the sum of the passed integers
-print()

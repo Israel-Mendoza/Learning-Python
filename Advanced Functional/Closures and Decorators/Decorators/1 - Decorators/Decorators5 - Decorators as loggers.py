@@ -1,11 +1,10 @@
-"""Using Decorators as loggers"""
-
-
-from typing import Any
+from typing import Any, Callable
 from functools import wraps
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from collections.abc import Callable
+
+
+"""Using Decorators as loggers"""
 
 
 def function_logger(a_func: Callable[..., Any]) -> Callable[..., Any]:
@@ -18,15 +17,20 @@ def function_logger(a_func: Callable[..., Any]) -> Callable[..., Any]:
     def logger(*args, **kwargs) -> Any:
         # Capturing date and time object when wrapped function is called
         run_datetime = datetime.now(ZoneInfo("UTC"))
+
         # Running function and storing its return value
         result = a_func(*args, **kwargs)
+
         # Capturing args and kwargs in a tuple
         _args = list(args)
         _kwargs = [f"'{key}'={value}" for key, value in kwargs.items()]
         all_args = tuple(_args + _kwargs)
+
         # Printing logger info (to stdout but could be log server)
         print(f"{run_datetime}: called '{a_func.__name__}{all_args}'")
+
         return result
+
     return logger
 
 

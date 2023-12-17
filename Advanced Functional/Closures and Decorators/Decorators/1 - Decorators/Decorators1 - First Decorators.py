@@ -1,8 +1,9 @@
+from typing import Any, Callable
+
+type Number = int | float
+
+
 """Introducing decorators"""
-
-
-from typing import Any
-from collections.abc import Callable
 
 
 # Defining the decorator function
@@ -11,7 +12,7 @@ def counter(a_func: Callable[..., Any]) -> Callable[..., Any]:
     Decorator function where the closure will print
     the count of times the passed function has been called.
     """
-    count = 0
+    count: int = 0
 
     def inner(*args, **kwargs) -> Any:
         nonlocal count  # Free variable from outer scope
@@ -26,52 +27,53 @@ def counter(a_func: Callable[..., Any]) -> Callable[..., Any]:
 """Implementing the decorator with traditional and @ notation"""
 
 
-def add(x: int, y: int) -> int:
+def add(x: Number, y: Number) -> Number:
     """Returns the sum of the passed integers"""
     return x + y
 
 
-# Original syntax of decorating a function:
-add = counter(add)
+# Original syntax of function decorator
+add: Callable[..., Any] = counter(add)
 
 
-@counter # Syntatic sugar that replaces line 43
-def sub(x: int, y: int) -> int:
-    """Returns the substraction of the passed integers"""
+@counter  # Syntactic sugar that replaces line 45
+def sub(x: Number, y: Number) -> Number:
+    """Returns the subtraction of the passed integers"""
     return x - y
 
 
-# sub = counter(sub)
+# sub = counter(sub)  // Original syntax of function decorator
 
 
 """ORIGINAL METADATA IS LOST. INNER'S WILL BE DISPLAYED"""
 
-print(add.__name__)  
-# "inner" because of the closure
-print(add.__code__.co_freevars)  
+print(add.__name__)
+# "inner" // name of the closure
+print(add.__code__.co_freevars)
 # ('a_func', 'count')
 print(add.__closure__)
-# (<cell at 0x7f92f0166fd0: function object at 0x7f92f016eca0>, <cell at 0x7f92f0166fa0: int object at 0x7f92f000e910>)
+# (<cell at 0x7f92f0166fd0: function object at 0x7f92f016eca0>,
+# <cell at 0x7f92f0166fa0: int object at 0x7f92f000e910>)
 print(add.__annotations__)  
 # {'return': typing.Any}
 help(add)  # Metadata of "inner" because of the closure:
 # Help on function inner in module __main__:
+#
 # inner(*args, **kwargs) -> Any
-print()
 
 print(sub.__name__)  
-# "inner"
+# "inner" // name of the closure
 print(sub.__code__.co_freevars)  
 # ('a_func', 'count')
 print(sub.__closure__)
-# <cell at 0x7f92f0166d90: function object at 0x7f92f0222790>, <cell at 0x7f92f0166d60: int object at 0x7f92f000e910>)
+# <cell at 0x7f92f0166d90: function object at 0x7f92f0222790>,
+# <cell at 0x7f92f0166d60: int object at 0x7f92f000e910>)
 print(sub.__annotations__)  
 # {'return': typing.Any}
 help(sub)  # Metadata of "inner" because of the closure:
 # Help on function inner in module __main__:
-
+#
 # inner(*args, **kwargs) -> Any
-print()
 
 """Using the decorated functions"""
 
