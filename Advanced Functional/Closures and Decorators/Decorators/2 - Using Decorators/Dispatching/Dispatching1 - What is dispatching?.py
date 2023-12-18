@@ -1,35 +1,28 @@
+import html
+from typing import Any, Sequence
+
 """Making a use case for dispatching - Part 1"""
 
-from typing import Any
-from html import escape
-from collections.abc import Sequence, Mapping
-
-"""Creating functions that will be then dispatch by another function"""
+"""Creating functions that will be then dispatched by another function"""
 
 
-def html_escape(arg: Any):
+def html_escape(arg: Any) -> str:
     """
     Arg:
         arg (Any): Any object to be formatted as valid HTML code.
     Return:
         A string, HTML-ready.
     """
-    return escape(str(arg))
+    return html.escape(str(arg))
 
 
 def html_str(arg: str) -> str:
-    """
-    Returns a string formated so it can
-    be used as HTML code.
-    """
+    """Returns a formatted string which can be used as HTML code."""
     return html_escape(arg).replace("\n", "<br/>\n")
 
 
 def html_int(arg: int) -> str:
-    """
-    Returns a string containing the int and it's
-    hex representation.
-    """
+    """Returns a string containing the int in hex representation."""
     return f"{arg} ({hex(arg)})"
 
 
@@ -39,26 +32,24 @@ def html_sequence(arg: Sequence[Any]) -> str:
     <li></li> tag and a new line (\\n).
     The string is wrapped in a <ul></ul>
     """
-    arg = (f"\t<li>{html_format(item)}</li>" for item in arg)
-    arg = "\n".join(arg)
+    arg: str = "\n".join((f"\t<li>{html_format(item)}</li>" for item in arg))
     return f"<ul>\n{arg}\n</ul>"
 
 
-def html_mapping(arg: Mapping[Any, Any]) -> str:
+def html_mapping(arg: dict[Any, Any]) -> str:
     """
     Returns a string where each key-value pair
     is wrapped in a <li></li> tag and a new line(\\n).
     The string is wrapped by <ul></ul>.
     """
-    arg = (f"\t<li>{k}: {html_format(v)}</li>" for k, v in arg.items())
-    arg = "\n".join(arg)
+    arg: str = "\n".join((f"\t<li>{k}: {html_format(v)}</li>" for k, v in arg.items()))
     return f"<ul>\n{arg}\n</ul>"
 
 
 def html_float(arg: float) -> str:
     """
     Returns a string containing the float
-    formated to contain 2 decimals.
+    formatted to contain 2 decimals.
     """
     return f"{arg:.2f}"
 
@@ -88,7 +79,10 @@ def html_format(arg: Any) -> str:
         return html_escape(arg)
 
 
-a = [
+# TODO: Refactor html_format function using pattern matching
+
+
+a: list[Any] = [
     """Company:
     Steinway & Sons
     """,
