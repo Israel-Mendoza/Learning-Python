@@ -1,15 +1,12 @@
-"""DECORATOR FACTORIES w/ FUNCTIONS AND CLASSES"""
-
-
-from typing import Any
+from typing import Any, Callable
 from functools import wraps
-from collections.abc import Callable
+
+"""DECORATOR FACTORIES WITH FUNCTIONS AND CLASSES"""
+
+"""FUNCTION VERSION"""
 
 
-# Simple decorator factory using a FUNCTION
-
-
-def simple_decorator(a: int, b: int) -> Callable[..., Any]:
+def simple_decorator(a: int, b: int) -> Callable[[Callable[..., Any]], Callable[..., Any]]:
     """Decorator factory"""
     def _simple_decorator(a_func: Callable[..., Any]) -> Callable[..., Any]:
         @wraps(a_func)
@@ -20,7 +17,7 @@ def simple_decorator(a: int, b: int) -> Callable[..., Any]:
     return _simple_decorator
 
 
-# Simple decorator factory using a CLASS
+"""CLASS VERSION"""
 
 
 class SimpleDecorator:
@@ -28,8 +25,8 @@ class SimpleDecorator:
 
     def __init__(self, a: int, b: int):
         """Initialized the desired "free variables" that self will store"""
-        self._a = a
-        self._b = b
+        self._a: int = a
+        self._b: int = b
 
     def __call__(self, a_func: Callable[..., Any]) -> Callable[..., Any]:
         """
@@ -42,18 +39,18 @@ class SimpleDecorator:
             a_func decorated
         """
         @wraps(a_func)
-        def simple_decorator(*args, **kwargs) -> Any:
+        def decorator(*args, **kwargs) -> Any:
             print(f'Running "{a_func.__name__}": a={self._a} and b={self._b}')
             return a_func(*args, **kwargs)
-        return simple_decorator
+        return decorator
 
 
-@simple_decorator(10, 20) # Function-based decorator factory
+@simple_decorator(10, 20)  # Function-based decorator factory
 def say_hello(name: str) -> None:
     print(f"Hello, {name}!\n")
 
 
-@SimpleDecorator(100, 200) # Class-based decorator factory
+@SimpleDecorator(100, 200)  # Class-based decorator factory
 def say_bye(name: str) -> None:
     print(f"Goodbye, {name}!\n")
 
@@ -66,30 +63,34 @@ say_bye("Israel")
 # Goodbye, Israel!
 
 
+# ANALYSING THE FUNCTIONS
+
 print(say_hello.__name__)
 # say_hello  // Original name due to wraps()
 print(say_hello.__code__.co_freevars)  
 # ('a', 'a_func', 'b')
 print(say_hello.__closure__) 
-# (<cell: int object>, <cell: function object>, <cell: int object>)
+# (<cell at 0x102e73ee0: int object at 0x10366c4d0>,
+# <cell at 0x102e90040: function object at 0x102ee11c0>,
+# <cell at 0x102e73fa0: int object at 0x10366c610>)
 print(say_hello.__annotations__)  #
 # {'name': <class 'str'>, 'return': None}
 help(say_hello)  # Original metadata due to wraps():
 # Help on function say_hello in module __main__:
-
+#
 # say_hello(name: str) -> None
-print()
+
 
 print(say_bye.__name__)  
 # say_bye  // Original name due to wraps()
 print(say_bye.__code__.co_freevars)
 # ('a_func', 'self') // self is the SimpleDecorator instance
 print(say_bye.__closure__)
-# ((<cell: function object>, <cell: SimpleDecorator object>)
+# (<cell at 0x102e913c0: function object at 0x102e7e200>,
+# <cell at 0x102e90fa0: SimpleDecorator object at 0x102e907d0>)
 print(say_bye.__annotations__)  
 # {'name': <class 'str'>, 'return': None} // Original annotations
 help(say_bye)  # Original metadata due to wraps():
 # Help on function say_bye in module __main__:
-
+#
 # say_bye(name: str) -> None
-print()

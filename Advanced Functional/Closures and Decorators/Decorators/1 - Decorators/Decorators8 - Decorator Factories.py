@@ -1,12 +1,12 @@
-"""DECORATOR FACTORIES OR PARAMETERIZED DECORATORS"""
-
-from typing import Any
+from typing import Any, Callable
 from functools import wraps
 from time import perf_counter
-from collections.abc import Callable
 
 
-def function_timer(num_of_reps: int) -> Callable[..., Any]:
+"""DECORATOR FACTORIES OR PARAMETERIZED DECORATORS"""
+
+
+def function_timer(num_of_reps: int) -> Callable[[Callable[..., Any]], Callable[..., Any]]:  # Returns a decorator
     """Decorator factory"""
     def _function_timer(a_func: Callable[..., Any]) -> Callable[..., Any]:
         """
@@ -16,35 +16,42 @@ def function_timer(num_of_reps: int) -> Callable[..., Any]:
         """
         @wraps(a_func)
         def inner(*args, **kwargs) -> Any:
-            # Start with zero time
-            total_elapsed = 0
+            # Start with zero time and with a result pointing to None
+            total_elapsed: float = 0
+            result: Any = None
+
             # Loop n times (n is free variable passed to function_timer)
             for i in range(num_of_reps):
-                start = perf_counter()
+                start: float = perf_counter()
                 # Store the return from the wrapped function
                 result = a_func(*args, **kwargs)
                 # Add the elapsed time to the total_elapsed free variable
                 total_elapsed += perf_counter() - start
+
             # Calculating the average time
-            avg_elapsed_time = total_elapsed / 10
+            avg_elapsed_time: float = total_elapsed / 10
+
             # Capture args and kwargs in a string
-            _args = list(args)
-            _kwargs = [f"{k}={v}" for k, v in kwargs.items()]
-            _args.extend(_kwargs)
-            _args = str(args)
-            func_call_str = f"{a_func.__name__}{_args}"
+            _args: list[str] = list(args)
+            _args.extend([f"{k}={v}" for k, v in kwargs.items()])
+            _args_description = str(args)
+            func_call_str = f"{a_func.__name__}{_args_description}"
+
             # Print calling information
             print(f"{func_call_str} ran {num_of_reps} times")
             print(f"{func_call_str} took in average {avg_elapsed_time:.6f}s")
+
             # Return result from calling wrapped function
             return result
+
         # Returning decorated function
         return inner
-    # Returing decorator function
+
+    # Returning decorator function
     return _function_timer
 
 
-@function_timer(10000000) # add = function_timer(10000)(add) 
+@function_timer(10000000)  # Same as => add = function_timer(10000)(add)
 def add(x: int, y: int) -> int:
     return x + y
 

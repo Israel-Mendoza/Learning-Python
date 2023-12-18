@@ -1,18 +1,14 @@
-"""Stacked decorators breakdown"""
-
-
-from typing import Any
+from typing import Any, Callable
 from functools import wraps
-from collections.abc import Callable
 
-# Stacking decorators
+"""Stacked decorators breakdown."""
 
 
 def decorator_1(a_func: Callable[..., Any]) -> Callable[..., Any]:
     @wraps(a_func)
     def inner(*args, **kwargs) -> Any:
         print("Running decorator 1!")
-        result = a_func(*args, **kwargs)
+        result: Any = a_func(*args, **kwargs)
         return result
     return inner
 
@@ -20,7 +16,7 @@ def decorator_1(a_func: Callable[..., Any]) -> Callable[..., Any]:
 def decorator_2(a_func: Callable[..., Any]) -> Callable[..., Any]:
     @wraps(a_func)
     def inner(*args, **kwargs) -> Any:
-        result = a_func(*args, **kwargs)
+        result: Any = a_func(*args, **kwargs)
         print("Running decorator 2!")
         return result
     return inner
@@ -33,10 +29,11 @@ def simple_function(name: str) -> None:
 
 # Decorating the simple_function function with decorator_1
 simple_function_1 = decorator_1(simple_function)
-# Decorating the decorated function with decorator_2
+
+# Stacking another decorator to the already decorated function
 simple_function_1 = decorator_2(simple_function_1)
 
-# Another way of decorating the function:
+# Another way of stacking decorators to the function:
 simple_function_2 = decorator_2(decorator_1(simple_function))
 
 # Another way of decorating the function (reversed than the previous ones):
@@ -54,10 +51,12 @@ simple_function_1("Israel")
 # Running decorator 1!
 # Hello, Israel!
 # Running decorator 2!
+print()
 simple_function_2("Israel")
 # Running decorator 1!
 # Hello, Israel!
 # Running decorator 2!
+print()
 simple_function_3("Israel")
 # Running decorator 1!
 # Hello, Israel!
