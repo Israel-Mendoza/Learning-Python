@@ -1,7 +1,8 @@
+from typing import Any, TypeAlias
+from collections.abc import Callable
 import random
-from typing import Any, Callable
 
-type Number = int | float
+Number: TypeAlias = int | float
 
 """Function counter to dictionary"""
 

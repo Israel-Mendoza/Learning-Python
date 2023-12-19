@@ -1,6 +1,7 @@
-from typing import Any, Callable
+from typing import Any, TypeAlias
+from collections.abc import Callable
 
-type Number = int | float
+Number: TypeAlias = int | float
 
 
 """Attempt not to lose the original function's metadata"""

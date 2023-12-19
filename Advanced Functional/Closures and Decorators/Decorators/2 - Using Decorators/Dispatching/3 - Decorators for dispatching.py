@@ -1,7 +1,9 @@
-"""Introducing decorators for dispatching - Part 1"""
-
 import html
-from typing import Any, Callable
+from typing import Any
+from collections.abc import Callable
+
+
+"""Introducing decorators for dispatching - Part 1"""
 
 
 def single_dispatch(a_func: Callable[..., Any]) -> Callable[[Any], Any]:

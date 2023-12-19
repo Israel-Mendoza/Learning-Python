@@ -1,5 +1,7 @@
 import html
-from typing import Any, Sequence
+from typing import Any
+from collections.abc import Sequence
+
 
 """Making a use case for dispatching - Part 1"""
 

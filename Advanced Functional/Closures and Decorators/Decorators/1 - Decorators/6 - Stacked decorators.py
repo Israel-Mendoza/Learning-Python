@@ -1,8 +1,9 @@
-import pytz
-from typing import Any, Callable
+from typing import Any
+from collections.abc import Callable
 from time import perf_counter
 from datetime import datetime
 from functools import wraps, reduce
+import pytz
 
 
 """Working on stacked decorators"""

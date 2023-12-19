@@ -1,7 +1,8 @@
 from functools import wraps
-from typing import Any, Callable
+from typing import Any, TypeAlias
+from collections.abc import Callable
 
-type Number = int | float
+Number: TypeAlias = int | float
 
 
 """Using the wraps() parameterized decorator to avoid function metadata loss"""

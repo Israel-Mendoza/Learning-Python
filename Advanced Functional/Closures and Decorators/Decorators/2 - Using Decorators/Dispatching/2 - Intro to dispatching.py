@@ -1,6 +1,7 @@
-from typing import Any, Sequence, Mapping, Callable
 import html
-# from collections.abc import Sequence, Mapping
+from typing import Any
+from collections.abc import Sequence, Callable
+
 
 """Making a use case for dispatching - Part 2"""
 

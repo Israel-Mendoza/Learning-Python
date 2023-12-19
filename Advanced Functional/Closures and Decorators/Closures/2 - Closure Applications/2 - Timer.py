@@ -1,5 +1,5 @@
+from collections.abc import Callable
 from time import perf_counter, sleep
-from typing import Callable
 
 """USING A CLASS"""
 

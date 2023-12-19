@@ -1,4 +1,4 @@
-from typing import Callable
+from collections.abc import Callable
 
 """
     We'll recreate an averager class with a closure. 

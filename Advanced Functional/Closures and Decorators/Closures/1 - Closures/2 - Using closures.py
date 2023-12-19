@@ -1,5 +1,7 @@
+from collections.abc import Callable
+
+
 """Simple closure functions"""
-from typing import Callable
 
 
 def counter(start: int = 0) -> Callable[[], int]:

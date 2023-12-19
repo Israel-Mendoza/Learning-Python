@@ -1,4 +1,5 @@
-from typing import Any, Callable
+from typing import Any
+from collections.abc import Callable
 from functools import wraps
 from datetime import datetime
 from zoneinfo import ZoneInfo

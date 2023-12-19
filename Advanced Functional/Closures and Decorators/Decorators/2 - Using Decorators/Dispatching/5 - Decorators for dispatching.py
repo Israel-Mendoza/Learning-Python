@@ -1,6 +1,7 @@
 import html
-from typing import Any, Callable
 from functools import wraps
+from typing import Any
+from collections.abc import Callable
 
 
 """Creating a simple dispatching decorator"""
