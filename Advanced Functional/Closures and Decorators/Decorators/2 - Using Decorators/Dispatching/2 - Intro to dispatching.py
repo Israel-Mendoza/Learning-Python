@@ -1,9 +1,10 @@
+from typing import Any, Sequence, Mapping, Callable
 import html
-from typing import Any, Sequence
+# from collections.abc import Sequence, Mapping
 
-"""Making a use case for dispatching - Part 1"""
+"""Making a use case for dispatching - Part 2"""
 
-"""Creating functions that will be then dispatched by another function"""
+"""Creating functions that will be then dispatch by another function"""
 
 
 def html_escape(arg: Any) -> str:
@@ -26,6 +27,14 @@ def html_int(arg: int) -> str:
     return f"{arg} ({hex(arg)})"
 
 
+def html_float(arg: float) -> str:
+    """
+    Returns a string containing the float
+    formatted to contain 2 decimals.
+    """
+    return f"{arg:.2f}"
+
+
 def html_sequence(arg: Sequence[Any]) -> str:
     """
     Returns a string where each item is wrapped in a
@@ -46,50 +55,36 @@ def html_mapping(arg: dict[Any, Any]) -> str:
     return f"<ul>\n{arg}\n</ul>"
 
 
-def html_float(arg: float) -> str:
-    """
-    Returns a string containing the float
-    formatted to contain 2 decimals.
-    """
-    return f"{arg:.2f}"
-
-
-"""Creating a dispatch function using if else statements"""
+"""Creating a dispatch function using a registry dictionary"""
 
 
 def html_format(arg: Any) -> str:
     """
     Dispatcher function:
     Cons:
-        Awful code full of if-else statements.
-        Hard coded logic.
-        Difficult to modify from the outside.
+        Hard coded registry, difficult to modify from the outside.
     """
-    if isinstance(arg, str):
-        return html_str(arg)
-    elif isinstance(arg, int):
-        return html_int(arg)
-    elif isinstance(arg, float):
-        return html_float(arg)
-    elif isinstance(arg, list) or isinstance(arg, tuple):
-        return html_sequence(arg)
-    elif isinstance(arg, dict):
-        return html_mapping(arg)
-    else:
-        return html_escape(arg)
+    registry: dict[type, Callable[[Any], str]] = {
+        object: html_escape,
+        str: html_str,
+        int: html_int,
+        float: html_float,
+        list: html_sequence,
+        tuple: html_sequence,
+        dict: html_mapping,
+    }
+
+    return registry.get(type(arg), registry[object])(arg)
 
 
-# TODO: Refactor html_format function using pattern matching
-
-
-a: list[Any] = [
+a: tuple[str, tuple[int, int, int], int, dict[str, str]] = (
     """Company:
     Steinway & Sons
     """,
     (1, 2, 3),
     100,
-    {"uno": "un", "dos": "deux", "tres": "trois"},
-]
+    {"uno": "eins", "dos": "zwei", "tres": "drei"},
+)
 
 print(html_format(a))
 # <ul>
@@ -103,8 +98,8 @@ print(html_format(a))
 # </ul></li>
 # 	<li>100 (0x64)</li>
 # 	<li><ul>
-# 	<li>uno: un</li>
-# 	<li>dos: deux</li>
-# 	<li>tres: trois</li>
+# 	<li>uno: eins</li>
+# 	<li>dos: zwei</li>
+# 	<li>tres: drei</li>
 # </ul></li>
 # </ul>

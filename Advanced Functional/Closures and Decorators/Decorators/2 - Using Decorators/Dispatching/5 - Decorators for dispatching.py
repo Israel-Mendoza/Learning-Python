@@ -1,12 +1,12 @@
-"""Creating a simple dispathing decorator"""
-
-from typing import Any
-from html import escape
+import html
+from typing import Any, Callable
 from functools import wraps
-from collections.abc import Callable
 
 
-def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
+"""Creating a simple dispatching decorator"""
+
+
+def single_dispatch(a_func: Callable[[Any], str]) -> Callable[[Any], str]:
     """
     Single dispatch decorator used with a function that takes 1 parameter.
     That function will be stored in the registry dictionary
@@ -18,17 +18,16 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
         ignoring parent classes.
         i.e. bool won't return the function in the int entry.
     """
-    registry = {}
-    registry[object] = a_func
+    registry: dict[type, Callable[[Any], str]] = {object: a_func}
 
     @wraps(a_func)
-    def decorated_function(arg: Any) -> Any:
+    def decorated_function(arg: Any) -> str:
         """
         Wrapper function.
         Dispatching the function from the free variable dictionary 
         'registry' based on the passed argument's type (arg's type)
         """
-        dispatched_function = registry.get(type(arg), registry[object])
+        dispatched_function: Callable[[Any], str] = registry.get(type(arg), registry[object])
         return dispatched_function(arg)
 
     """
@@ -36,13 +35,13 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
     their respective functions to the registry dictionary
     """
 
-    def func_adder(type_: type) -> Callable[[Callable[[Any], Any]], Callable[[Any], Any]]:
+    def func_adder(type_: type) -> Callable[[Callable[[Any], str]], Callable[[Any], str]]:
         """
         Decorator factory.
         Uses the passed type as the key in the registry dictionary.
         """
 
-        def _func_adder(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
+        def _func_adder(new_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
             """
             When called by the decorator factory, _func_adder
             will add/update an entry in the registry dictionary,
@@ -50,14 +49,14 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
             and the passed function, the value.
             Returns the passed function as it is.
             """
-            registry[type_] = a_func
-            return a_func
+            registry[type_] = new_func
+            return new_func
 
         return _func_adder
 
-    """Implementing an accesor to the registry functions based on types"""
+    """Implementing an accessor to the registry functions based on types"""
 
-    def get_function(type_: type) -> Callable:
+    def get_function(type_: type) -> Callable[[Any], str] | None:
         """
         Returns the function associated to the passed type
         from the registry dictionary.
@@ -80,7 +79,7 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
 @single_dispatch
 def htmlize(a: Any) -> str:
     """Returns a valid html string"""
-    return escape(str(a))
+    return html.escape(str(a))
 
 
 @htmlize.add_function(int)
@@ -91,10 +90,10 @@ def html_int(a: int) -> str:
 @htmlize.add_function(str)
 def html_str(arg: str) -> str:
     """
-    Returns a string formated so it can
+    Returns a string formatted so it can
     be used as html code.
     """
-    return escape(arg).replace("\n", "<br/>\n")
+    return html.escape(arg).replace("\n", "<br/>\n")
 
 
 @htmlize.add_function(list)
@@ -111,18 +110,18 @@ def html_list(arg: list) -> str:
 
 """Testing our new dispatching function"""
 
-a = """This is
-a fucking
+a: str = """This is
+a freaking
 string
 """
-b = 100
-c = [1, 2, 3]
-d = [a, b, c]
+b: int = 100
+c: list[int] = [1, 2, 3]
+d: list[Any] = [a, b, c]
 
 print(htmlize(d))
 # <ul>
 # 	<li>This is<br/>
-# a fucking<br/>
+# a freaking<br/>
 # string<br/>
 # </li>
 # 	<li>100: 0X64</li>
@@ -133,11 +132,18 @@ print(htmlize(d))
 # </ul></li>
 # </ul>
 
+
+print(htmlize.get_function(type(a)))
+# <function html_str at 0x100be9a80>
+print(htmlize.get_function(type(b)))
+# <function html_int at 0x100be99e0>
+print(htmlize.get_function(type(c)))
+# <function html_list at 0x100be9b20>
 print(htmlize.get_function(type(d)))
-# <function html_list at 0x2168522F0D0>
+# <function html_list at 0x100be9b20>
 
 help(htmlize)
 # Help on function htmlize in module __main__:
-
+#
 # htmlize(a: Any) -> str
 #     Returns a valid html string

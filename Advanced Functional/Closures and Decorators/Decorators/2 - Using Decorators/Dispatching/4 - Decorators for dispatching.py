@@ -1,11 +1,10 @@
 """Introducing decorators for dispatching - Part 2"""
 
-from typing import Any
-from html import escape
-from collections.abc import Callable
+import html
+from typing import Any, Callable
 
 
-def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
+def single_dispatch(a_func: Callable[[Any], str]) -> Callable[[Any], str]:
     """
     Single dispatch decorator used with a function that
     takes 1 parameter.
@@ -15,17 +14,17 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
     Cons:
         Unable to inject external functions.
     """
-    registry = {}
+    registry: dict[type, Callable[[Any], str]] = {}
     registry[object] = a_func
     registry[int] = lambda a: f"{a} ({hex(a)})"
-    registry[str] = lambda a: escape(a).replace("\n", "<br/>\n")
+    registry[str] = lambda a: str(html.escape(a).replace("\n", "<br/>\n"))
 
-    def inner(arg: Any):
+    def inner(arg: Any) -> str:
         """
         Dispatching the function from the free variable dictionary 
         'registry' based on the passed argument's type (arg's type)
         """
-        dispatched_function = registry.get(type(arg), registry[object])
+        dispatched_function: Callable[[Any], str] = registry.get(type(arg), registry[object])
         return dispatched_function(arg)
 
     return inner
@@ -36,7 +35,7 @@ def single_dispatch(a_func: Callable[[Any], Any]) -> Callable[[Any], Any]:
 
 @single_dispatch
 def htmlize(arg: Any) -> str:
-    return escape(str(arg))
+    return html.escape(str(arg))
 
 
 print(htmlize("AT&T"))

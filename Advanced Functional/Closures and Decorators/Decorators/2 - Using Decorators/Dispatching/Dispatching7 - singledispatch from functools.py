@@ -1,18 +1,18 @@
-"""Using the singledispatch decorator from the functools module"""
-
 from typing import Any
-from html import escape
+import html
 from numbers import Integral
 from functools import singledispatch
 from collections.abc import Sequence
 
+
+"""Using the singledispatch decorator from the functools module"""
 
 # Defining the default function to be called
 # in case no type is found in the registry
 @singledispatch
 def htmlize(a: Any) -> str:
     """Returns a valid html string"""
-    return escape(str(a))
+    return html.escape(str(a))
 
 
 @htmlize.register(Integral)
@@ -27,21 +27,17 @@ def _(arg: Sequence) -> str:
     <li></li> tag.
     The string is wrapped in a <ul></ul>
     """
-    arg = (f"\t<li>{htmlize(item)}</li>" for item in arg)
-    arg = "\n".join(arg)
+    arg: str = "\n".join((f"\t<li>{htmlize(item)}</li>" for item in arg))
     return f"<ul>\n{arg}\n</ul>"
 
 
 @htmlize.register(str)
 def _(arg: str) -> str:
-    """
-    Returns a string formated so it can
-    be used as html code.
-    """
-    return escape(arg).replace("\n", "<br/>\n")
+    """Returns a string formatted which can be used as html code."""
+    return html.escape(arg).replace("\n", "<br/>\n")
 
 
-"""ANALIZING THE "HTMLIZE" DECORATED FUNCTION"""
+"""ANALYZING THE "HTMLIZE" DECORATED FUNCTION"""
 
 # Python doesn't care about the name of the wrapped functions.
 # It only looks at the address where these functions live.

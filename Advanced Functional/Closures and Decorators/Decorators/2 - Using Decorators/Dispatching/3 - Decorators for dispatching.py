@@ -1,11 +1,10 @@
 """Introducing decorators for dispatching - Part 1"""
 
-from typing import Any
-from html import escape
-from collections.abc import Callable
+import html
+from typing import Any, Callable
 
 
-def single_dispatch(a_func: Callable[..., Any]) -> Callable[..., Any]:
+def single_dispatch(a_func: Callable[..., Any]) -> Callable[[Any], Any]:
     """
     Single dispatch decorator used with a function that
     takes 1 parameter.
@@ -15,8 +14,8 @@ def single_dispatch(a_func: Callable[..., Any]) -> Callable[..., Any]:
     Cons:
         Unable to inject external functions.
     """
-    registry = {}
-    registry[object] = a_func
+    # registry: dict[object, Callable[[Any], str]] = {}
+    registry: dict[object, Callable[..., str]] = {object: a_func}
 
     def inner(arg: Any) -> Any:
         return registry[object](arg)
@@ -29,7 +28,7 @@ def single_dispatch(a_func: Callable[..., Any]) -> Callable[..., Any]:
 
 
 def htmlize(arg: Any) -> str:
-    return escape(str(arg))
+    return html.escape(str(arg))
 
 
 # Address of initial function.
@@ -46,7 +45,7 @@ htmlize = single_dispatch(htmlize)
 print(hex(id(htmlize)).upper())
 # 0X7F4928C2AF70
 
-# Analizing the closure
+# Analyzing the closure
 print(htmlize.__code__.co_freevars)
 # ('registry',)
 print(htmlize.__closure__)

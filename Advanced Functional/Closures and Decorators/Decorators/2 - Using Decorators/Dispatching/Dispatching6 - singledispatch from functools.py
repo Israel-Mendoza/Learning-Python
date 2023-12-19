@@ -1,17 +1,18 @@
-"""Using the singledispatch decorator from the functools module"""
-
-"""
-Important methods and properties in a singledispatch object:
-    register(a_type): Adds a type and a function to the registry mapping proxy
-    registry: Property containing the mapping proxy
-    dispatch(a_type): Returns the function linked to the passed type
-"""
-
 from typing import Any
 from html import escape
 from numbers import Integral
 from functools import singledispatch
 from collections.abc import Sequence
+
+
+"""Using the singledispatch decorator from the functools module"""
+
+"""
+Important methods and properties in a singledispatch function:
+    register(a_type: type): Adds a type and a function to the registry mapping proxy
+    registry: Property containing the mapping proxy
+    dispatch(a_type: type): Returns the function linked to the passed type
+"""
 
 
 # Defining the default function to be called
@@ -40,12 +41,11 @@ def html_sequence(arg: Sequence) -> str:
     <li></li> tag.
     The string is wrapped in a <ul></ul>
     """
-    arg = (f"\t<li>{htmlize(item)}</li>" for item in arg)
-    arg = "\n".join(arg)
+    arg: str = "\n".join((f"\t<li>{htmlize(item)}</li>" for item in arg))
     return f"<ul>\n{arg}\n</ul>"
 
 
-"""ANALIZING THE "HTMLIZE" DECORATED FUNCTION"""
+"""ANALYZING THE "HTMLIZE" DECORATED FUNCTION"""
 
 # The mapping proxy holding the functions 
 # and their types is found under the "registry" property:
@@ -79,17 +79,14 @@ except RecursionError as ex:
 
 # As no function for the type str has been registered, the function called will
 # be that of the Sequence type, which calls htmlize for each item.
-# Because each item of the string is also a string, htmlize will also be
+# Because each item of the string is also a string, htmlize will also
 # be called for that Sequence type. Thus, a RecursionError is raised.
 
 
 # Implementing a function for the string type
 @htmlize.register(str)
 def html_str(arg: str) -> str:
-    """
-    Returns a string formated so it can
-    be used as html code.
-    """
+    """Returns a string formatted which canbe used as html code."""
     return escape(arg).replace("\n", "<br/>\n")
 
 
