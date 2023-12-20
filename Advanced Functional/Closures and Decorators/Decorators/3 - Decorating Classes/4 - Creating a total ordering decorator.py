@@ -1,10 +1,11 @@
+from __future__ import annotations
+from math import sqrt
+
+
 """Creating a class decorator that fills in ordering methods"""
 
-from math import sqrt
-from typing import Type
 
-
-def complete_ordering(cls: Type) -> Type:
+def complete_ordering(cls: type) -> type:
     """
     Class decorator that fills in missing ordering methods,
     provided __eq__ and __lt__ are implemented.
@@ -16,7 +17,7 @@ def complete_ordering(cls: Type) -> Type:
         cls.__le__ = lambda self, other: self == other or self < other
     else:
         raise AttributeError("Both __eq__ or __lt__ must be implemented.")
-    # Return patched class for reassigment
+    # Return patched class for re-assigment
     return cls
 
 
@@ -34,13 +35,13 @@ class Point:
     def __repr__(self) -> str:
         return f"Point({self.x}, {self.y})"
 
-    def __eq__(self, other: "Point") -> bool:
+    def __eq__(self, other: Point) -> bool:
         if isinstance(other, Point):
             return self.x == other.x and self.y == other.y
         else:
             return False
 
-    def __lt__(self, other: "Point") -> bool:
+    def __lt__(self, other: Point) -> bool:
         if isinstance(other, Point):
             return abs(self) < abs(other)
         else:
@@ -55,9 +56,9 @@ p3 = Point(0, 0)
 
 """Testing ordering methods"""
 
-print(p1 == p2) # True
-print(p1 != p2) # False
+print(p1 == p2)  # True
+print(p1 != p2)  # False
 print(p1 < p3)  # False
 print(p1 > p3)  # True
-print(p1 >= p2) # True
-print(p1 <= p2) # True
+print(p1 >= p2)  # True
+print(p1 <= p2)  # True

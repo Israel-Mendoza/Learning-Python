@@ -1,8 +1,9 @@
-"""Using the functools.total_ordering class decorator"""
-
-
-from functools import total_ordering
+from __future__ import annotations
 from math import sqrt
+from functools import total_ordering
+
+
+"""Using the functools.total_ordering class decorator"""
 
 
 @total_ordering
@@ -10,7 +11,7 @@ class Point:
     """A class to represent a two-dimension point"""
 
     def __init__(self, x: float, y: float) -> None:
-        """Initializes the Point coordenates"""
+        """Initializes the Point coordinates"""
         self.x = x
         self.y = y
 
@@ -24,29 +25,28 @@ class Point:
     def __repr__(self) -> str:
         return f"Point({self.x}, {self.y})"
 
-    def __eq__(self, other: "Point") -> bool:
+    def __eq__(self, other: Point) -> bool:
         if isinstance(other, Point):
             return self.x == other.x and self.y == other.y
         else:
             return False
 
-    def __lt__(self, other: "Point") -> bool:
+    def __lt__(self, other: Point) -> bool:
         if isinstance(other, Point):
             return abs(self) < abs(other)
         else:
             return NotImplemented
 
-"""Creating Point instances"""
 
+# Creating Point instances
 p1 = Point(2, 3)
 p2 = Point(2, 3)
 p3 = Point(0, 0)
 
-"""Testing ordering methods"""
-
-print(p1 == p2) # True
-print(p1 != p2) # False
+# Testing ordering methods
+print(p1 == p2)  # True
+print(p1 != p2)  # False
 print(p1 < p3)  # False
 print(p1 > p3)  # True
-print(p1 >= p2) # True
-print(p1 <= p2) # True
+print(p1 >= p2)  # True
+print(p1 <= p2)  # True

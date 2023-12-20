@@ -1,13 +1,9 @@
+from collections.abc import Callable
+
 """Creating a class decorator factory"""
 
 
-from types import FunctionType
-from typing import Any, List
-
-"""Creating the decorator factory"""
-
-
-def debug_info(storing_list: List[Any]) -> FunctionType:
+def debug_info(storing_list: list) -> Callable[[type], type]:
     """
     Decorator factory. Accepts an empty list, which will
     be used as a storing mechanism to the class that gets
@@ -16,32 +12,35 @@ def debug_info(storing_list: List[Any]) -> FunctionType:
     import pytz
     from datetime import datetime
 
-    def _debug_info(cls):
+    def _debug_info(cls: type) -> type:
         """
         Class decorator. Monkey patches the class with a new attribute.
         Sets attribute "debug" to the passed class by assigning the 
         "inner" function.
         """
+
         def inner(self) -> None:
             """
             Creates and appends the instance snapshot 
             to the "storing_list" free variable.
             """
+            print(f"Storing debugging information for {self.__class__.__name__} object @ {hex(id(self)).upper()}")
             # Creating the snapshot list
-            results = []
-            results.append(f"Time: {datetime.now(pytz.UTC)}")
-            results.append(f"Class name: {self.__class__.__name__}")
-            results.append(f"Memory address: {hex(id(self)).upper()}")
-            values = {}
+            results: list[str | dict[str, str]] = [f"Time: {datetime.now(pytz.UTC)}",
+                                                   f"Class name: {self.__class__.__name__}",
+                                                   f"Memory address: {hex(id(self)).upper()}"]
+            values: dict[str, str] = {}
             for key, value in self.__dict__.items():
                 values[key] = value
             results.append(values)
             # Appending the snapshot list to the "storing list"
             storing_list.append(results)
+
         # Setting the attribute
         setattr(cls, "debug", inner)
         # Returning the monkey patched class
         return cls
+
     # Returning the class decorator
     return _debug_info
 
@@ -49,7 +48,7 @@ def debug_info(storing_list: List[Any]) -> FunctionType:
 """Creating and decorating classes"""
 
 # Empty list, which will store the instances' snapshots.
-my_results = list()
+my_results: list[str | dict[str, str]] = []
 
 
 @debug_info(my_results)
@@ -57,8 +56,8 @@ class Person:
     """A simple representation of a person"""
 
     def __init__(self, name: str, age: int) -> None:
-        self.name = name
-        self.age = age
+        self.name: str = name
+        self.age: int = age
 
     def __str__(self) -> str:
         return f'Person "{self.name}" is {self.age} years old'
@@ -93,8 +92,8 @@ class Car:
 
 # Confirming that classes have the "debug" attribute
 
-print(hasattr(Person, "debug")) # True
-print(hasattr(Car, "debug"))    # True
+print(hasattr(Person, "debug"))  # True
+print(hasattr(Car, "debug"))  # True
 
 """Working with patched class instances"""
 
@@ -104,19 +103,21 @@ c1 = Car("Audi", "T", 2015, 250)
 
 # Calling the "debug" method on the instances
 p1.debug()
+# Storing debugging information for Person object @ 0X39AB2E0
 c1.debug()
+# Storing debugging information for Car object @ 0X39AB700
 
 # Printing the stored debug information
 for result in my_results:
     print("Class snapshot:")
     for info in result:
         print(f"\t{info}")
-
 # Class snapshot:
 # 	Time: 2020-09-27 01:54:32.233456+00:00
 # 	Class name: Person
 # 	Memory address: 0X39AB2E0
 # 	{'name': 'Israel', 'age': 28}
+
 # Class snapshot:
 # 	Time: 2020-09-27 01:54:32.233456+00:00
 # 	Class name: Car
