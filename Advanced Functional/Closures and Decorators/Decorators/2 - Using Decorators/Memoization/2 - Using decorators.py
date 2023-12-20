@@ -1,20 +1,19 @@
-"""Memoizing any function using a decorator"""
-
-
-from typing import Any
 from functools import wraps
 from collections.abc import Callable
 
 
-def memoize(a_function: Callable[..., Any]) -> Callable[..., Any]:
+"""Memoizing any function using a decorator"""
+
+
+def memoize(a_function: Callable[[int], int]) -> Callable[[int], int]:
     """
-    A wrapper memoization function for a function that takes only 1 argument.
+    A wrapper memoization function for a function which signature is Callable[[int], int].
     """
-    # Implementing the cache dictionary
-    _cache = {}
+    # Implementing the cache dictionary:
+    _cache: dict[int, int] = {}
 
     @wraps(a_function)
-    def inner(n: Any) -> Any:
+    def inner(n: int) -> int:
         """
         Calculating the return value only if
         it doesn't exist in the _cache dictionary
@@ -32,9 +31,9 @@ def memoize(a_function: Callable[..., Any]) -> Callable[..., Any]:
 
 help(memoize)
 # Help on function memoize in module __main__:
-
-# memoize(a_function: collections.abc.Callable) -> collections.abc.Callable
-#     A wrapper memoization function for a function that takes only 1 argument.
+#
+# memoize(a_function: collections.abc.Callable[[int], int]) -> collections.abc.Callable[[int], int]
+#     A wrapper memoization function for a function which signature is Callable[[int], int].
 
 
 @memoize
@@ -51,7 +50,7 @@ def fibonacci(n: int) -> int:
 
 help(fibonacci)
 # Help on function fibonacci in module __main__:
-
+#
 # fibonacci(n: int) -> int
 #     A function that returns the passed
 #     Fibonacci sequence's index using recursion
@@ -67,6 +66,7 @@ print(fibonacci(10))
 # Calculating 5!
 # Calculating 4!
 # Calculating 3!
+# 55
 
 print(fibonacci.cache)
 # {2: 1, 1: 1, 3: 2, 4: 3, 5: 5, 6: 8, 7: 13, 8: 21, 9: 34, 10: 55}
@@ -74,7 +74,7 @@ print(fibonacci.cache)
 # Calculating fibonacci(10) again
 # Notice how value is taken from caching dictionary
 print(fibonacci(10))
-# 55
+# 55  // Final result
 
 # Calculating fibonacci(8) again
 # Notice how value is taken from caching dictionary
@@ -90,7 +90,7 @@ print(fibonacci(15))
 # Calculating 13!
 # Calculating 12!
 # Calculating 11!
-# Fibonacci(15): 610
+# 610  // Final result
 
 # Printing the cache dictionary
 for arg, cached_val in fibonacci.cache.items():

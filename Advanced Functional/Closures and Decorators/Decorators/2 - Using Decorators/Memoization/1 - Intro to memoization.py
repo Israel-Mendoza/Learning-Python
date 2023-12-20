@@ -1,11 +1,11 @@
-"""Introducing and making a use case for MEMOIZATION"""
-
-
 from typing import Any
 from functools import wraps
 from datetime import datetime
 from zoneinfo import ZoneInfo
 from collections.abc import Callable
+
+
+"""Introducing and making a use case for MEMOIZATION"""
 
 
 def function_logger(a_function: Callable[..., Any]) -> Callable[..., Any]:
@@ -18,26 +18,28 @@ def function_logger(a_function: Callable[..., Any]) -> Callable[..., Any]:
         wrapped function is called.
         """
         # Capturing time the function is called
-        run_datetime = datetime.now(ZoneInfo("UTC"))
+        run_datetime: datetime = datetime.now(ZoneInfo("UTC"))
         # Storing the result of the called wrapped function
-        result = a_function(*args, **kwargs)
+        result: Any = a_function(*args, **kwargs)
+
         # Capturing the arguments in a tuple
-        _args = [str(arg) for arg in args]
-        _kwargs = [f"'{key}'={value}" for key, value in kwargs.items()]
-        _args = ", ".join(_args)
-        _kwargs = ", ".join(_kwargs)
-        all_args = _args + _kwargs
+        _args: str = ", ".join((str(arg) for arg in args))
+        _kwargs: str = ", ".join((f"'{key}'={value}" for key, value in kwargs.items()))
+        all_args: str = _args + _kwargs
+
         # Printing the information
         print(f"{run_datetime}: called '{a_function.__name__}({all_args})'")
+
         # Returning the wrapped function's result
         return result
+
     # Returning the wrapped function
     return logger
 
 
 # Using the decorated function on a fibonacci recursive function
 @function_logger
-def fibonacci(n):
+def fibonacci(n: int) -> int:
     """A Fibonacci number generator, using recursion"""
     if n <= 2:
         return 1
@@ -80,7 +82,7 @@ print(fibonacci(6))
 ##############################################################################################
 
 """
-Let's implement a dictionary in a class as a CACHING to prevent innecessary calculations.
+Let's implement a dictionary in a class as a CACHING to prevent unnecessary calculations.
 """
 
 
@@ -96,21 +98,21 @@ class FibonacciClass:
         Initializing the caching mechanism containing
         known values for fibonacci(1) and fibonacci(2).
         """
-        self._cache = {1: 1, 2: 1}
+        self._cache: dict[int, int] = {1: 1, 2: 1}
 
     @property
-    def cache(self):
+    def cache(self) -> dict[int, int]:
         return self._cache
 
     def __call__(self, n: int) -> int:
         """
         When the class instance is called, it calculates
-        fibonnaci(n).
+        fibonacci(n).
         First, it looks for the existing cached value;
         if found, returned, if not, calculates it and
         stores it in the cache dictionary.
         Args:
-            n (int): the 'n'th Finonacci number
+            n (int): the 'n'th Fibonacci number
         Returns:
             int: the calculated 'n'th fibonacci number
         """
@@ -131,43 +133,43 @@ print(type(f1))
 
 help(f1)
 # Help on FibonacciClass in module __main__ object:
-
+#
 # class FibonacciClass(builtins.object)
 #  |  FibonacciClass() -> None
-#  |  
+#  |
 #  |  A class that contains a fibonacci calculator.
 #  |  Class instance is callable, which is the fibonacci calculator.
 #  |  Implements a caching mechanism as a memoization system
 #  |  to avoid duplicated calculations.
-#  |  
+#  |
 #  |  Methods defined here:
-#  |  
+#  |
 #  |  __call__(self, n: int) -> int
 #  |      When the class instance is called, it calculates
-#  |      fibonnaci(n).
+#  |      fibonacci(n).
 #  |      First, it looks for the existing cached value;
 #  |      if found, returned, if not, calculates it and
 #  |      stores it in the cache dictionary.
 #  |      Args:
-#  |          n (int): the 'n'th Finonacci number
+#  |          n (int): the 'n'th Fibonacci number
 #  |      Returns:
 #  |          int: the calculated 'n'th fibonacci number
-#  |  
+#  |
 #  |  __init__(self) -> None
 #  |      Initializing the caching mechanism containing
 #  |      known values for fibonacci(1) and fibonacci(2).
-#  |  
+#  |
 #  |  ----------------------------------------------------------------------
 #  |  Readonly properties defined here:
-#  |  
+#  |
 #  |  cache
-#  |  
+#  |
 #  |  ----------------------------------------------------------------------
 #  |  Data descriptors defined here:
-#  |  
+#  |
 #  |  __dict__
 #  |      dictionary for instance variables (if defined)
-#  |  
+#  |
 #  |  __weakref__
 #  |      list of weak references to the object (if defined)
 
@@ -192,7 +194,7 @@ print(f1.cache)
 
 
 """
-Let's implement a dictionary in a function as a CACHING to prevent innecessary calculations.
+Let's implement a dictionary in a function as a CACHING to prevent unnecessary calculations.
 """
 
 
@@ -204,18 +206,18 @@ def fibonacci_function() -> Callable[[int], int]:
     """
     # Initializing the caching mechanism containing
     # known values for fibonacci(1) and fibonacci(2).
-    _cache = {1: 1, 2: 1}
+    _cache: dict[int, int] = {1: 1, 2: 1}
 
     def fibonacci_function_inner(n: int) -> int:
         """
         When 'fibonacci_function_inner' is called, 
-        it returns the 'n'th fibonnaci number.
+        it returns the 'n'th fibonacci number.
         First, it looks for the existing cached value in the
         free variable _cache dictionary.
         The value is returned if found, if not, calculates it 
         and stores it in the _cache dictionary, and then returns it.
         Args:
-            n (int): the 'n'th Finonacci number
+            n (int): the 'n'th Fibonacci number
         Returns:
             int: the calculated 'n'th fibonacci number
         """
@@ -242,24 +244,24 @@ print(type(f2))
 
 help(fibonacci_function)
 # Help on function fibonacci_function in module __main__:
-
-# fibonacci_function() -> collections.abc.Callable
+#
+# fibonacci_function() -> collections.abc.Callable[[int], int]
 #     Returns a fibonacci calculator closure function.
-#     Returned function implements a caching dictionary 
+#     Returned function implements a caching dictionary
 #     as a memoization mechanism.
 
 help(f2)
 # Help on function fibonacci_function_inner in module __main__:
 #
 # fibonacci_function_inner(n: int) -> int
-#     When 'fibonacci_function_inner' is called, 
-#     it returns the 'n'th fibonnaci number.
+#     When 'fibonacci_function_inner' is called,
+#     it returns the 'n'th fibonacci number.
 #     First, it looks for the existing cached value in the
 #     free variable _cache dictionary.
-#     The value is returned if found, if not, calculates it 
+#     The value is returned if found, if not, calculates it
 #     and stores it in the _cache dictionary, and then returns it.
 #     Args:
-#         n (int): the 'n'th Finonacci number
+#         n (int): the 'n'th Fibonacci number
 #     Returns:
 #         int: the calculated 'n'th fibonacci number
 
