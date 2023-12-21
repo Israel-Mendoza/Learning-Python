@@ -1,4 +1,4 @@
-"""Introspecting functions"""
+"""ANALYSING THE FUNCTION'S ATTRIBUTES"""
 
 
 def my_func(a: list[str], b: int = 1, *args: str, kw1: int = 100, **kwargs: float):

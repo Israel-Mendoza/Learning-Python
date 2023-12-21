@@ -1,6 +1,8 @@
 from functools import reduce
 
-a_set = {5, 8, 6, 10, 9}
+"""Using the reduce function from the functools module."""
+
+a_set: set[int] = {5, 8, 6, 10, 9}
 
 
 def _max(x: int, y: int) -> int:
@@ -20,20 +22,20 @@ def _sum(x: int, y: int) -> int:
 
 """Using the reduce function"""
 
-max_result = reduce(_max, a_set)
-min_result = reduce(_min, a_set)
-sum_result = reduce(_sum, a_set)
+max_result: int = reduce(_max, a_set)
+min_result: int = reduce(_min, a_set)
+sum_result: int = reduce(_sum, a_set)
 
 print(max_result)  # 5
 print(min_result)  # 10
 print(sum_result)  # 38
 
-
 # Using the initial value
 
-some_words = ["I", "love", "Python"]
-initial_word = "Message:"
+some_words: list[str] = ["I", "love", "Python"]
+initial_word: str = "Message:"
 
-sentence = reduce(lambda acc, n: f"{acc} {n}", some_words, initial_word)
+sentence: str = reduce(lambda acc, n: f"{acc} {n}", some_words, initial_word)
 
-print(sentence)  # Message: I love Python
+print(sentence)
+# Message: I love Python

@@ -1,5 +1,4 @@
 from functools import partial
-from typing import Union
 
 
 def my_func(a: str, b: str, *args: str, k1: int, k2: int, **kwargs: int) -> None:
@@ -29,8 +28,8 @@ my_partial("B", "C", "D", "E", k2=2, k3=3, k4=4)
 # Specifying other positional arguments other than the first one
 
 
-def power(base: Union[int, float], exponent: Union[int, float]) -> Union[int, float]:
-    """Returns the base elevatged to the exponent"""
+def power[T: (int, float)](base: T, exponent: T) -> T:
+    """Returns the base elevated to the exponent"""
     return base ** exponent
 
 

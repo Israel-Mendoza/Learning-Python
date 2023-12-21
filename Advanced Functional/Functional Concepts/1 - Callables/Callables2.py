@@ -1,8 +1,9 @@
 from datetime import datetime
 
-print(callable(datetime))  # True
+print(callable(datetime))
+# True
 
-result = datetime(2020, 10, 13)
+result: datetime = datetime(2020, 10, 13)
 print(result)
 # 2020-10-13 00:00:00
 

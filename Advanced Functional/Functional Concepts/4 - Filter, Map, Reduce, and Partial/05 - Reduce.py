@@ -1,12 +1,13 @@
+from typing import Any
+from collections.abc import Callable, Sequence
+
+
 """Creating our own simple reduce function"""
 
 
-from typing import Any, Callable, Sequence
-
-
-a_list = [5, 8, 6, 10, 9]
-another_list1 = ["", 10, True, None, False]
-another_list2 = ["0", 10, True, "Python"]
+a_list: list[int] = [5, 8, 6, 10, 9]
+another_list1: list[Any] = ["", 10, True, None, False]
+another_list2: list[Any] = ["0", 10, True, "Python"]
 
 
 def _max(x: int, y: int) -> int:
@@ -34,7 +35,7 @@ def _all(x: Any, y: Any) -> bool:
     return bool(x) and bool(y)
 
 
-def _reduce(fn: Callable[[Any, Any], Any], sequence: Sequence, initial=None) -> Any:
+def _reduce(fn: Callable[[int, int], int], sequence: Sequence, initial: int | None = None) -> int:
     """
     A reduce high-order function that works with a sequence.
     This doesn't work with just any iterable.
@@ -76,4 +77,4 @@ try:
     result = _reduce(_max, {1, 2, 3, 4, 5})
 except TypeError as error:
     print(f"{type(error).__name__}: {error}")
-# TypeError: 'set' object is not subscriptable
+# TypeError: 'set' object is not subscriptable  // We cannot use [] in a set.

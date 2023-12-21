@@ -5,7 +5,7 @@ def square(num: int) -> int:
     return num * num
 
 
-square2 = lambda num: num * num
+square2 = lambda num: num * num  # Warning: PEP 8: E731 do not assign a lambda expression, use a def
 square3 = square2
 
 print(square)

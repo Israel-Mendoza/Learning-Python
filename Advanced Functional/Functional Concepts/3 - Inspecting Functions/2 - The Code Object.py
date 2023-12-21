@@ -1,3 +1,6 @@
+"""ANALYSING THE FUNCTION'S CODE OBJECT"""
+
+
 def my_func(a: list[str], b: int = 1, *args: str, kw1: int = 100, **kwargs: float):
     """A simple function"""
     i = 10
@@ -8,7 +11,7 @@ def my_func(a: list[str], b: int = 1, *args: str, kw1: int = 100, **kwargs: floa
 """Introspecting the code object"""
 
 print(my_func.__code__)  # -> <class 'code'>
-# <code object my_func at 0x000001F4C960BDF0, file "c:..., line 4>
+# <code object my_func at 0x000001F4C960BDF0, file "/Users/IsraelMendoza/Python/FunctionIntrospection.py", line 4>
 
 """Available attributes from the code object"""
 for attr in dir(my_func.__code__):
