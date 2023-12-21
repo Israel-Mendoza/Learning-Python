@@ -1,10 +1,11 @@
+import operator
+
+
 """Item getters"""
 
-import operator
-from operator import attrgetter, ge
 
 # Creating a list
-my_list = [1, 2, 3, 4, 5]
+my_list: list[int] = [1, 2, 3, 4, 5]
 
 print(my_list[2])  # 3
 print(operator.getitem(my_list, 2))  # 3
@@ -25,12 +26,12 @@ print(my_list)  # [100, 200, 3]
 # It returns a callable, which will then receive a sequence.
 # This callable returns the item at the provided index.
 
-get_first_item = operator.itemgetter(0)
+get_first_item: operator.itemgetter = operator.itemgetter(0)
 print(get_first_item("python"))  # "p"
 print(get_first_item([2, 1, 4, 0]))  # 2
 print(get_first_item(("G", "O", 2, 0)))  # "G"
 
-get_second_item = operator.itemgetter(1)
+get_second_item: operator.itemgetter = operator.itemgetter(1)
 print(get_second_item("python"))  # "y"
 print(get_second_item([2, 1, 4, 0]))  # 1
 print(get_second_item(("G", "O", 2, 0)))  # "O"
@@ -51,20 +52,24 @@ print(get_first_second(("G", "O", 2, 0)))  # ('G', 'O')
 
 
 class MyClass:
-    def __init__(self):
-        self.a = "A"
-        self.b = "B"
+    def __init__(self) -> None:
+        self.a: str = "A"
+        self.b: str = "B"
 
-    def test(self):
-        print(f"Object says hello!")
+    def say_hello(self) -> None:
+        print(f"Object @ {hex(id(self)).upper()} says hello!")
 
 
 my_obj = MyClass()
 
-getting_a = operator.attrgetter("a")
-getting_b = operator.attrgetter("b")
-getting_test = operator.attrgetter("test")
-print(f"{type(getting_a(my_obj))} - {getting_a(my_obj)}")  # <class 'str'> - 'A'
-print(f"{type(getting_b(my_obj))} - {getting_b(my_obj)}")  # <class 'str'> - 'B'
-print(type(getting_test(my_obj)))  # <class 'method'>
-getting_test(my_obj)()  # Object says hello!
+getting_a: operator.attrgetter = operator.attrgetter("a")
+getting_b: operator.attrgetter = operator.attrgetter("b")
+getting_test: operator.attrgetter = operator.attrgetter("say_hello")
+print(f"{type(getting_a(my_obj))} - {getting_a(my_obj)}")
+# <class 'str'> - 'A'
+print(f"{type(getting_b(my_obj))} - {getting_b(my_obj)}")
+# <class 'str'> - 'B'
+print(type(getting_test(my_obj)))
+# <class 'method'>
+getting_test(my_obj)()
+# Object @ 0X102C6E750 says hello!
