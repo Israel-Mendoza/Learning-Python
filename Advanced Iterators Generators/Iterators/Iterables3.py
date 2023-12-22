@@ -1,26 +1,30 @@
+from __future__ import annotations
+
+
 """Working with the iterable and iterator protocols"""
+
 
 #####################################################################
 # By implementing the __iter__ method, our object is an iteraBLE    #
 # By implementing the __iter__ and __next__ methods, our object     #
 # will be an iteraTOR                                               #
-# The __iter__ method must return the iterato  object and           #
+# The __iter__ method must return the iterator  object and          #
 # the __next__ method must implement the logic to return object     #
 # when iterated over.                                               #
 #####################################################################
 
 
-"""Implementing the iterator protocol to the same object holding the collection"""
+"""Implementing the iterator protocol to the same object holding the collection."""
 
 
 class Cities:
     """Iterator object"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         self._cities: list[str] = ["Paris", "London", "Mexico City", "Tokyo"]
         self._index: int = 0
 
-    def __iter__(self):
+    def __iter__(self) -> Cities:
         """Implementing the iterator protocol"""
         print("Calling __iter__!")
         return self
@@ -28,7 +32,7 @@ class Cities:
     def __next__(self) -> str:
         if self._index >= len(self._cities):
             raise StopIteration("Cities are up!")
-        result = self._cities[self._index]
+        result: str = self._cities[self._index]
         self._index += 1
         return result
 
@@ -61,14 +65,14 @@ class Cities:
     def cities(self) -> list[str]:
         return self._cities
 
-    def __len__(self):
+    def __len__(self) -> int:
         return len(self._cities)
 
 
 class CitiesIterator:
     def __init__(self, cities_obj: Cities):
-        self._cities_obj = cities_obj
-        self._index = 0
+        self._cities_obj: Cities = cities_obj
+        self._index: int = 0
 
     def __iter__(self):
         print("Calling __iter__!")
@@ -77,7 +81,7 @@ class CitiesIterator:
     def __next__(self):
         if self._index >= len(self._cities_obj):
             raise StopIteration("Cities are up!")
-        result = self._cities_obj.cities[self._index]
+        result: str = self._cities_obj.cities[self._index]
         self._index += 1
         return result
 

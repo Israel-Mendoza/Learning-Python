@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+
 """Creating a simple iterator object by implementing the __next__ and __iter__ methods"""
 
 
@@ -33,26 +34,34 @@ sq = SquareNumbers(10)
 
 for i in sq:
     print(i)
-# The __iter__ method on 0X2A4BC903FD0 was called! <-- Getting the iterator object
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __init__ method on 0X100371AC0 was called!
+# The __iter__ method on 0X100371AC0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 0
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 1
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 4
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 9
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 16
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 25
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 36
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 49
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 64
-# The __next__ method on 0X2A4BC903FD0 was called!
+# The __next__ method on 0X100371AC0 was called!
 # 81
-# The __next__ method on 0X2A4BC903FD0 was called!
-# The __next__ method on 0X2A4BC903FD0 is raising an exception!
+# The __next__ method on 0X100371AC0 was called!
+# The __next__ method on 0X100371AC0 is raising an exception!
+
+# Trying to iterate through sq again:
+for j in sq:
+    print(j)
+# The __iter__ method on 0X100371AC0 was called!
+# The __next__ method on 0X100371AC0 was called!
+# The __next__ method on 0X100371AC0 is raising an exception!

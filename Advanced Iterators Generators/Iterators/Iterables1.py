@@ -1,4 +1,3 @@
-from collections.abc import Sequence
 from random import randint
 
 
@@ -63,7 +62,7 @@ try:
         print(num)
 except TypeError as error:
     print(f"{type(error).__name__}: {error}")
-# TypeError: 'SquareNumbers' object is not iterable  // __next__ is not enough for an interable
+# TypeError: 'SquareNumbers' object is not iterable  // __next__ is not enough to create an iterable
 
 
 """Another example"""
@@ -130,4 +129,4 @@ try:
         print(num)
 except TypeError as error:
     print(f"{type(error).__name__}: {error}")
-# TypeError: 'RandomNumberSequence' object is not iterable  // __next__ is not enough for an interable
+# TypeError: 'RandomNumberSequence' object is not iterable  // __next__ is not enough to create an iterable
