@@ -1,13 +1,14 @@
-"""Creating a simple 'sequence' object by implementing the __next__ method"""
-
-
+from collections.abc import Sequence
 from random import randint
+
+
+"""Creating a simple 'sequence' object by implementing the __next__ method"""
 
 
 class SquareNumbers:
     def __init__(self, limit: int) -> None:
-        self.index = 0
-        self._limit = limit
+        self.index: int = 0
+        self._limit: int = limit
 
     def __len__(self) -> int:
         return self._limit
@@ -15,7 +16,7 @@ class SquareNumbers:
     def __next__(self) -> int:
         if self.index >= self._limit:
             raise StopIteration
-        result = self.index ** 2
+        result: int = self.index ** 2
         self.index += 1
         return result
 
@@ -24,7 +25,7 @@ class SquareNumbers:
 sq = SquareNumbers(10)
 
 
-# "Iterating" through the sq object
+# "Iterating" through sq
 while True:
     try:
         print(next(sq))
@@ -43,7 +44,7 @@ while True:
 # 81
 # Iteration is over!
 
-# "Iterating" through the sq object again
+# "Iterating" through sq again
 while True:
     try:
         print(next(sq))
@@ -62,20 +63,18 @@ try:
         print(num)
 except TypeError as error:
     print(f"{type(error).__name__}: {error}")
-# TypeError: 'SquareNumbers' object is not iterable
+# TypeError: 'SquareNumbers' object is not iterable  // __next__ is not enough for an interable
 
 
 """Another example"""
 
 
 class RandomNumberSequence:
-    def __init__(
-        self, seq_length: int, *, lower_limit: int = 0, upper_limit: int = 0
-    ) -> None:
-        self._index = 0
-        self._length = seq_length
-        self.lower_limit = lower_limit
-        self.upper_limit = upper_limit
+    def __init__(self, seq_length: int, *, lower_limit: int = 0, upper_limit: int = 0) -> None:
+        self._index: int = 0
+        self._length: int = seq_length
+        self.lower_limit: int = lower_limit
+        self.upper_limit: int = upper_limit
 
     def __len__(self) -> int:
         return self._length
@@ -83,7 +82,7 @@ class RandomNumberSequence:
     def __next__(self) -> int:
         if self._index >= self._length:
             raise StopIteration
-        result = randint(self.lower_limit, self.upper_limit)
+        result: int = randint(self.lower_limit, self.upper_limit)
         self._index += 1
         return result
 
@@ -131,4 +130,4 @@ try:
         print(num)
 except TypeError as error:
     print(f"{type(error).__name__}: {error}")
-# TypeError: 'RandomNumberSequence' object is not iterable
+# TypeError: 'RandomNumberSequence' object is not iterable  // __next__ is not enough for an interable

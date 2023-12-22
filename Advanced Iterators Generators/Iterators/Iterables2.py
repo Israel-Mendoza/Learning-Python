@@ -1,27 +1,29 @@
+from __future__ import annotations
+
 """Creating a simple iterator object by implementing the __next__ and __iter__ methods"""
 
 
 class SquareNumbers:
     def __init__(self, limit: int) -> None:
         print(f"The __init__ method on {hex(id(self)).upper()} was called!")
-        self.index = 0
-        self._limit = limit
+        self.index: int = 0
+        self._limit: int = limit
 
     def __len__(self) -> int:
         return self._limit
 
     def __next__(self) -> int:
-        address = hex(id(self)).upper()
+        address: str = hex(id(self)).upper()
         print(f"The __next__ method on {address} was called!")
         if self.index >= self._limit:
             print(f"The __next__ method on {address} is raising an exception!")
             raise StopIteration
-        result = self.index ** 2
+        result: int = self.index ** 2
         self.index += 1
         return result
 
-    def __iter__(self) -> "SquareNumbers":
-        address = hex(id(self)).upper()
+    def __iter__(self) -> SquareNumbers:
+        address: str = hex(id(self)).upper()
         print(f"The __iter__ method on {address} was called!")
         return self
 
