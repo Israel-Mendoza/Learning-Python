@@ -8,11 +8,13 @@ Install the dependencies by running the following command:
 
 Start the **Uvicorn** server using the server's CLI tool:
 
-```uvicorn main:app --reload```
+```uvicorn webserver.main:app --reload```
 
 or through Python by running:
 
-```python main.py```
+```python webserver/main.py```
+
+_Notice, however, that the second option won't restart the application when changes to the project are saved_
 
 You can now run the Python scripts independently with the server _running_. 
  

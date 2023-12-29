@@ -91,11 +91,7 @@ PASSWORD = 'pass'
 
 @app.get("/", tags=["Items API"], summary="Retrieve a list of items")
 @app.get("/api/items", tags=["Items API"], summary="Retrieve a list of items")
-async def read_items(
-    offset: Optional[int] = None,
-    limit: Optional[int] = None,
-    max_price: Optional[float] = None,
-):
+async def read_items(offset: int | None = None, limit: int | None = None, max_price: float | None = None):
     """
     Retrieve all of the items or a subset of items from the database based on pagination parameters and price parameters.
 
@@ -185,7 +181,7 @@ async def create_item_xml(xml_body: str = Body(..., media_type="application/xml"
 
 
 @app.post("/upload-files", summary="Upload multiple CSV files", tags=["Upload files"])
-async def upload_files(files: List[UploadFile] = File(...)):
+async def upload_files(files: list[UploadFile] = File(...)):
     """
     Upload one or more CSV files to the server.
 
@@ -237,6 +233,7 @@ async def patch_item(item_id: int, item: Item):
             items_db[item_id]["name"] = item.name
         if item.price:
             items_db[item_id]["price"] = item.price
+        return items_db[item_id]
         return items_db[item_id]
     raise HTTPException(status_code=404, detail="Item not found")
 
