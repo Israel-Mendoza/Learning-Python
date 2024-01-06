@@ -115,9 +115,7 @@ async def read_items(offset: int | None = None, limit: int | None = None, max_pr
     return filtered_items[offset : offset + limit]
 
 
-@app.get(
-    "/items/new", tags=["Items HTML"], summary="Serve a form for creating a new item"
-)
+@app.get("/items/new", tags=["Items HTML"], summary="Serve a form for creating a new item")
 async def new_item_form():
     """
     Serve an HTML page with a form to submit a new item's name and price.

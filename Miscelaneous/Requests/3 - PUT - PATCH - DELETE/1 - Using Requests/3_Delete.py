@@ -10,7 +10,7 @@ print(original_first_item)
 
 del_response = requests.delete(item_to_delete_url)
 print(del_response.json())
-# {{'status': 'Item deleted', 'item': {'name': 'Foo', 'price': 23.45}}
+# {'status': 'Item deleted', 'item': {'name': 'Bar', 'price': 67.89}}
 
 deleted_item = del_response.json()["item"]
 print(original_first_item == deleted_item)

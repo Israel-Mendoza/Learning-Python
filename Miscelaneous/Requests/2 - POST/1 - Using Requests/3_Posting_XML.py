@@ -27,3 +27,4 @@ print(f"{name = } - {price = }")
 # Making sure our entry was stored:
 response = requests.get(items_url)
 print(response.json()[len(response.json()) - 1])
+# {'name': 'Some Item', 'price': '333.33'}

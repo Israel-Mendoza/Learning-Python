@@ -1,4 +1,4 @@
-# REQUEST LIBRARY
+# REQUEST and HTTPX LIBRARIES
 
 > It is recommended to use a virtual environment.
 

@@ -1,7 +1,9 @@
-import requests
+import httpx
 
 
 post_files_url: str = "http://localhost:8000/upload-files"
+
+client: httpx.Client = httpx.Client()
 
 file_one = open("../files_to_upload/one.csv", "rb")
 file_two = open("../files_to_upload/two.csv", "rb")
@@ -14,12 +16,13 @@ files = [
 # To add one single file, you can use:
 # files = {"file": open("../files_to_upload/one.csv", "rb")}
 
-response = requests.post(
+response = client.post(
     post_files_url,  # Post url
-    files=files  # The files kwyword argument is the one receiving the files
+    files=files  # The files keyword argument is the one receiving the files
 )
 
 file_one.close()
 file_two.close()
 
 print(response.json())
+# {'uploaded_files': ['one.csv', 'two.csv']}
